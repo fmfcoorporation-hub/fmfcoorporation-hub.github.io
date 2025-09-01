@@ -1,0 +1,371 @@
+<!doctype html><html lang="id"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Panduan Excel — Dashboard Lengkap</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;background:#f6f8fb;margin:0;padding:20px}
+h1{color:#0b66ff}
+.bab{margin-top:20px;padding:10px;background:#eaf2ff;border-radius:6px}
+.func{padding:6px;margin:6px 0;background:#fff;border:1px solid #ddd;border-radius:6px}
+small{color:#555}
+button{margin:4px;padding:6px 12px;border-radius:6px;border:1px solid #0b66ff;background:#0b66ff;color:#fff;cursor:pointer}
+</style>
+<script>
+function exportCSV(){
+  let rows = Array.from(document.querySelectorAll('.func')).map(div=>{
+    return div.querySelector('strong').innerText + "," + div.querySelector('small').innerText.replace(/,/g,';');
+  });
+  let csv = "Fungsi,Deskripsi\n" + rows.join("\n");
+  let blob = new Blob([csv], {type:"text/csv"});
+  let a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "fungsi_excel.csv";
+  a.click();
+}
+function exportJSON(){
+  let data = Array.from(document.querySelectorAll('.func')).map(div=>{
+    return {fungsi: div.querySelector('strong').innerText, deskripsi: div.querySelector('small').innerText};
+  });
+  let blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
+  let a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "fungsi_excel.json";
+  a.click();
+}
+</script>
+</head><body>
+<h1>Dashboard Panduan Excel — Semua Fungsi</h1>
+<p>Sumber: Panduan Lengkap Excel: Kuasai 350+ Fungsi Dan Formula Dinamis (ekstraksi otomatis).</p>
+<div>
+<button onclick="exportCSV()">Export CSV</button>
+<button onclick="exportJSON()">Export JSON</button>
+</div>
+<div class="bab"><h2>BAB 1 — FUNGSI MATEMATIKA</h2>
+<div class="func"><strong>AVERAGE</strong><br><small>Menghitung rata-rata sekumpulan angka.</small></div>
+<div class="func"><strong>AVERAGEIF</strong><br><small>Menghitung rata-rata dengan satu kriteria.</small></div>
+<div class="func"><strong>AVERAGEIFS</strong><br><small>Menghitung rata-rata dengan banyak</small></div>
+<div class="func"><strong>SUMIF</strong><br><small>Menjumlahkan angka dengan satu kriteria.</small></div>
+<div class="func"><strong>SUMIFS</strong><br><small>Menjumlahkan angka dengan banyak kriteria.1. Sum  Fam ily</small></div>
+<div class="func"><strong>COUNT</strong><br><small>Menghitung jumlah sel berisi angka.</small></div>
+<div class="func"><strong>COUNTA</strong><br><small>Menghitung jumlah sel tidak kosong.</small></div>
+<div class="func"><strong>COUNTIF</strong><br><small>Menghitung sel dengan satu kriteria.</small></div>
+<div class="func"><strong>COUNTIFS</strong><br><small>Menghitung sel dengan banyak kriteria.3. Count Fam ily</small></div>
+<div class="func"><strong>ROUND</strong><br><small>Membulatkan angka sesuai jumlah digit.</small></div>
+<div class="func"><strong>ROUNDUP</strong><br><small>Membulatkan angka ke atas.</small></div>
+<div class="func"><strong>ROUNDDOWN</strong><br><small>Membulatkan angka ke bawah.</small></div>
+<div class="func"><strong>INT</strong><br><small>Mengambil bilangan bulat dari angka.</small></div>
+<div class="func"><strong>TRUNC</strong><br><small>Memotong angka tanpa pembulatan.</small></div>
+<div class="func"><strong>EVEN</strong><br><small>Membulatkan ke bilangan genap terdekat.</small></div>
+<div class="func"><strong>ODD</strong><br><small>Membulatkan ke bilangan ganjil terdekat.</small></div>
+<div class="func"><strong>MROUND</strong><br><small>Membulatkan ke kelipatan tertentu.</small></div>
+<div class="func"><strong>CEILING</strong><br><small>Membulatkan ke atas ke kelipatan tertentu.</small></div>
+<div class="func"><strong>FLOOR</strong><br><small>Membulatkan ke bawah ke kelipatan tertentu.4. Round Fam ily</small></div>
+<div class="func"><strong>MIN</strong><br><small>Menghasilkan nilai terkecil.</small></div>
+<div class="func"><strong>MAX</strong><br><small>Menghasilkan nilai terbesar.</small></div>
+<div class="func"><strong>LARGE</strong><br><small>Mengambil nilai terbesar ke-n.</small></div>
+<div class="func"><strong>SMALL</strong><br><small>Mengambil nilai terkecil ke-n.</small></div>
+<div class="func"><strong>RANK</strong><br><small>Menentukan peringkat nilai.</small></div>
+<div class="func"><strong>PERCENTILE</strong><br><small>Menghasilkan nilai persentil.</small></div>
+<div class="func"><strong>QUARTILE</strong><br><small>Menghasilkan nilai kuartil.5. Statistik Dasar</small></div>
+<div class="func"><strong>ABS</strong><br><small>Menghasilkan nilai absolut.</small></div>
+<div class="func"><strong>PRODUCT</strong><br><small>Mengalikan sekumpulan angka.</small></div>
+<div class="func"><strong>QUOTIENT</strong><br><small>Menghasilkan hasil bagi bilangan bulat.</small></div>
+<div class="func"><strong>MOD</strong><br><small>Menghasilkan sisa pembagian.</small></div>
+<div class="func"><strong>POWER</strong><br><small>Menghitung pangkat suatu bilangan.</small></div>
+<div class="func"><strong>SQRT</strong><br><small>Menghasilkan akar kuadrat.</small></div>
+<div class="func"><strong>EXP</strong><br><small>Menghasilkan eksponensial.</small></div>
+<div class="func"><strong>LN</strong><br><small>Menghasilkan logaritma natural.</small></div>
+<div class="func"><strong>LOG</strong><br><small>Menghasilkan logaritma dengan basis tertentu.</small></div>
+<div class="func"><strong>PI</strong><br><small>Mengembalikan nilai pi.</small></div>
+<div class="func"><strong>SIGN</strong><br><small>Menentukan tanda bilangan.</small></div>
+<div class="func"><strong>FACT</strong><br><small>Menghitung faktorial.</small></div>
+<div class="func"><strong>GCD</strong><br><small>Menghitung FPB dua angka.</small></div>
+<div class="func"><strong>LCM</strong><br><small>Menghitung KPK dua angka.6. M atem atika Dasar</small></div>
+<div class="func"><strong>RAND</strong><br><small>Menghasilkan angka acak 0–1.</small></div>
+<div class="func"><strong>RANDBETWEEN</strong><br><small>Menghasilkan angka acak dalam</small></div>
+<div class="func"><strong>SIN</strong><br><small>Menghasilkan nilai sinus.</small></div>
+<div class="func"><strong>COS</strong><br><small>Menghasilkan nilai cosinus.</small></div>
+<div class="func"><strong>TAN</strong><br><small>Menghasilkan nilai tangen.</small></div>
+<div class="func"><strong>COT</strong><br><small>Menghasilkan nilai cotangen.</small></div>
+<div class="func"><strong>CSC</strong><br><small>Menghasilkan nilai cosecan.</small></div>
+<div class="func"><strong>SEC</strong><br><small>Menghasilkan nilai secan.</small></div>
+<div class="func"><strong>ASIN</strong><br><small>Menghasilkan arcsin.</small></div>
+<div class="func"><strong>ACOS</strong><br><small>Menghasilkan arccos.</small></div>
+<div class="func"><strong>ATAN</strong><br><small>Menghasilkan arctan.</small></div>
+<div class="func"><strong>ATAN2</strong><br><small>Arctan dua argumen.</small></div>
+<div class="func"><strong>ACOT</strong><br><small>Menghasilkan arccot.</small></div>
+<div class="func"><strong>ACSC</strong><br><small>Menghasilkan arccsc.</small></div>
+<div class="func"><strong>ASEC</strong><br><small>Menghasilkan arsec.</small></div>
+<div class="func"><strong>SINH</strong><br><small>Menghasilkan sinus hiperbolik.</small></div>
+<div class="func"><strong>COSH</strong><br><small>Menghasilkan cosinus hiperbolik.</small></div>
+<div class="func"><strong>TANH</strong><br><small>Menghasilkan tangen hiperbolik.</small></div>
+<div class="func"><strong>COTH</strong><br><small>Menghasilkan cotangen hiperbolik.</small></div>
+<div class="func"><strong>CSCH</strong><br><small>Menghasilkan cosecan hiperbolik.</small></div>
+<div class="func"><strong>SECH</strong><br><small>Menghasilkan secan hiperbolik.</small></div>
+<div class="func"><strong>ASINH</strong><br><small>Menghasilkan arcsinh.</small></div>
+<div class="func"><strong>ACOSH</strong><br><small>Menghasilkan arccosh.</small></div>
+<div class="func"><strong>ATANH</strong><br><small>Menghasilkan arctanh.</small></div>
+<div class="func"><strong>ACOTH</strong><br><small>Menghasilkan arccoth.</small></div>
+<div class="func"><strong>ACSCH</strong><br><small>Menghasilkan arccsch.</small></div>
+<div class="func"><strong>ASECH</strong><br><small>Menghasilkan arsech.8. Trigonom etriBab 1</small></div>
+</div>
+<div class="bab"><h2>BAB 2 — FUNGSI TEKS</h2>
+<div class="func"><strong>LEFT</strong><br><small>Mengambil sejumlah karakter dari awal teks.</small></div>
+<div class="func"><strong>RIGHT</strong><br><small>Mengambil sejumlah karakter dari akhir teks.</small></div>
+<div class="func"><strong>MID</strong><br><small>Mengambil bagian teks dari posisi tertentu dengan</small></div>
+<div class="func"><strong>LEN</strong><br><small>Menghitung jumlah karakter dalam sebuah teks</small></div>
+<div class="func"><strong>TRIM</strong><br><small>Menghapus spasi berlebih dan hanya menyisakan</small></div>
+<div class="func"><strong>REPT</strong><br><small>Mengulang teks sesuai jumlah yang ditentukan.</small></div>
+<div class="func"><strong>TEXT</strong><br><small>Mengubah angka menjadi teks dengan format</small></div>
+<div class="func"><strong>VALUE</strong><br><small>Mengubah teks yang menyerupai angka menjadi</small></div>
+<div class="func"><strong>UPPER</strong><br><small>Mengubah semua huruf menjadi kapital, sering</small></div>
+<div class="func"><strong>LOWER</strong><br><small>Mengubah semua huruf menjadi kecil, berguna</small></div>
+<div class="func"><strong>PROPER</strong><br><small>Mengubah huruf pertama tiap kata menjadi</small></div>
+<div class="func"><strong>SEARCH</strong><br><small>Mencari posisi teks dalam string tanpa</small></div>
+<div class="func"><strong>FIND</strong><br><small>Mencari posisi teks dalam string dengan peka</small></div>
+<div class="func"><strong>REPLACE</strong><br><small>Mengganti sebagian teks berdasarkan posisi</small></div>
+<div class="func"><strong>SUBSTITUTE</strong><br><small>Mengganti teks tertentu dalam string</small></div>
+<div class="func"><strong>EXACT</strong><br><small>Membandingkan dua teks secara tepat (case-</small></div>
+<div class="func"><strong>CONCATENATE</strong><br><small>Menggabungkan beberapa teks</small></div>
+<div class="func"><strong>CONCAT</strong><br><small>Versi modern dari CONCATENATE, lebih</small></div>
+<div class="func"><strong>TEXTJOIN</strong><br><small>Menggabungkan teks dengan pemisah</small></div>
+<div class="func"><strong>CLEAN</strong><br><small>Menghapus karakter non-printable dari teks.</small></div>
+<div class="func"><strong>ISTEXT</strong><br><small>Mengecek apakah nilai adalah teks. Dipakai</small></div>
+<div class="func"><strong>ISNUMBER</strong><br><small>Mengecek apakah nilai berupa angka. Sering</small></div>
+<div class="func"><strong>T</strong><br><small>Mengembalikan teks dari sebuah referensi. Jika nilai</small></div>
+<div class="func"><strong>TEXTSPLIT</strong><br><small>Memisahkan teks ke dalam beberapa sel</small></div>
+<div class="func"><strong>TEXTBEFORE</strong><br><small>Mengambil teks sebelum pemisah</small></div>
+<div class="func"><strong>TEXTAFTER</strong><br><small>Mengambil teks setelah pemisah tertentu.</small></div>
+<div class="func"><strong>VALUETOTEXT</strong><br><small>Mengubah nilai menjadi teks yang</small></div>
+<div class="func"><strong>UNICHAR</strong><br><small>Menghasilkan karakter berdasarkan kode</small></div>
+<div class="func"><strong>UNICODE</strong><br><small>Menghasilkan kode Unicode dari karakter.</small></div>
+</div>
+<div class="bab"><h2>BAB 3 — FUNGSI LOGIKA</h2>
+<div class="func"><strong>IF</strong><br><small>Mengevaluasi kondisi tertentu lalu mengembalikan nilai</small></div>
+<div class="func"><strong>IFS</strong><br><small>Menangani banyak kondisi sekaligus tanpa perlu menulis</small></div>
+<div class="func"><strong>IFERROR</strong><br><small>Berguna untuk menutupi error seperti #DIV/0!,</small></div>
+<div class="func"><strong>IFNA</strong><br><small>Versi lebih spesifik dari IFERROR, hanya menargetkan</small></div>
+<div class="func"><strong>AND</strong><br><small>Mengevaluasi banyak kondisi, hanya mengembalikan</small></div>
+<div class="func"><strong>OR</strong><br><small>Menghasilkan TRUE jika minimal satu kondisi benar.</small></div>
+<div class="func"><strong>NOT</strong><br><small>Membalikkan hasil logika, TRUE jadi FALSE atau</small></div>
+<div class="func"><strong>XOR</strong><br><small>Mengembalikan TRUE hanya jika jumlah kondisi TRUE</small></div>
+<div class="func"><strong>SWITCH</strong><br><small>Membandingkan sebuah ekspresi dengan beberapa</small></div>
+<div class="func"><strong>CHOOSE</strong><br><small>Mengambil nilai dari daftar berdasarkan nomor</small></div>
+<div class="func"><strong>LET</strong><br><small>Memungkinkan kita menyimpan nilai sementara di</small></div>
+<div class="func"><strong>LAMBDA</strong><br><small>Membuat fungsi buatan sendiri langsung di</small></div>
+<div class="func"><strong>BYROW</strong><br><small>Mengevaluasi ekspresi logika atau fungsi untuk</small></div>
+<div class="func"><strong>BYCOL</strong><br><small>Mengevaluasi ekspresi logika atau fungsi untuk</small></div>
+<div class="func"><strong>FILTER</strong><br><small>Menghasilkan subset data berdasarkan kondisi</small></div>
+<div class="func"><strong>UNIQUE</strong><br><small>Menghasilkan daftar nilai unik dari sebuah</small></div>
+<div class="func"><strong>SORT</strong><br><small>Mengurutkan data berdasarkan kriteria tertentu,</small></div>
+<div class="func"><strong>SORTBY</strong><br><small>Mengurutkan data berdasarkan range/array</small></div>
+<div class="func"><strong>TRUE</strong><br><small>Mengembalikan nilai logika TRUE, bisa dipakai</small></div>
+<div class="func"><strong>FALSE</strong><br><small>Mengembalikan nilai logika FALSE, sering</small></div>
+<div class="func"><strong>ISLOGICAL</strong><br><small>Mengecek apakah sebuah nilai adalah logika</small></div>
+</div>
+<div class="bab"><h2>BAB 4 — FUNGSI TANGGAL</h2>
+<div class="func"><strong>TODAY</strong><br><small>Mengembalikan tanggal hari ini sesuai sistem</small></div>
+<div class="func"><strong>NOW</strong><br><small>Menghasilkan tanggal dan waktu saat ini,</small></div>
+<div class="func"><strong>DAY</strong><br><small>Mengambil angka hari dari sebuah tanggal (1–31).</small></div>
+<div class="func"><strong>MONTH</strong><br><small>Menghasilkan nomor bulan dari sebuah tanggal</small></div>
+<div class="func"><strong>YEAR</strong><br><small>Mengambil tahun dalam bentuk angka empat</small></div>
+<div class="func"><strong>WEEKDAY</strong><br><small>Mengembalikan nomor hari dalam seminggu</small></div>
+<div class="func"><strong>WEEKNUM</strong><br><small>Menghasilkan nomor minggu dalam setahun,</small></div>
+<div class="func"><strong>ISOWEEKNUM</strong><br><small>Menghitung nomor minggu sesuai</small></div>
+<div class="func"><strong>EOMONTH</strong><br><small>Menghasilkan tanggal akhir bulan dari</small></div>
+<div class="func"><strong>DATE</strong><br><small>Membentuk tanggal dari kombinasi tahun, bulan,</small></div>
+<div class="func"><strong>DATEVALUE</strong><br><small>Mengubah teks yang berisi tanggal</small></div>
+<div class="func"><strong>EDATE</strong><br><small>Menambahkan atau mengurangi sejumlah bulan</small></div>
+<div class="func"><strong>YEARFRAC</strong><br><small>Menghitung proporsi tahun yang telah</small></div>
+<div class="func"><strong>HOUR</strong><br><small>Mengambil jam dari sebuah nilai waktu (0–23).</small></div>
+<div class="func"><strong>MINUTE</strong><br><small>Menghasilkan menit dari sebuah waktu (0–59).</small></div>
+<div class="func"><strong>SECOND</strong><br><small>Menghasilkan detik dari sebuah waktu (0–59).</small></div>
+<div class="func"><strong>TIME</strong><br><small>Menggabungkan jam, menit, dan detik menjadi</small></div>
+<div class="func"><strong>TIMEVALUE</strong><br><small>Mengonversi teks yang berisi jam menjadi</small></div>
+<div class="func"><strong>DATEDIF</strong><br><small>Menghitung selisih antara dua tanggal dalam</small></div>
+<div class="func"><strong>DAYS</strong><br><small>Menghasilkan jumlah hari antara dua tanggal.</small></div>
+<div class="func"><strong>NETWORKDAYS</strong><br><small>Menghitung jumlah hari kerja (tidak</small></div>
+<div class="func"><strong>NETWORKDAYS.INTL</strong><br><small>Versi fleksibel, bisa menentukan</small></div>
+<div class="func"><strong>WORKDAY</strong><br><small>Mengembalikan tanggal setelah</small></div>
+<div class="func"><strong>WORKDAY.INTL</strong><br><small>Sama dengan WORKDAY, tetapi dengan</small></div>
+<div class="func"><strong>WEEKNUM</strong><br><small>Memberikan nomor minggu dalam setahun.</small></div>
+<div class="func"><strong>ISOWEEKNUM</strong><br><small>Menyediakan nomor minggu sesuai</small></div>
+<div class="func"><strong>QUARTILE.EXC</strong><br><small>Fungsi statistik untuk menentukan nilai</small></div>
+<div class="func"><strong>QUARTILE.INC</strong><br><small>Versi inklusif dari QUARTILE.EXC.6. Fungsi M inggu dan Kuartal</small></div>
+</div>
+<div class="bab"><h2>BAB 5 — FUNGSI LOOKUP</h2>
+<div class="func"><strong>VLOOKUP</strong><br><small>Mencari nilai pada kolom paling kiri tabel lalu</small></div>
+<div class="func"><strong>HLOOKUP</strong><br><small>Versi horizontal dari VLOOKUP; pencarian</small></div>
+<div class="func"><strong>LOOKUP</strong><br><small>Fungsi lawas untuk mencari nilai dalam satu</small></div>
+<div class="func"><strong>XLOOKUP</strong><br><small>Penerus VLOOKUP/HLOOKUP; bisa mencari</small></div>
+<div class="func"><strong>XMATCH</strong><br><small>Versi modern dari MATCH dengan mode</small></div>
+<div class="func"><strong>FILTER</strong><br><small>Mengembalikan baris yang lolos kriteria; sering</small></div>
+<div class="func"><strong>UNIQUE</strong><br><small>Menghasilkan daftar nilai unik; sering digabung</small></div>
+<div class="func"><strong>SORT</strong><br><small>Mengurutkan hasil berdasarkan kolom tertentu;</small></div>
+<div class="func"><strong>SORTBY</strong><br><small>Mengurutkan data berdasarkan array acuan</small></div>
+<div class="func"><strong>TAKE</strong><br><small>Mengambil n baris/kolom teratas atau terbawah</small></div>
+<div class="func"><strong>DROP</strong><br><small>Membuang n baris/kolom dari awal/akhir array—</small></div>
+<div class="func"><strong>CHOOSECOLS</strong><br><small>Memilih kolom tertentu dari array</small></div>
+<div class="func"><strong>CHOOSEROWS</strong><br><small>Memilih baris tertentu dari array</small></div>
+<div class="func"><strong>HSTACK</strong><br><small>Menyusun beberapa array secara mendatar</small></div>
+<div class="func"><strong>VSTACK</strong><br><small>Menyusun beberapa array secara vertikal</small></div>
+<div class="func"><strong>WRAPROWS</strong><br><small>Mengalihkan data 1D menjadi beberapa</small></div>
+<div class="func"><strong>WRAPCOLS</strong><br><small>Mengalihkan data 1D menjadi beberapa</small></div>
+<div class="func"><strong>TOROW</strong><br><small>Meratakan array menjadi satu baris;</small></div>
+<div class="func"><strong>TOCOL</strong><br><small>Meratakan array menjadi satu kolom; sangat</small></div>
+<div class="func"><strong>MATCH</strong><br><small>Mengembalikan posisi relatif dari sebuah nilai</small></div>
+<div class="func"><strong>INDEX</strong><br><small>Mengambil nilai dari posisi baris/kolom tertentu</small></div>
+<div class="func"><strong>OFFSET</strong><br><small>Menghasilkan referensi yang digeser dari sel</small></div>
+<div class="func"><strong>TRANSPOSE</strong><br><small>Menukar orientasi baris sebelum/ sesudah</small></div>
+<div class="func"><strong>ADDRESS</strong><br><small>Mengembalikan alamat sel (mis. $B$12) dari nomor</small></div>
+<div class="func"><strong>INDIRECT</strong><br><small>Mengubah teks alamat/range menjadi referensi</small></div>
+<div class="func"><strong>ROW</strong><br><small>Menghasilkan nomor baris dari sebuah referensi—sering</small></div>
+<div class="func"><strong>ROWS</strong><br><small>Mengembalikan jumlah baris dalam sebuah</small></div>
+<div class="func"><strong>COLUMN</strong><br><small>Menghasilkan nomor kolom; berguna untuk offset</small></div>
+<div class="func"><strong>COLUMNS</strong><br><small>Mengembalikan jumlah kolom dalam</small></div>
+<div class="func"><strong>AREAS</strong><br><small>Menghitung berapa banyak area pada referensi</small></div>
+<div class="func"><strong>CELL</strong><br><small>Memberikan informasi tentang format/lokasi/konten sel.</small></div>
+<div class="func"><strong>FORMULATEXT</strong><br><small>Menampilkan formula sebuah sel sebagai teks.</small></div>
+<div class="func"><strong>HYPERLINK</strong><br><small>Membuat tautan aktif ke file, web, atau lokasi</small></div>
+<div class="func"><strong>GETPIVOTDATA</strong><br><small>Mengambil nilai dari PivotTable berdasarkan</small></div>
+<div class="func"><strong>CUBEVALUE</strong><br><small>Mengembalikan nilai agregat dari model</small></div>
+<div class="func"><strong>CUBEMEMBER</strong><br><small>Mengembalikan anggota (member) dari</small></div>
+<div class="func"><strong>CUBESET</strong><br><small>Membuat set anggota yang bisa dipakai untuk</small></div>
+<div class="func"><strong>CUBERANKEDMEMBER</strong><br><small>Mengembalikan anggota ke-n dari</small></div>
+<div class="func"><strong>CUBESETCOUNT</strong><br><small>Mengembalikan jumlah anggota dalam</small></div>
+<div class="func"><strong>CHOOSE</strong><br><small>Memilih salah satu nilai dari daftar argumen</small></div>
+<div class="func"><strong>RTD</strong><br><small>Mengambil data real-time dari server otomatisasi COM;</small></div>
+<div class="func"><strong>ISREF</strong><br><small>Menguji apakah sebuah nilai adalah referensi yang valid</small></div>
+</div>
+<div class="bab"><h2>BAB 6 — FUNGSI KEUANGAN</h2>
+<div class="func"><strong>PV</strong><br><small>Menghitung nilai sekarang (Present Value) dari</small></div>
+<div class="func"><strong>FV</strong><br><small>Menghitung nilai masa depan (Future Value) dari</small></div>
+<div class="func"><strong>NPV</strong><br><small>Menghitung nilai bersih saat ini dari arus kas masa</small></div>
+<div class="func"><strong>XNPV</strong><br><small>Versi presisi dari NPV yang memperhitungkan</small></div>
+<div class="func"><strong>RATE</strong><br><small>Menghitung tingkat bunga per periode dari</small></div>
+<div class="func"><strong>IRR</strong><br><small>Internal Rate of Return; menghitung tingkat</small></div>
+<div class="func"><strong>XIRR</strong><br><small>Versi lebih fleksibel dari IRR yang</small></div>
+<div class="func"><strong>MIRR</strong><br><small>Modified IRR; memperbaiki kelemahan IRR dengan</small></div>
+<div class="func"><strong>PMT</strong><br><small>Menghitung jumlah pembayaran per periode untuk</small></div>
+<div class="func"><strong>IPMT</strong><br><small>Menghitung porsi bunga dari suatu pembayaran</small></div>
+<div class="func"><strong>PPMT</strong><br><small>Menghitung porsi pokok dari suatu pembayaran</small></div>
+<div class="func"><strong>CUMIPMT</strong><br><small>Menghasilkan total bunga dibayar antara</small></div>
+<div class="func"><strong>CUMPRINC</strong><br><small>Menghasilkan total pokok yang dibayar</small></div>
+<div class="func"><strong>NPER</strong><br><small>Menghitung jumlah total periode pembayaran</small></div>
+<div class="func"><strong>PRICE</strong><br><small>Menghitung harga obligasi per 100 nilai nominal</small></div>
+<div class="func"><strong>YIELD</strong><br><small>Menghitung tingkat pengembalian obligasi</small></div>
+<div class="func"><strong>PRICEDISC</strong><br><small>Menghitung harga sekuritas diskonto per</small></div>
+<div class="func"><strong>YIELDDISC</strong><br><small>Menghitung yield sekuritas diskonto dari</small></div>
+<div class="func"><strong>PRICE.MAT</strong><br><small>Menghitung harga sekuritas yang dibayar di</small></div>
+<div class="func"><strong>YIELD.MAT</strong><br><small>Menghitung yield dari sekuritas yang dibayar</small></div>
+<div class="func"><strong>ODDFPRICE</strong><br><small>Menghitung harga obligasi dengan periode</small></div>
+<div class="func"><strong>ODDFYIELD</strong><br><small>Menghitung yield obligasi dengan periode</small></div>
+<div class="func"><strong>ODDLPRICE</strong><br><small>Menghitung harga obligasi dengan periode</small></div>
+<div class="func"><strong>ODDLYIELD</strong><br><small>Menghitung yield obligasi dengan periode</small></div>
+<div class="func"><strong>DURATION</strong><br><small>Menghitung durasi obligasi yang</small></div>
+<div class="func"><strong>MDURATION</strong><br><small>Menghitung modified duration—versi</small></div>
+<div class="func"><strong>RECEIVED</strong><br><small>Menghitung jumlah diterima pada maturity</small></div>
+<div class="func"><strong>INTRATE</strong><br><small>Menghitung tingkat bunga untuk sekuritas</small></div>
+<div class="func"><strong>TBILLEQ</strong><br><small>Menghitung yield setara obligasi untuk</small></div>
+<div class="func"><strong>TBILLPRICE</strong><br><small>Menghitung harga treasury bill per 100 nilai</small></div>
+<div class="func"><strong>TBILLYIELD</strong><br><small>Menghitung yield treasury bill dari harga</small></div>
+<div class="func"><strong>DISC</strong><br><small>Menghitung tingkat diskonto sekuritas.</small></div>
+<div class="func"><strong>INTRATE</strong><br><small>Menghitung suku bunga untuk instrumen</small></div>
+<div class="func"><strong>YIELDREDEMPTION</strong><br><small>Menghitung tingkat pengembalian</small></div>
+<div class="func"><strong>DDB</strong><br><small>Menghitung penyusutan dengan metode double-</small></div>
+<div class="func"><strong>SLN</strong><br><small>Menghitung penyusutan dengan metode garis</small></div>
+<div class="func"><strong>SYD</strong><br><small>Menghitung penyusutan dengan metode sum-of-</small></div>
+<div class="func"><strong>VDB</strong><br><small>Menghitung penyusutan saldo menurun ganda</small></div>
+<div class="func"><strong>AMORDEGRC</strong><br><small>Fungsi penyusutan untuk aset dengan</small></div>
+<div class="func"><strong>AMORLINC</strong><br><small>Fungsi penyusutan linier untuk aset menurut</small></div>
+<div class="func"><strong>ACCRINT</strong><br><small>Menghitung bunga akrual sekuritas dengan</small></div>
+<div class="func"><strong>ACCRINTM</strong><br><small>Menghitung bunga akrual sekuritas yang</small></div>
+<div class="func"><strong>DOLLARDE</strong><br><small>Mengubah harga pecahan obligasi (mis.</small></div>
+<div class="func"><strong>DOLLARFR</strong><br><small>Mengubah harga desimal menjadi pecahan</small></div>
+<div class="func"><strong>COUPDAYBS</strong><br><small>Menghitung jumlah hari dari awal periode</small></div>
+<div class="func"><strong>COUPDAYS</strong><br><small>Menghitung jumlah total hari dalam periode</small></div>
+<div class="func"><strong>COUPDAYSNC</strong><br><small>Menghitung jumlah hari dari settlement</small></div>
+<div class="func"><strong>COUPNCD</strong><br><small>Memberikan tanggal kupon berikutnya</small></div>
+<div class="func"><strong>COUPNUM</strong><br><small>Mengembalikan jumlah kupon antara</small></div>
+<div class="func"><strong>COUPPCD</strong><br><small>Memberikan tanggal kupon sebelumnya</small></div>
+</div>
+<div class="bab"><h2>BAB 7 — FUNGSI DATABASE</h2>
+<div class="func"><strong>DAVERAGE</strong><br><small>Menghitung nilai rata-rata dari field (kolom)</small></div>
+<div class="func"><strong>DCOUNT</strong><br><small>Menghitung jumlah sel yang berisi angka pada</small></div>
+<div class="func"><strong>DCOUNTA</strong><br><small>Menghitung jumlah sel yang tidak kosong</small></div>
+<div class="func"><strong>DGET</strong><br><small>Mengambil satu nilai dari field database yang</small></div>
+<div class="func"><strong>DMAX</strong><br><small>Menghasilkan nilai maksimum dari field database</small></div>
+<div class="func"><strong>DMIN</strong><br><small>Menghasilkan nilai minimum dari field database</small></div>
+<div class="func"><strong>DPRODUCT</strong><br><small>Mengalikan semua nilai pada field database</small></div>
+<div class="func"><strong>DSTDEV</strong><br><small>Menghitung perkiraan standar deviasi populasi</small></div>
+<div class="func"><strong>DSTDEVP</strong><br><small>Menghitung standar deviasi dari seluruh</small></div>
+<div class="func"><strong>DSUM</strong><br><small>Menjumlahkan nilai pada field database sesuai</small></div>
+<div class="func"><strong>DVAR</strong><br><small>Menghitung varian sampel berdasarkan nilai-nilai</small></div>
+<div class="func"><strong>DVARP</strong><br><small>Menghitung varian populasi penuh dari nilai-nilai</small></div>
+</div>
+<div class="bab"><h2>BAB 8 — FUNGSI INFORM ASI</h2>
+<div class="func"><strong>ISERROR</strong><br><small>Mengecek apakah suatu nilai menghasilkan</small></div>
+<div class="func"><strong>ISERR</strong><br><small>Mengecek apakah suatu nilai error, kecuali #N/A.</small></div>
+<div class="func"><strong>ISNA</strong><br><small>Mengecek apakah suatu nilai menghasilkan error</small></div>
+<div class="func"><strong>IFERROR</strong><br><small>Mengembalikan nilai alternatif jika formula</small></div>
+<div class="func"><strong>IFNA</strong><br><small>Mengembalikan nilai alternatif jika formula</small></div>
+<div class="func"><strong>ISBLANK</strong><br><small>Mengecek apakah suatu sel kosong.</small></div>
+<div class="func"><strong>ISNUMBER</strong><br><small>Mengecek apakah suatu nilai berupa angka.</small></div>
+<div class="func"><strong>ISTEXT</strong><br><small>Mengecek apakah suatu nilai berupa teks.</small></div>
+<div class="func"><strong>ISLOGICAL</strong><br><small>Mengecek apakah suatu nilai berupa logika</small></div>
+<div class="func"><strong>ISNONTEXT</strong><br><small>Mengecek apakah suatu nilai bukan teks.</small></div>
+<div class="func"><strong>ISFORMULA</strong><br><small>Mengecek apakah sel berisi formula.</small></div>
+<div class="func"><strong>N</strong><br><small>Mengembalikan nilai numerik dari input (TRUE=1,</small></div>
+<div class="func"><strong>TYPE</strong><br><small>Mengembalikan kode numerik tipe data (1=angka,</small></div>
+<div class="func"><strong>ISREF</strong><br><small>Mengecek apakah suatu nilai merupakan</small></div>
+<div class="func"><strong>ISODD</strong><br><small>Mengecek apakah suatu angka bilangan ganjil.</small></div>
+<div class="func"><strong>ISEVEN</strong><br><small>Mengecek apakah suatu angka bilangan genap.</small></div>
+<div class="func"><strong>NA</strong><br><small>Menghasilkan error #N/A secara sengaja, biasanya</small></div>
+<div class="func"><strong>CELL</strong><br><small>Memberikan informasi tentang format, lokasi, atau</small></div>
+<div class="func"><strong>INFO</strong><br><small>Memberikan informasi tentang lingkungan operasi</small></div>
+<div class="func"><strong>SHEET</strong><br><small>Mengembalikan nomor indeks dari sheet</small></div>
+<div class="func"><strong>SHEETS</strong><br><small>Mengembalikan jumlah total sheet dalam</small></div>
+<div class="func"><strong>FORMULATEXT</strong><br><small>Mengembalikan teks formula dari sel</small></div>
+<div class="func"><strong>ERROR.TYPE</strong><br><small>Mengembalikan kode numerik yang sesuai</small></div>
+</div>
+<div class="bab"><h2>BAB 9 — FUNGSI ENGINEERING</h2>
+<div class="func"><strong>CONVERT</strong><br><small>Mengubah angka dari satu satuan ke satuan</small></div>
+<div class="func"><strong>IMABS</strong><br><small>Mengembalikan nilai absolut (magnitudo) dari</small></div>
+<div class="func"><strong>IMAGINARY</strong><br><small>Mengembalikan bagian imajiner dari</small></div>
+<div class="func"><strong>IMREAL</strong><br><small>Mengembalikan bagian real dari bilangan</small></div>
+<div class="func"><strong>IMCONJUGATE</strong><br><small>Menghasilkan konjugat dari bilangan</small></div>
+<div class="func"><strong>IMARGUMENT</strong><br><small>Mengembalikan argumen atau sudut fase</small></div>
+<div class="func"><strong>IMSUM</strong><br><small>Menjumlahkan dua atau lebih bilangan</small></div>
+<div class="func"><strong>IMSUB</strong><br><small>Mengurangi satu bilangan kompleks dari</small></div>
+<div class="func"><strong>IMPRODUCT</strong><br><small>Mengalikan bilangan kompleks.</small></div>
+<div class="func"><strong>IMDIV</strong><br><small>Membagi bilangan kompleks dengan bilangan</small></div>
+<div class="func"><strong>IMPOWER</strong><br><small>Menaikkan bilangan kompleks pada pangkat</small></div>
+<div class="func"><strong>IMSQRT</strong><br><small>Menghasilkan akar kuadrat dari bilangan</small></div>
+<div class="func"><strong>IMEXP</strong><br><small>Menghasilkan eksponensial bilangan kompleks.</small></div>
+<div class="func"><strong>IMLN</strong><br><small>Menghasilkan logaritma natural dari bilangan</small></div>
+<div class="func"><strong>IMLOG10</strong><br><small>Menghasilkan logaritma basis 10 dari bilangan</small></div>
+<div class="func"><strong>IMLOG2</strong><br><small>Menghasilkan logaritma basis 2 dari bilangan</small></div>
+<div class="func"><strong>IMCOS</strong><br><small>Menghasilkan cosinus dari bilangan kompleks.</small></div>
+<div class="func"><strong>IMSIN</strong><br><small>Menghasilkan sinus dari bilangan kompleks.</small></div>
+<div class="func"><strong>IMTAN</strong><br><small>Menghasilkan tangen dari bilangan kompleks.</small></div>
+<div class="func"><strong>IMCOSH</strong><br><small>Menghasilkan cosinus hiperbolik dari bilangan</small></div>
+<div class="func"><strong>IMSINH</strong><br><small>Menghasilkan sinus hiperbolik dari bilangan</small></div>
+<div class="func"><strong>IMTANH</strong><br><small>Menghasilkan tangen hiperbolik dari bilangan</small></div>
+<div class="func"><strong>BESSELI</strong><br><small>Mengembalikan fungsi Bessel termodifikasi</small></div>
+<div class="func"><strong>BESSELJ</strong><br><small>Mengembalikan fungsi Bessel Jn(x).</small></div>
+<div class="func"><strong>BESSELK</strong><br><small>Mengembalikan fungsi Bessel termodifikasi</small></div>
+<div class="func"><strong>BESSELY</strong><br><small>Mengembalikan fungsi Bessel Yn(x).3. Fungsi Bessel</small></div>
+<div class="func"><strong>BITAND</strong><br><small>Menghasilkan operasi logika bitwise AND dari</small></div>
+<div class="func"><strong>BITOR</strong><br><small>Menghasilkan operasi logika bitwise OR dari dua</small></div>
+<div class="func"><strong>BITXOR</strong><br><small>Menghasilkan operasi logika bitwise XOR dari</small></div>
+<div class="func"><strong>BITLSHIFT</strong><br><small>Menggeser bit angka ke kiri dengan jumlah</small></div>
+<div class="func"><strong>BITRSHIFT</strong><br><small>Menggeser bit angka ke kanan dengan</small></div>
+<div class="func"><strong>COMPLEX</strong><br><small>Membuat bilangan kompleks dari bagian real</small></div>
+<div class="func"><strong>DELTA</strong><br><small>Mengecek apakah dua angka sama,</small></div>
+<div class="func"><strong>ERF</strong><br><small>Mengembalikan fungsi error integral.</small></div>
+<div class="func"><strong>ERF.PRECISE</strong><br><small>Versi modern dari ERF untuk hasil lebih</small></div>
+<div class="func"><strong>ERFC</strong><br><small>Mengembalikan fungsi error komplementer.</small></div>
+<div class="func"><strong>ERFC.PRECISE</strong><br><small>Versi modern dari ERFC.</small></div>
+<div class="func"><strong>GESTEP</strong><br><small>Mengecek apakah suatu angka lebih besar atau</small></div>
+</div>
+</body></html>
