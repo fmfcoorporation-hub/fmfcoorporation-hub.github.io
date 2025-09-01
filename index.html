@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Panduan Excel — Dashboard</title>
+<style>
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f6f8fb;color:#0b2140}
+  .container{display:flex;min-height:100vh}
+  .sidebar{
+    width:240px;background:#fff;border-right:1px solid #ddd;
+    padding:20px;overflow-y:auto;position:sticky;top:0;height:100vh
+  }
+  .sidebar h2{margin:0 0 20px 0;font-size:18px}
+  .sidebar a{display:block;padding:8px;margin-bottom:6px;color:#333;text-decoration:none;border-radius:6px}
+  .sidebar a:hover{background:#f2f6ff}
+  .main{flex:1;display:flex;flex-direction:column}
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 20px;border-bottom:1px solid #ddd;background:white;
+    position:sticky;top:0;z-index:10
+  }
+  .topbar input{
+    padding:8px;border-radius:6px;border:1px solid #ccc;width:250px
+  }
+  .content{padding:20px;overflow-y:auto}
+  .details-card{margin-bottom:12px}
+  details summary{
+    font-weight:bold;cursor:pointer;background:#fff;padding:10px;
+    border-radius:6px;border:1px solid #ddd
+  }
+  details[open] summary{background:#eef2ff}
+  .func{
+    padding:12px;margin-top:6px;background:white;
+    border:1px solid #eee;border-radius:6px
+  }
+  .func img{max-width:100%;margin-top:10px;border:1px solid #ccc;border-radius:6px}
+</style>
+</head>
+<body>
+<div class="container">
+<!-- Sidebar -->
+<div class="sidebar">
+<h2>Daftar BAB</h2>
+<a href="#BAB_1_Matematika_Statistik">BAB 1 — Matematika &amp; Statistik</a>
+<a href="#BAB_2_Teks">BAB 2 — Teks</a>
+<a href="#BAB_3_Logika">BAB 3 — Logika</a>
+<a href="#BAB_4_Tanggal_Waktu">BAB 4 — Tanggal &amp; Waktu</a>
+<a href="#BAB_5_Lookup_Referensi">BAB 5 — Lookup &amp; Referensi</a>
+<a href="#BAB_6_Keuangan">BAB 6 — Keuangan</a>
+</div>
+<!-- Main -->
+<div class="main">
+<!-- Topbar -->
+<div class="topbar">
+<div><strong>Panduan Excel</strong></div>
+<input id="search" placeholder="Cari fungsi (mis: SUM, VLOOKUP)" type="text"/>
+</div>
+<!-- Content -->
+<div class="content" id="contentArea">
+<!-- === BAB 1 === -->
+<section id="BAB_1_Matematika_Statistik">
+<h3>BAB 1 — Matematika &amp; Statistik</h3>
+<details class="details-card"><summary>SUM</summary><div class="func"><strong>SUM</strong><br/>Menjumlahkan angka.<br/><em>Contoh: =SUM(B2:B5)</em></div></details>
+<details class="details-card"><summary>AVERAGE</summary><div class="func"><strong>AVERAGE</strong><br/>Menghitung rata-rata.<br/><em>Contoh: =AVERAGE(B2:B5)</em></div></details>
+<details class="details-card"><summary>COUNT</summary><div class="func"><strong>COUNT</strong><br/>Menghitung jumlah sel berisi angka.<br/><em>Contoh: =COUNT(A1:A10)</em></div></details>
+<details class="details-card"><summary>ROUND</summary><div class="func"><strong>ROUND</strong><br/>Membulatkan angka ke jumlah digit tertentu.<br/><em>Contoh: =ROUND(3.14159,2)</em></div></details>
+</section>
+<!-- === BAB 2 === -->
+<section id="BAB_2_Teks">
+<h3>BAB 2 — Teks</h3>
+<details class="details-card"><summary>LEFT</summary><div class="func"><strong>LEFT</strong><br/>Mengambil karakter paling kiri.<br/><em>Contoh: =LEFT("Excel",2)</em></div></details>
+<details class="details-card"><summary>RIGHT</summary><div class="func"><strong>RIGHT</strong><br/>Mengambil karakter paling kanan.<br/><em>Contoh: =RIGHT("Excel",3)</em></div></details>
+<details class="details-card"><summary>MID</summary><div class="func"><strong>MID</strong><br/>Mengambil teks dari posisi tertentu.<br/><em>Contoh: =MID("Excel",2,3)</em></div></details>
+<details class="details-card"><summary>CONCATENATE</summary><div class="func"><strong>CONCATENATE</strong><br/>Menggabungkan teks.<br/><em>Contoh: =CONCATENATE(A1," ",B1)</em></div></details>
+</section>
+<!-- === BAB 3 === -->
+<section id="BAB_3_Logika">
+<h3>BAB 3 — Logika</h3>
+<details class="details-card"><summary>IF</summary><div class="func"><strong>IF</strong><br/>Mengembalikan nilai berdasarkan kondisi.<br/><em>Contoh: =IF(A1&gt;10,"Lulus","Gagal")</em></div></details>
+<details class="details-card"><summary>AND</summary><div class="func"><strong>AND</strong><br/>Menguji beberapa kondisi.<br/><em>Contoh: =AND(A1&gt;10,B1&lt;5)</em></div></details>
+<details class="details-card"><summary>OR</summary><div class="func"><strong>OR</strong><br/>Menguji apakah salah satu kondisi benar.<br/><em>Contoh: =OR(A1&gt;10,B1&lt;5)</em></div></details>
+<details class="details-card"><summary>NOT</summary><div class="func"><strong>NOT</strong><br/>Membalikkan nilai logika.<br/><em>Contoh: =NOT(A1&gt;10)</em></div></details>
+</section>
+<!-- === BAB 4 === -->
+<section id="BAB_4_Tanggal_Waktu">
+<h3>BAB 4 — Tanggal &amp; Waktu</h3>
+<details class="details-card"><summary>TODAY</summary><div class="func"><strong>TODAY</strong><br/>Menampilkan tanggal hari ini.<br/><em>Contoh: =TODAY()</em></div></details>
+<details class="details-card"><summary>NOW</summary><div class="func"><strong>NOW</strong><br/>Menampilkan tanggal &amp; waktu saat ini.<br/><em>Contoh: =NOW()</em></div></details>
+<details class="details-card"><summary>DATE</summary><div class="func"><strong>DATE</strong><br/>Membuat tanggal dari tahun, bulan, hari.<br/><em>Contoh: =DATE(2025,9,1)</em></div></details>
+<details class="details-card"><summary>DATEDIF</summary><div class="func"><strong>DATEDIF</strong><br/>Menghitung selisih tanggal.<br/><em>Contoh: =DATEDIF(A1,B1,"D")</em></div></details>
+</section>
+<!-- === BAB 5 === -->
+<section id="BAB_5_Lookup_Referensi">
+<h3>BAB 5 — Lookup &amp; Referensi</h3>
+<details class="details-card"><summary>VLOOKUP</summary><div class="func"><strong>VLOOKUP</strong><br/>Mencari nilai di kolom pertama.<br/><em>Contoh: =VLOOKUP(1001,A2:D20,2,FALSE)</em></div></details>
+<details class="details-card"><summary>HLOOKUP</summary><div class="func"><strong>HLOOKUP</strong><br/>Mencari nilai di baris pertama.<br/><em>Contoh: =HLOOKUP(5,A1:E2,2,FALSE)</em></div></details>
+<details class="details-card"><summary>INDEX</summary><div class="func"><strong>INDEX</strong><br/>Mengambil nilai dari posisi tertentu.<br/><em>Contoh: =INDEX(A1:C10,2,3)</em></div></details>
+<details class="details-card"><summary>MATCH</summary><div class="func"><strong>MATCH</strong><br/>Mengembalikan posisi nilai dalam range.<br/><em>Contoh: =MATCH(39,A1:A10,0)</em></div></details>
+</section>
+<!-- === BAB 6 === -->
+<section id="BAB_6_Keuangan">
+<h3>BAB 6 — Keuangan</h3>
+<details class="details-card"><summary>PMT</summary><div class="func"><strong>PMT</strong><br/>Menghitung pembayaran pinjaman.<br/><em>Contoh: =PMT(10%/12,36,10000)</em></div></details>
+<details class="details-card"><summary>FV</summary><div class="func"><strong>FV</strong><br/>Menghitung nilai masa depan investasi.<br/><em>Contoh: =FV(5%/12,12,-200)</em></div></details>
+<details class="details-card"><summary>NPV</summary><div class="func"><strong>NPV</strong><br/>Menghitung nilai bersih sekarang.<br/><em>Contoh: =NPV(10%,B2:B6)-B1</em></div></details>
+<details class="details-card"><summary>IRR</summary><div class="func"><strong>IRR</strong><br/>Menghitung tingkat pengembalian internal.<br/><em>Contoh: =IRR(A2:A6)</em></div></details>
+</section>
+</div>
+</div>
+</div>
+<script>
+  // Fungsi search untuk filter sub fungsi
+  const searchInput = document.getElementById("search");
+  searchInput.addEventListener("input", function() {
+    const filter = this.value.toLowerCase();
+    document.querySelectorAll(".details-card").forEach(card => {
+      const text = card.querySelector("summary").textContent.toLowerCase();
+      if (text.includes(filter)) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+</script>
+</body>
+</html>
