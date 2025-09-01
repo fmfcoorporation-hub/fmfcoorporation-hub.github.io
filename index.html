@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fungsi Matematika & Aritmatika (Lengkap)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        .function-group {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        h3 {
+            color: #777;
+            margin-top: 20px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        .syntax {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #e8e8e8;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .highlight {
+            background-color: #d1e7dd; /* Light green background for result cells */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>BAB 1 – FUNGSI MATEMATIKA & ARITMATIKA</h1>
+    
+    <div class="function-group">
+        <h2>1. Sum Family</h2>
+        <h3>SUM</h3>
+        <p><strong>Deskripsi:</strong> Menjumlahkan semua angka dalam rentang sel atau daftar argumen.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=SUM(number1, [number2], ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>20</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>30</td><td><span class="syntax">=SUM(A1:A3)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>60</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>SUMIF</h3>
+        <p><strong>Deskripsi:</strong> Menjumlahkan angka dengan satu kriteria.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=SUMIF(range, criteria, [sum_range])</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Apel</td><td>100</td></tr>
+                <tr><td><strong>2</strong></td><td>Jeruk</td><td>50</td></tr>
+                <tr><td><strong>3</strong></td><td>Apel</td><td>150</td></tr>
+                <tr><td><strong>4</strong></td><td>Jeruk</td><td>75</td></tr>
+                <tr><td><strong>5</strong></td><td></td><td><span class="syntax">=SUMIF(A1:A4, "Apel", B1:B4)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>250</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>SUMIFS</h3>
+        <p><strong>Deskripsi:</strong> Menjumlahkan angka dengan banyak kriteria.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=SUMIFS(sum_range, criteria_range1, criteria1, ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Timur</td><td>Buah</td><td>100</td></tr>
+                <tr><td><strong>2</strong></td><td>Barat</td><td>Sayur</td><td>50</td></tr>
+                <tr><td><strong>3</strong></td><td>Timur</td><td>Sayur</td><td>150</td></tr>
+                <tr><td><strong>4</strong></td><td>Barat</td><td>Buah</td><td>75</td></tr>
+                <tr><td><strong>5</strong></td><td></td><td></td><td><span class="syntax">=SUMIFS(C1:C4, A1:A4, "Timur", B1:B4, "Sayur")</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>150</td></tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="function-group">
+        <h2>2. Average Family</h2>
+        <h3>AVERAGE</h3>
+        <p><strong>Deskripsi:</strong> Menghitung rata-rata sekumpulan angka. Teks dan sel kosong akan diabaikan.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=AVERAGE(number1, [number2], ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>20</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>30</td><td><span class="syntax">=AVERAGE(A1:A3)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>20</td></tr>
+            </tbody>
+        </table>
+
+        <h3>AVERAGEIF</h3>
+        <p><strong>Deskripsi:</strong> Menghitung rata-rata dengan satu kriteria.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=AVERAGEIF(range, criteria, [average_range])</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Laki-laki</td><td>85</td></tr>
+                <tr><td><strong>2</strong></td><td>Perempuan</td><td>90</td></tr>
+                <tr><td><strong>3</strong></td><td>Laki-laki</td><td>95</td></tr>
+                <tr><td><strong>4</strong></td><td>Perempuan</td><td>80</td></tr>
+                <tr><td><strong>5</strong></td><td></td><td><span class="syntax">=AVERAGEIF(A1:A4, "Laki-laki", B1:B4)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>90</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>AVERAGEIFS</h3>
+        <p><strong>Deskripsi:</strong> Menghitung rata-rata dengan banyak kriteria.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=AVERAGEIFS(average_range, criteria_range1, criteria1, ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Jakarta</td><td>>30</td><td>90</td></tr>
+                <tr><td><strong>2</strong></td><td>Surabaya</td><td>>30</td><td>80</td></tr>
+                <tr><td><strong>3</strong></td><td>Jakarta</td><td>>30</td><td>100</td></tr>
+                <tr><td><strong>4</strong></td><td>Jakarta</td><td>>40</td><td>85</td></tr>
+                <tr><td><strong>5</strong></td><td></td><td></td><td><span class="syntax">=AVERAGEIFS(C1:C4, A1:A4, "Jakarta", B1:B4, ">30")</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>95</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="function-group">
+        <h2>3. Count Family</h2>
+        <h3>COUNT</h3>
+        <p><strong>Deskripsi:</strong> Menghitung jumlah sel dalam rentang yang berisi angka.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=COUNT(value1, [value2], ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>Teks</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>20</td><td></td></tr>
+                <tr><td><strong>4</strong></td><td></td><td><span class="syntax">=COUNT(A1:A3)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>COUNTA</h3>
+        <p><strong>Deskripsi:</strong> Menghitung jumlah sel yang tidak kosong dalam rentang.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=COUNTA(value1, [value2], ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>Teks</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td></td><td></td></tr>
+                <tr><td><strong>4</strong></td><td></td><td><span class="syntax">=COUNTA(A1:A3)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2</td></tr>
+            </tbody>
+        </table>
+
+        <h3>COUNTIF</h3>
+        <p><strong>Deskripsi:</strong> Menghitung sel dengan satu kriteria.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=COUNTIF(range, criteria)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Laki-laki</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>Perempuan</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>Laki-laki</td><td></td></tr>
+                <tr><td><strong>4</strong></td><td></td><td><span class="syntax">=COUNTIF(A1:A3, "Laki-laki")</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>COUNTIFS</h3>
+        <p><strong>Deskripsi:</strong> Menghitung sel dengan banyak kriteria.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=COUNTIFS(criteria_range1, criteria1, ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>Barat</td><td>>100</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>Timur</td><td><100</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>Barat</td><td>>100</td><td></td></tr>
+                <tr><td><strong>4</strong></td><td></td><td></td><td><span class="syntax">=COUNTIFS(A1:A3, "Barat", B1:B3, ">100")</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>2</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="function-group">
+        <h2>4. Round Family</h2>
+        <h3>ROUND</h3>
+        <p><strong>Deskripsi:</strong> Membulatkan angka sesuai jumlah digit.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ROUND(number, num_digits)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>123.456</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>2</td><td><span class="syntax">=ROUND(A1, A2)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>123.46</td></tr>
+            </tbody>
+        </table>
+
+        <h3>ROUNDUP</h3>
+        <p><strong>Deskripsi:</strong> Membulatkan angka ke atas.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ROUNDUP(number, num_digits)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>123.451</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>2</td><td><span class="syntax">=ROUNDUP(A1, A2)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>123.46</td></tr>
+            </tbody>
+        </table>
+
+        <h3>ROUNDDOWN</h3>
+        <p><strong>Deskripsi:</strong> Membulatkan angka ke bawah.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ROUNDDOWN(number, num_digits)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>123.459</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>2</td><td><span class="syntax">=ROUNDDOWN(A1, A2)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>123.45</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>INT</h3>
+        <p><strong>Deskripsi:</strong> Mengambil bilangan bulat dari angka.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=INT(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>8.7</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=INT(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>8</td></tr>
+            </tbody>
+        </table>
+
+        <h3>TRUNC</h3>
+        <p><strong>Deskripsi:</strong> Memotong angka tanpa pembulatan.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=TRUNC(number, [num_digits])</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>8.7</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=TRUNC(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>8</td></tr>
+            </tbody>
+        </table>
+
+        <h3>EVEN</h3>
+        <p><strong>Deskripsi:</strong> Membulatkan ke bilangan genap terdekat.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=EVEN(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>7</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=EVEN(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>8</td></tr>
+            </tbody>
+        </table>
+
+        <h3>ODD</h3>
+        <p><strong>Deskripsi:</strong> Membulatkan ke bilangan ganjil terdekat.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ODD(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>8</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ODD(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>9</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>MROUND</h3>
+        <p><strong>Deskripsi:</strong> Membulatkan ke kelipatan tertentu.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=MROUND(number, multiple)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>3</td><td><span class="syntax">=MROUND(A1, A2)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>9</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>CEILING</h3>
+        <p><strong>Deskripsi:</strong> Membulatkan ke atas ke kelipatan tertentu.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=CEILING(number, significance)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>3</td><td><span class="syntax">=CEILING(A1, A2)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>12</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>FLOOR</h3>
+        <p><strong>Deskripsi:</strong> Membulatkan ke bawah ke kelipatan tertentu.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=FLOOR(number, significance)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>3</td><td><span class="syntax">=FLOOR(A1, A2)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>9</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="function-group">
+        <h2>5. Statistik Dasar</h2>
+        <h3>MIN</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai terkecil dari sekumpulan angka.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=MIN(number1, [number2], ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>5</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>20</td><td><span class="syntax">=MIN(A1:A3)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>5</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>MAX</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai terbesar dari sekumpulan angka.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=MAX(number1, [number2], ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>5</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>20</td><td><span class="syntax">=MAX(A1:A3)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>20</td></tr>
+            </tbody>
+        </table>
+
+        <h3>LARGE</h3>
+        <p><strong>Deskripsi:</strong> Mengambil nilai terbesar ke-n dari rentang data.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=LARGE(array, k)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>50</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>20</td><td></td></tr>
+                <tr><td><strong>4</strong></td><td>80</td><td></td></tr>
+                <tr><td><strong>5</strong></td><td></td><td><span class="syntax">=LARGE(A1:A4, 2)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>50</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>SMALL</h3>
+        <p><strong>Deskripsi:</strong> Mengambil nilai terkecil ke-n dari rentang data.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=SMALL(array, k)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>5</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>20</td><td></td></tr>
+                <tr><td><strong>4</strong></td><td>8</td><td></td></tr>
+                <tr><td><strong>5</strong></td><td></td><td><span class="syntax">=SMALL(A1:A4, 2)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>8</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>RANK</h3>
+        <p><strong>Deskripsi:</strong> Menentukan peringkat nilai dalam daftar.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=RANK(number, ref, [order])</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>50</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>100</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>80</td><td></td></tr>
+                <tr><td><strong>4</strong></td><td></td><td><span class="syntax">=RANK(A1, A1:A3)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>3</td></tr>
+            </tbody>
+        </table>
+
+        <h3>PERCENTILE</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai persentil dari rentang data.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=PERCENTILE(array, k)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>20</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>30</td><td></td></tr>
+                <tr><td><strong>4</strong></td><td>40</td><td></td></tr>
+                <tr><td><strong>5</strong></td><td></td><td><span class="syntax">=PERCENTILE(A1:A4, 0.5)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>25</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>QUARTILE</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai kuartil dari rentang data.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=QUARTILE(array, quart)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>20</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>30</td><td></td></tr>
+                <tr><td><strong>4</strong></td><td>40</td><td></td></tr>
+                <tr><td><strong>5</strong></td><td></td><td><span class="syntax">=QUARTILE(A1:A4, 1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>17.5</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="function-group">
+        <h2>6. Matematika Dasar</h2>
+        <h3>ABS</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai absolut dari suatu angka (tanpa tanda negatif).</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ABS(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>-5</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ABS(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>5</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>PRODUCT</h3>
+        <p><strong>Deskripsi:</strong> Mengalikan semua angka dalam rentang sel atau daftar argumen.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=PRODUCT(number1, [number2], ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>2</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td>3</td><td></td></tr>
+                <tr><td><strong>3</strong></td><td>4</td><td><span class="syntax">=PRODUCT(A1:A3)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>24</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>QUOTIENT</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan hasil bagi bilangan bulat dari suatu pembagian.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=QUOTIENT(numerator, denominator)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td>3</td><td><span class="syntax">=QUOTIENT(A1, B1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>3</td></tr>
+            </tbody>
+        </table>
+
+        <h3>MOD</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan sisa pembagian (modulo).</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=MOD(number, divisor)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td>3</td><td><span class="syntax">=MOD(A1, B1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>POWER</h3>
+        <p><strong>Deskripsi:</strong> Menghitung pangkat suatu bilangan.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=POWER(number, power)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>2</td><td>3</td><td><span class="syntax">=POWER(A1, B1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>8</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>SQRT</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan akar kuadrat dari suatu angka.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=SQRT(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>16</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=SQRT(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>4</td></tr>
+            </tbody>
+        </table>
+
+        <h3>EXP</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan eksponensial (e^n).</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=EXP(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=EXP(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2.71828...</td></tr>
+            </tbody>
+        </table>
+
+        <h3>LN</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan logaritma natural dari suatu angka.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=LN(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>7.389</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=LN(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>LOG</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan logaritma dengan basis tertentu.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=LOG(number, [base])</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>100</td><td>10</td><td><span class="syntax">=LOG(A1, B1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>2</td></tr>
+            </tbody>
+        </table>
+
+        <h3>PI</h3>
+        <p><strong>Deskripsi:</strong> Mengembalikan nilai pi (3.14159...).</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=PI()</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td></td><td><span class="syntax">=PI()</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>3.14159...</td></tr>
+            </tbody>
+        </table>
+
+        <h3>SIGN</h3>
+        <p><strong>Deskripsi:</strong> Menentukan tanda bilangan (1 jika positif, -1 jika negatif, 0 jika nol).</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=SIGN(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>-10</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=SIGN(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>-1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>FACT</h3>
+        <p><strong>Deskripsi:</strong> Menghitung faktorial suatu angka.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=FACT(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>4</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=FACT(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>24</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>GCD</h3>
+        <p><strong>Deskripsi:</strong> Menghitung Faktor Persekutuan Terbesar (FPB) dari dua angka atau lebih.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=GCD(number1, [number2], ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td>15</td><td><span class="syntax">=GCD(A1, B1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>5</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>LCM</h3>
+        <p><strong>Deskripsi:</strong> Menghitung Kelipatan Persekutuan Terkecil (KPK) dari dua angka atau lebih.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=LCM(number1, [number2], ...)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>10</td><td>15</td><td><span class="syntax">=LCM(A1, B1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>30</td></tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="function-group">
+        <h2>7. Random</h2>
+        <h3>RAND</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan angka acak antara 0 dan 1.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=RAND()</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td><span class="syntax">=RAND()</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td>Angka acak antara 0-1 (berubah setiap kali ada kalkulasi)</td></tr>
+            </tbody>
+        </table>
+
+        <h3>RANDBETWEEN</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan angka acak dalam rentang tertentu.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=RANDBETWEEN(bottom, top)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td><span class="syntax">=RANDBETWEEN(1, 10)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td>Angka acak antara 1-10 (berubah setiap kali ada kalkulasi)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="function-group">
+        <h2>8. Trigonometri</h2>
+        <h3>SIN</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai sinus dari sudut dalam radian.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=SIN(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1.570796327 (π/2)</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=SIN(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>COS</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai cosinus dari sudut dalam radian.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=COS(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>0</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=COS(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>TAN</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai tangen dari sudut dalam radian.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=TAN(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>0.785398163 (π/4)</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=TAN(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+
+        <h3>COT</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai cotangen dari sudut.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=COT(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>0.785398163 (π/4)</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=COT(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>CSC</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai cosecan dari suatu sudut.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=CSC(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1.570796327 (π/2)</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=CSC(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>SEC</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai secan dari suatu sudut.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=SEC(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>0</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=SEC(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ASIN</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arcsinus dari suatu angka dalam radian.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ASIN(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ASIN(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1.570796...</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ACOS</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arccosinus dari suatu angka dalam radian.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ACOS(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>0</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ACOS(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1.570796...</td></tr>
+            </tbody>
+        </table>
+
+        <h3>ATAN</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arctangen dari suatu angka dalam radian.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ATAN(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ATAN(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.785398...</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ATAN2</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arctangen dari koordinat x dan y.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ATAN2(x_num, y_num)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td>1</td><td><span class="syntax">=ATAN2(A1, B1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>0.785398...</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ACOT</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arccotangen dari suatu angka.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ACOT(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ACOT(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.785398...</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ACSC</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arccosecan dari suatu angka.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ACSC(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ACSC(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1.570796...</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ASEC</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arcsecan dari suatu angka.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ASEC(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ASEC(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0</td></tr>
+            </tbody>
+        </table>
+
+        <h3>SINH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai sinus hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=SINH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=SINH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1.175201...</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>COSH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai cosinus hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=COSH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>0</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=COSH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>TANH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai tangen hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=TANH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>0</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=TANH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>COTH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai cotangen hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=COTH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=COTH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1.313035...</td></tr>
+            </tbody>
+        </table>
+
+        <h3>CSCH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai cosecan hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=CSCH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=CSCH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.850918...</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>SECH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan nilai secan hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=SECH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>0</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=SECH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ASINH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arcsinus hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ASINH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1.1752</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ASINH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ACOSH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arccosinus hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ACOSH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ACOSH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ATANH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arctangen hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ATANH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>0.761</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ATANH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ACOTH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arccotangen hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ACOTH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1.313</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ACOTH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ACSCH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arccosecan hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ACSCH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>0.8509</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ACSCH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>ASECH</h3>
+        <p><strong>Deskripsi:</strong> Menghasilkan arsecan hiperbolik.</p>
+        <p><strong>Sintaks:</strong> <span class="syntax">=ASECH(number)</span></p>
+        <table>
+            <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+            <tbody>
+                <tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+                <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ASECH(A1)</span></td></tr>
+                <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
