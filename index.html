@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bab 2 - Fungsi Teks (TEXT FUNCTIONS)</title>
+    <style>
+        /* Gaya CSS Utama */
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #f0f4f8;
+            color: #334e68;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        .function-group {
+            margin-bottom: 40px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .function-group:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        /* Gaya Judul dan Teks */
+        h1 {
+            text-align: center;
+            color: #1a4d80;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        h2 {
+            color: #0d7377;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-weight: 600;
+        }
+        h3 {
+            color: #2a6a96;
+            margin-top: 25px;
+            font-weight: 500;
+        }
+        p {
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        strong {
+            font-weight: 600;
+            color: #2a6a96;
+        }
+        .syntax {
+            font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+            background-color: #e6f1f4;
+            color: #004d40;
+            padding: 5px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        /* Gaya Tabel */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #6d91ba;
+            color: white;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+        tr:nth-child(even) {
+            background-color: #f7f9fc;
+        }
+        .highlight {
+            background-color: #d8e9e6;
+            font-weight: 600;
+        }
+
+        /* Gaya Menu Navigasi */
+        .menu-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #1a4d80;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .menu-button:hover {
+            background-color: #143e69;
+            transform: scale(1.05);
+        }
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+            background-color: #f7f9fc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: none;
+            max-height: 400px;
+            overflow-y: auto;
+            text-align: left;
+        }
+        .menu-list.active {
+            display: block;
+        }
+        .menu-list li {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .menu-list li:last-child {
+            border-bottom: none;
+        }
+        .menu-list a {
+            text-decoration: none;
+            color: #2a6a96;
+            display: block;
+            transition: color 0.3s, background-color 0.3s;
+        }
+        .menu-list a:hover {
+            color: #1a4d80;
+            background-color: #e6f1f4;
+        }
+        .family-title {
+            font-weight: 600;
+            color: #0d7377;
+            background-color: #e2e8f0;
+            padding: 8px 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        .function-group h3 {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bab 2 – Fungsi Teks (TEXT FUNCTIONS)</h1>
+
+        <div class="menu-container">
+            <button class="menu-button" onclick="toggleMenu()">
+                <span class="icon">&#9776;</span> Daftar Isi Fungsi
+            </button>
+            <ul id="menuList" class="menu-list">
+                <li><div class="family-title">Manipulasi Dasar</div></li>
+                <li><a href="#left" onclick="toggleMenu()">LEFT</a></li>
+                <li><a href="#right" onclick="toggleMenu()">RIGHT</a></li>
+                <li><a href="#mid" onclick="toggleMenu()">MID</a></li>
+                <li><a href="#len" onclick="toggleMenu()">LEN</a></li>
+                <li><a href="#trim" onclick="toggleMenu()">TRIM</a></li>
+                <li><a href="#rept" onclick="toggleMenu()">REPT</a></li>
+                <li><a href="#text" onclick="toggleMenu()">TEXT</a></li>
+                <li><a href="#value" onclick="toggleMenu()">VALUE</a></li>
+                <li><div class="family-title">Perubahan Bentuk Huruf</div></li>
+                <li><a href="#upper" onclick="toggleMenu()">UPPER</a></li>
+                <li><a href="#lower" onclick="toggleMenu()">LOWER</a></li>
+                <li><a href="#proper" onclick="toggleMenu()">PROPER</a></li>
+                <li><div class="family-title">Pencarian dan Posisi</div></li>
+                <li><a href="#search" onclick="toggleMenu()">SEARCH</a></li>
+                <li><a href="#find" onclick="toggleMenu()">FIND</a></li>
+                <li><a href="#replace" onclick="toggleMenu()">REPLACE</a></li>
+                <li><a href="#substitute" onclick="toggleMenu()">SUBSTITUTE</a></li>
+                <li><a href="#exact" onclick="toggleMenu()">EXACT</a></li>
+                <li><div class="family-title">Penggabungan Teks</div></li>
+                <li><a href="#concatenate" onclick="toggleMenu()">CONCATENATE</a></li>
+                <li><a href="#concat" onclick="toggleMenu()">CONCAT</a></li>
+                <li><a href="#textjoin" onclick="toggleMenu()">TEXTJOIN</a></li>
+                <li><div class="family-title">Informasi Teks</div></li>
+                <li><a href="#clean" onclick="toggleMenu()">CLEAN</a></li>
+                <li><a href="#istext" onclick="toggleMenu()">ISTEXT</a></li>
+                <li><a href="#isnumber" onclick="toggleMenu()">ISNUMBER</a></li>
+                <li><a href="#t" onclick="toggleMenu()">T</a></li>
+                <li><div class="family-title">Fungsi Modern (Excel 365+)</div></li>
+                <li><a href="#textsplit" onclick="toggleMenu()">TEXTSPLIT</a></li>
+                <li><a href="#textbefore" onclick="toggleMenu()">TEXTBEFORE</a></li>
+                <li><a href="#textafter" onclick="toggleMenu()">TEXTAFTER</a></li>
+                <li><a href="#valuetotext" onclick="toggleMenu()">VALUETOTEXT</a></li>
+                <li><a href="#unichar" onclick="toggleMenu()">UNICHAR</a></li>
+                <li><a href="#unicode" onclick="toggleMenu()">UNICODE</a></li>
+            </ul>
+        </div>
+        
+        <div class="function-group">
+            <h2>1. Manipulasi Dasar</h2>
+            <h3 id="left">LEFT</h3>
+            <p><strong>Deskripsi:</strong> Mengambil sejumlah karakter dari awal teks. Cocok untuk ekstraksi kode, inisial, atau potongan data dari string yang panjang.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=LEFT(text, [num_chars])</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"ABC-123"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=LEFT(A1, 3)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"ABC"</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 id="right">RIGHT</h3>
+            <p><strong>Deskripsi:</strong> Mengambil sejumlah karakter dari akhir teks. Biasanya dipakai untuk mengambil kode akhir, nomor seri, atau ID unik.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=RIGHT(text, [num_chars])</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Produk-A123"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=RIGHT(A1, 4)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"A123"</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 id="mid">MID</h3>
+            <p><strong>Deskripsi:</strong> Mengambil bagian teks dari posisi tertentu dengan panjang tertentu. Sangat fleksibel untuk memotong data di tengah string.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=MID(text, start_num, num_chars)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Jakarta Pusat"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=MID(A1, 9, 5)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"Pusat"</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 id="len">LEN</h3>
+            <p><strong>Deskripsi:</strong> Menghitung jumlah karakter dalam sebuah teks (termasuk spasi). Berguna untuk validasi panjang input data.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=LEN(text)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Halo Dunia"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=LEN(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>10</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="trim">TRIM</h3>
+            <p><strong>Deskripsi:</strong> Menghapus spasi berlebih dan hanya menyisakan satu spasi antar kata. Membantu membersihkan data hasil impor.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=TRIM(text)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"  Halo  Dunia  "</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=TRIM(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"Halo Dunia"</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="rept">REPT</h3>
+            <p><strong>Deskripsi:</strong> Mengulang teks sesuai jumlah yang ditentukan. Kadang dipakai untuk membuat pola atau formatting visual sederhana.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=REPT(text, number_times)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"⭐"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=REPT(A1, 5)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"⭐⭐⭐⭐⭐"</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="text">TEXT</h3>
+            <p><strong>Deskripsi:</strong> Mengubah angka menjadi teks dengan format khusus, misalnya menampilkan tanggal atau mata uang dalam format tertentu.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=TEXT(value, format_text)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>1234567.89</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=TEXT(A1, "Rp#,##0")</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"Rp1,234,568"</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="value">VALUE</h3>
+            <p><strong>Deskripsi:</strong> Mengubah teks yang menyerupai angka menjadi angka riil agar bisa digunakan dalam perhitungan.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=VALUE(text)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"1500"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=VALUE(A1) * 2</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>3000</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        ---
+        <div class="function-group">
+            <h2>2. Perubahan Bentuk Huruf</h2>
+            <h3 id="upper">UPPER</h3>
+            <p><strong>Deskripsi:</strong> Mengubah semua huruf menjadi kapital, sering dipakai untuk standarisasi penulisan data.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=UPPER(text)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"jakarta"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=UPPER(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"JAKARTA"</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 id="lower">LOWER</h3>
+            <p><strong>Deskripsi:</strong> Mengubah semua huruf menjadi kecil, berguna untuk konsistensi data teks.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=LOWER(text)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"KOTA BESAR"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=LOWER(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"kota besar"</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 id="proper">PROPER</h3>
+            <p><strong>Deskripsi:</strong> Mengubah huruf pertama tiap kata menjadi kapital, sering dipakai untuk format nama atau judul.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=PROPER(text)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"budi anwar"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=PROPER(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"Budi Anwar"</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        ---
+        <div class="function-group">
+            <h2>3. Pencarian dan Posisi</h2>
+            <h3 id="search">SEARCH</h3>
+            <p><strong>Deskripsi:</strong> Mencari posisi teks dalam string tanpa memperhatikan huruf besar/kecil. Cocok untuk pencarian umum.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=SEARCH(find_text, within_text, [start_num])</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Contoh Data"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=SEARCH("data", A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>8</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 id="find">FIND</h3>
+            <p><strong>Deskripsi:</strong> Mencari posisi teks dalam string dengan peka huruf besar/kecil. Lebih spesifik dibandingkan SEARCH.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=FIND(find_text, within_text, [start_num])</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Contoh Data"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=FIND("Data", A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>8</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="replace">REPLACE</h3>
+            <p><strong>Deskripsi:</strong> Mengganti sebagian teks berdasarkan posisi tertentu. Bisa dipakai untuk memperbaiki data dengan format salah.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=REPLACE(old_text, start_num, num_chars, new_text)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"ID-12345"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=REPLACE(A1, 4, 5, "99999")</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"ID-99999"</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="substitute">SUBSTITUTE</h3>
+            <p><strong>Deskripsi:</strong> Mengganti teks tertentu dalam string dengan teks baru. Fleksibel untuk mengganti kata spesifik di teks panjang.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=SUBSTITUTE(text, old_text, new_text, [instance_num])</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Halo Dunia Halo"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=SUBSTITUTE(A1, "Halo", "Hai")</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"Hai Dunia Hai"</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 id="exact">EXACT</h3>
+            <p><strong>Deskripsi:</strong> Membandingkan dua teks secara tepat (case-sensitive). Berguna untuk validasi input atau perbandingan data.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=EXACT(text1, text2)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Apple"</td><td>"apple"</td><td><span class="syntax">=EXACT(A1, B1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>FALSE</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        ---
+        <div class="function-group">
+            <h2>4. Penggabungan Teks</h2>
+            <h3 id="concatenate">CONCATENATE</h3>
+            <p><strong>Deskripsi:</strong> Menggabungkan beberapa teks menjadi satu. Fungsi lama namun masih sering dipakai.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=CONCATENATE(text1, [text2], ...)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Hello"</td><td>"World"</td><td><span class="syntax">=CONCATENATE(A1, " ", B1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>"Hello World"</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 id="concat">CONCAT</h3>
+            <p><strong>Deskripsi:</strong> Versi modern dari CONCATENATE, lebih fleksibel dan mendukung array.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=CONCAT(text1, [text2], ...)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Hai"</td><td>"Teman"</td><td><span class="syntax">=CONCAT(A1, " ", B1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>"Hai Teman"</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 id="textjoin">TEXTJOIN</h3>
+            <p><strong>Deskripsi:</strong> Menggabungkan teks dengan pemisah (delimiter) dan opsi mengabaikan sel kosong. Sangat efisien untuk data tabel.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=TEXTJOIN(delimiter, ignore_empty, text1, [text2], ...)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Apel"</td><td></td><td>"Jeruk"</td><td><span class="syntax">=TEXTJOIN(", ", TRUE, A1:C1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td></td><td>"Apel, Jeruk"</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        ---
+        <div class="function-group">
+            <h2>5. Informasi Teks</h2>
+            <h3 id="clean">CLEAN</h3>
+            <p><strong>Deskripsi:</strong> Menghapus karakter non-printable dari teks. Membantu membersihkan data impor dari sistem lain.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=CLEAN(text)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Teks"&CHAR(7)&"Bersih"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=CLEAN(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"TeksBersih"</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 id="istext">ISTEXT</h3>
+            <p><strong>Deskripsi:</strong> Mengecek apakah nilai adalah teks. Dipakai untuk validasi data.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=ISTEXT(value)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Nama"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISTEXT(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 id="isnumber">ISNUMBER</h3>
+            <p><strong>Deskripsi:</strong> Mengecek apakah nilai berupa angka. Sering dipakai bersama fungsi teks untuk kontrol alur formula.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=ISNUMBER(value)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>12345</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISNUMBER(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="t">T</h3>
+            <p><strong>Deskripsi:</strong> Mengembalikan teks dari sebuah referensi. Jika nilai bukan teks, hasilnya kosong.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=T(value)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Teks"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=T(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"Teks"</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        ---
+        <div class="function-group">
+            <h2>6. Fungsi Modern (Excel 365+)</h2>
+            <h3 id="textsplit">TEXTSPLIT</h3>
+            <p><strong>Deskripsi:</strong> Memisahkan teks ke dalam beberapa sel berdasarkan delimiter. Memudahkan pemisahan data seperti CSV.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=TEXTSPLIT(text, col_delimiter, [row_delimiter])</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"Apel,Jeruk,Mangga"</td><td></td><td></td><td><span class="syntax">=TEXTSPLIT(A1, ",")</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"Apel"</td><td>"Jeruk"</td><td>"Mangga"</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="textbefore">TEXTBEFORE</h3>
+            <p><strong>Deskripsi:</strong> Mengambil teks sebelum pemisah tertentu. Sangat berguna untuk parsing data dengan pola tetap.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=TEXTBEFORE(text, delimiter, [instance_num])</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"ID123-ProdukABC"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=TEXTBEFORE(A1, "-")</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"ID123"</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="textafter">TEXTAFTER</h3>
+            <p><strong>Deskripsi:</strong> Mengambil teks setelah pemisah tertentu. Membantu ekstraksi data di belakang simbol atau tanda.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=TEXTAFTER(text, delimiter, [instance_num])</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"ID123-ProdukABC"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=TEXTAFTER(A1, "-")</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"ProdukABC"</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="valuetotext">VALUETOTEXT</h3>
+            <p><strong>Deskripsi:</strong> Mengubah nilai menjadi teks yang terbaca. Membantu debugging atau konversi data ke bentuk string.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=VALUETOTEXT(value, [format])</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>3.14159</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=VALUETOTEXT(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"3.14159"</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="unichar">UNICHAR</h3>
+            <p><strong>Deskripsi:</strong> Menghasilkan karakter berdasarkan kode Unicode. Bisa digunakan untuk simbol khusus.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=UNICHAR(number)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>128512</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=UNICHAR(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>"😀"</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="unicode">UNICODE</h3>
+            <p><strong>Deskripsi:</strong> Menghasilkan kode Unicode dari karakter. Berguna untuk analisis teks berbasis kode karakter.</p>
+            <p><strong>Sintaks:</strong> <span class="syntax">=UNICODE(text)</span></p>
+            <table>
+                <thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>1</strong></td><td>"A"</td><td></td></tr>
+                    <tr><td><strong>2</strong></td><td></td><td><span class="syntax">=UNICODE(A1)</span></td></tr>
+                    <tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>65</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menuList');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
