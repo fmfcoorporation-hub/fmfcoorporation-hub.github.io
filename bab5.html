@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fungsi Lookup & Referensi</title>
+<style>
+/* Gaya CSS Utama */
+body {
+font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+margin: 0;
+padding: 40px;
+background-color: #f0f4f8;
+color: #334e68;
+line-height: 1.6;
+font-size: 16px;
+}
+.container {
+max-width: 900px;
+margin: auto;
+}
+.function-group {
+margin-bottom: 40px;
+padding: 30px;
+background-color: #ffffff;
+border-radius: 12px;
+box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+transition: all 0.3s ease;
+}
+.function-group:hover {
+transform: translateY(-5px);
+box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* Gaya Judul dan Teks */
+h1 {
+text-align: center;
+color: #1a4d80;
+margin-bottom: 30px;
+font-size: 2.5em;
+font-weight: 300;
+}
+h2 {
+color: #0d7377;
+border-bottom: 2px solid #e2e8f0;
+padding-bottom: 10px;
+margin-top: 0;
+font-weight: 600;
+}
+h3 {
+color: #2a6a96;
+margin-top: 25px;
+font-weight: 500;
+}
+p {
+margin-bottom: 10px;
+font-weight: 400;
+}
+strong {
+font-weight: 600;
+color: #2a6a96;
+}
+.syntax {
+font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+background-color: #e6f1f4;
+color: #004d40;
+padding: 5px 10px;
+border-radius: 6px;
+display: inline-block;
+margin-bottom: 15px;
+font-size: 0.9em;
+}
+
+/* Gaya Tabel */
+table {
+border-collapse: collapse;
+width: 100%;
+margin-top: 20px;
+font-size: 0.95em;
+}
+th, td {
+border: 1px solid #e2e8f0;
+padding: 12px;
+text-align: center;
+}
+th {
+background-color: #6d91ba;
+color: white;
+text-transform: uppercase;
+font-weight: normal;
+}
+tr:nth-child(even) {
+background-color: #f7f9fc;
+}
+.highlight {
+background-color: #d8e9e6;
+font-weight: 600;
+}
+
+/* Gaya Menu Navigasi */
+.menu-container {
+text-align: center;
+margin-bottom: 20px;
+}
+.menu-button {
+padding: 10px 20px;
+font-size: 1em;
+cursor: pointer;
+background-color: #1a4d80;
+color: white;
+border: none;
+border-radius: 8px;
+transition: background-color 0.3s, transform 0.2s;
+}
+.menu-button:hover {
+background-color: #143e69;
+transform: scale(1.05);
+}
+.menu-list {
+list-style: none;
+padding: 0;
+margin-top: 15px;
+background-color: #f7f9fc;
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+display: none;
+max-height: 400px;
+overflow-y: auto;
+text-align: left;
+}
+.menu-list.active {
+display: block;
+}
+.menu-list li {
+padding: 10px 15px;
+border-bottom: 1px solid #e2e8f0;
+}
+.menu-list li:last-child {
+border-bottom: none;
+}
+.menu-list a {
+text-decoration: none;
+color: #2a6a96;
+display: block;
+transition: color 0.3s, background-color 0.3s;
+}
+.menu-list a:hover {
+color: #1a4d80;
+background-color: #e6f1f4;
+}
+.family-title {
+font-weight: 600;
+color: #0d7377;
+background-color: #e2e8f0;
+padding: 8px 15px;
+border-radius: 6px;
+margin-top: 10px;
+}
+.function-group h3 {
+padding-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Bab 5 – Fungsi Lookup & Referensi</h1>
+
+<div class="menu-container">
+<button class="menu-button" onclick="toggleMenu()">
+<span class="icon">&#9776;</span> Daftar Isi Fungsi
+</button>
+<ul id="menuList" class="menu-list">
+<li><div class="family-title">Lookup Klasik</div></li>
+<li><a href="#vlookup" onclick="toggleMenu()">VLOOKUP</a></li>
+<li><a href="#hlookup" onclick="toggleMenu()">HLOOKUP</a></li>
+<li><a href="#lookup" onclick="toggleMenu()">LOOKUP</a></li>
+<li><div class="family-title">Lookup Modern</div></li>
+<li><a href="#xlookup" onclick="toggleMenu()">XLOOKUP</a></li>
+<li><a href="#xmatch" onclick="toggleMenu()">XMATCH</a></li>
+<li><a href="#filter" onclick="toggleMenu()">FILTER</a></li>
+<li><a href="#unique" onclick="toggleMenu()">UNIQUE</a></li>
+<li><a href="#sort" onclick="toggleMenu()">SORT</a></li>
+<li><a href="#sortby" onclick="toggleMenu()">SORTBY</a></li>
+<li><a href="#take" onclick="toggleMenu()">TAKE</a></li>
+<li><a href="#drop" onclick="toggleMenu()">DROP</a></li>
+<li><a href="#choosecols" onclick="toggleMenu()">CHOOSECOLS</a></li>
+<li><a href="#chooserows" onclick="toggleMenu()">CHOOSEROWS</a></li>
+<li><a href="#hstack" onclick="toggleMenu()">HSTACK</a></li>
+<li><a href="#vstack" onclick="toggleMenu()">VSTACK</a></li>
+<li><a href="#wraprows" onclick="toggleMenu()">WRAPROWS</a></li>
+<li><a href="#wrapcols" onclick="toggleMenu()">WRAPCOLS</a></li>
+<li><a href="#torow" onclick="toggleMenu()">TOROW</a></li>
+<li><a href="#tocol" onclick="toggleMenu()">TOCOL</a></li>
+<li><a href="#takedropsortby" onclick="toggleMenu()">TAKE + DROP + SORTBY</a></li>
+<li><div class="family-title">Pencarian Posisi & Pengambilan Nilai</div></li>
+<li><a href="#match" onclick="toggleMenu()">MATCH</a></li>
+<li><a href="#index" onclick="toggleMenu()">INDEX</a></li>
+<li><a href="#indexmatch" onclick="toggleMenu()">INDEX + MATCH</a></li>
+<li><a href="#xmatchindex" onclick="toggleMenu()">XMATCH + INDEX</a></li>
+<li><a href="#offset" onclick="toggleMenu()">OFFSET</a></li>
+<li><a href="#offsetmatch" onclick="toggleMenu()">OFFSET + MATCH</a></li>
+<li><a href="#transpose" onclick="toggleMenu()">TRANSPOSE</a></li>
+<li><div class="family-title">Referensi dan Alamat Cell</div></li>
+<li><a href="#address" onclick="toggleMenu()">ADDRESS</a></li>
+<li><a href="#indirect" onclick="toggleMenu()">INDIRECT</a></li>
+<li><a href="#row" onclick="toggleMenu()">ROW</a></li>
+<li><a href="#rows" onclick="toggleMenu()">ROWS</a></li>
+<li><a href="#column" onclick="toggleMenu()">COLUMN</a></li>
+<li><a href="#columns" onclick="toggleMenu()">COLUMNS</a></li>
+<li><a href="#areas" onclick="toggleMenu()">AREAS</a></li>
+<li><a href="#cell" onclick="toggleMenu()">CELL</a></li>
+<li><a href="#formulatext" onclick="toggleMenu()">FORMULATEXT</a></li>
+<li><a href="#hyperlink" onclick="toggleMenu()">HYPERLINK</a></li>
+<li><div class="family-title">Pivot, Tabel & Data Model (OLAP)</div></li>
+<li><a href="#getpivotdata" onclick="toggleMenu()">GETPIVOTDATA</a></li>
+<li><a href="#cubevalue" onclick="toggleMenu()">CUBEVALUE</a></li>
+<li><a href="#cubemember" onclick="toggleMenu()">CUBEMEMBER</a></li>
+<li><a href="#cubeset" onclick="toggleMenu()">CUBESET</a></li>
+<li><a href="#cuberankedmember" onclick="toggleMenu()">CUBERANKEDMEMBER</a></li>
+<li><a href="#cubesetcount" onclick="toggleMenu()">CUBESETCOUNT</a></li>
+<li><div class="family-title">Utilitas Lookup & Referensi</div></li>
+<li><a href="#choose" onclick="toggleMenu()">CHOOSE</a></li>
+<li><a href="#rtd" onclick="toggleMenu()">RTD</a></li>
+<li><a href="#lookupmatchindex" onclick="toggleMenu()">LOOKUP + MATCH/INDEX</a></li>
+<li><a href="#isref" onclick="toggleMenu()">ISREF</a></li>
+<li><a href="#hstackvstackxlookup" onclick="toggleMenu()">HSTACK/VSTACK + XLOOKUP</a></li>
+<li><a href="#indirectaddress" onclick="toggleMenu()">INDIRECT + ADDRESS</a></li>
+</ul>
+</div>
+
+<div class="function-group">
+<h2>1. Lookup Klasik</h2>
+<h3 id="vlookup">VLOOKUP</h3>
+<p><strong>Deskripsi:</strong> Mencari nilai pada kolom paling kiri tabel lalu mengembalikan nilai dari kolom target pada baris yang sama (vertikal).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>ID</td><td>Produk</td><td>Harga</td></tr>
+<tr><td><strong>2</strong></td><td>P001</td><td>Kopi</td><td>15000</td></tr>
+<tr><td><strong>3</strong></td><td>P002</td><td>Teh</td><td>10000</td></tr>
+<tr><td><strong>4</strong></td><td></td><td></td><td><span class="syntax">=VLOOKUP("P002", A2:C3, 3, FALSE)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>10000</td></tr>
+</tbody>
+</table>
+
+<h3 id="hlookup">HLOOKUP</h3>
+<p><strong>Deskripsi:</strong> Versi horizontal dari VLOOKUP; pencarian dilakukan di baris teratas tabel dan mengembalikan nilai dari baris target.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=HLOOKUP(lookup_value, table_array, row_index_num, [range_lookup])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>ID</td><td>P001</td><td>P002</td></tr>
+<tr><td><strong>2</strong></td><td>Produk</td><td>Kopi</td><td>Teh</td></tr>
+<tr><td><strong>3</strong></td><td>Harga</td><td>15000</td><td>10000</td></tr>
+<tr><td><strong>4</strong></td><td><span class="syntax">=HLOOKUP("P001", B1:C3, 3, FALSE)</span></td><td></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>15000</td><td></td><td></td></tr>
+</tbody>
+</table>
+
+<h3 id="lookup">LOOKUP</h3>
+<p><strong>Deskripsi:</strong> Fungsi lawas untuk mencari nilai dalam satu baris/kolom dan mengembalikan pasangan terdekat jika tidak ditemukan tepat.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=LOOKUP(lookup_value, lookup_vector, [result_vector])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nilai</td><td>Keterangan</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>0</td><td>Gagal</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>70</td><td>Cukup</td><td></td></tr>
+<tr><td><strong>4</strong></td><td>85</td><td>Baik</td><td><span class="syntax">=LOOKUP(80, A2:A4, B2:B4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>Cukup</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>2. Lookup Modern</h2>
+<h3 id="xlookup">XLOOKUP</h3>
+<p><strong>Deskripsi:</strong> Penerus VLOOKUP/HLOOKUP; bisa mencari dari mana pun ke mana pun, dukung nilai default saat tidak ditemukan, dan mode pencarian fleksibel.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Produk</td><td>Harga</td><td></td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Kopi</td><td>15000</td><td></td><td></td></tr>
+<tr><td><strong>3</strong></td><td>Teh</td><td>10000</td><td></td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td></td><td></td><td><span class="syntax">=XLOOKUP(10000, B2:B3, A2:A3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td></td><td>Teh</td></tr>
+</tbody>
+</table>
+
+<h3 id="xmatch">XMATCH</h3>
+<p><strong>Deskripsi:</strong> Versi modern dari MATCH dengan mode pencarian persis/terdekat dan dukungan wildcard.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=XMATCH(lookup_value, lookup_array, [match_mode], [search_mode])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Kopi</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Teh</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=XMATCH("Teh", A1:A2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2</td></tr>
+</tbody>
+</table>
+
+<h3 id="filter">FILTER</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan baris yang lolos kriteria; sering dipakai sebagai lookup multi-hasil yang dinamis.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=FILTER(array, include, [if_empty])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Apel</td><td>100</td></tr>
+<tr><td><strong>2</strong></td><td>Jeruk</td><td>50</td></tr>
+<tr><td><strong>3</strong></td><td>Apel</td><td>150</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=FILTER(A1:B3, A1:A3="Apel")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Apel</td><td>100</td></tr>
+<tr><td></td><td></td><td>Apel</td><td>150</td></tr>
+</tbody>
+</table>
+
+<h3 id="unique">UNIQUE</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan daftar nilai unik dari sebuah range; sering digabung dengan FILTER untuk lookup daftar referensi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=UNIQUE(array, [by_col], [exactly_once])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Apel</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Jeruk</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>Apel</td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=UNIQUE(A1:A3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Apel</td></tr>
+<tr><td></td><td></td><td>Jeruk</td></tr>
+</tbody>
+</table>
+
+<h3 id="sort">SORT</h3>
+<p><strong>Deskripsi:</strong> Mengurutkan hasil berdasarkan kolom tertentu; membantu menyajikan hasil lookup yang rapi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=SORT(array, [sort_index], [sort_order], [by_col])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Apel</td><td>100</td></tr>
+<tr><td><strong>2</strong></td><td>Jeruk</td><td>50</td></tr>
+<tr><td><strong>3</strong></td><td>Anggur</td><td>150</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=SORT(A1:B3, 2, -1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Anggur</td><td>150</td></tr>
+<tr><td></td><td></td><td>Apel</td><td>100</td></tr>
+<tr><td></td><td></td><td>Jeruk</td><td>50</td></tr>
+</tbody>
+</table>
+
+<h3 id="sortby">SORTBY</h3>
+<p><strong>Deskripsi:</strong> Mengurutkan data berdasarkan array acuan lain; cocok untuk pengurutan kondisional.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=SORTBY(array, by_array, [sort_order], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Apel</td><td>100</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Jeruk</td><td>50</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>Anggur</td><td>150</td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=SORTBY(A1:A3, B1:B3, 1)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Jeruk</td><td></td></tr>
+<tr><td></td><td></td><td>Apel</td><td></td></tr>
+<tr><td></td><td></td><td>Anggur</td><td></td></tr>
+</tbody>
+</table>
+
+<h3 id="take">TAKE</h3>
+<p><strong>Deskripsi:</strong> Mengambil n baris/kolom teratas atau terbawah dari suatu array—berguna setelah FILTER/SORT.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TAKE(array, rows, [cols])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Apel</td><td>100</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Jeruk</td><td>50</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>Anggur</td><td>150</td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=TAKE(A1:B3, 2)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Apel</td><td>100</td></tr>
+<tr><td></td><td></td><td>Jeruk</td><td>50</td></tr>
+</tbody>
+</table>
+
+<h3 id="drop">DROP</h3>
+<p><strong>Deskripsi:</strong> Membuang n baris/kolom dari awal/akhir array—membantu menyisakan bagian yang dibutuhkan.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DROP(array, rows, [cols])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Apel</td><td>100</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Jeruk</td><td>50</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>Anggur</td><td>150</td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=DROP(A1:B3, 1)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Jeruk</td><td>50</td></tr>
+<tr><td></td><td></td><td>Anggur</td><td>150</td></tr>
+</tbody>
+</table>
+
+<h3 id="choosecols">CHOOSECOLS</h3>
+<p><strong>Deskripsi:</strong> Memilih kolom tertentu dari array berdasarkan indeks; semacam ‘lookup kolom’.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CHOOSECOLS(array, col_num1, [col_num2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>ID001</td><td>Apel</td><td>Timur</td></tr>
+<tr><td><strong>2</strong></td><td>ID002</td><td>Jeruk</td><td>Barat</td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=CHOOSECOLS(A1:C2, 2, 1)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Apel</td><td>ID001</td></tr>
+<tr><td></td><td></td><td>Jeruk</td><td>ID002</td></tr>
+</tbody>
+</table>
+
+<h3 id="chooserows">CHOOSEROWS</h3>
+<p><strong>Deskripsi:</strong> Memilih baris tertentu dari array berdasarkan indeks; praktis untuk ekstraksi baris spesifik.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CHOOSEROWS(array, row_num1, [row_num2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>ID001</td><td>Apel</td><td>Timur</td></tr>
+<tr><td><strong>2</strong></td><td>ID002</td><td>Jeruk</td><td>Barat</td></tr>
+<tr><td><strong>3</strong></td><td>ID003</td><td>Anggur</td><td>Selatan</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=CHOOSEROWS(A1:C3, 1, 3)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>ID001</td><td>Apel</td><td>Timur</td></tr>
+<tr><td></td><td></td><td>ID003</td><td>Anggur</td><td>Selatan</td></tr>
+</tbody>
+</table>
+
+<h3 id="hstack">HSTACK</h3>
+<p><strong>Deskripsi:</strong> Menyusun beberapa array secara mendatar (menggabung kolom) untuk keperluan referensi/lookup.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=HSTACK(array1, [array2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>A1</td><td></td><td>B1</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>A2</td><td></td><td>B2</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td></td><td><span class="syntax">=HSTACK(A1:A2, C1:C2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>A1</td><td>B1</td></tr>
+<tr><td></td><td></td><td></td><td>A2</td><td>B2</td></tr>
+</tbody>
+</table>
+
+<h3 id="vstack">VSTACK</h3>
+<p><strong>Deskripsi:</strong> Menyusun beberapa array secara vertikal (menggabung baris) sehingga bisa di-FILTER/LOOKUP sekaligus.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=VSTACK(array1, [array2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>A1</td><td>B1</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>A2</td><td>B2</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>C1</td><td>D1</td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td></td><td><span class="syntax">=VSTACK(A1:B2, A3:B3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>A1</td><td>B1</td></tr>
+<tr><td></td><td></td><td>A2</td><td>B2</td></tr>
+<tr><td></td><td></td><td>C1</td><td>D1</td></tr>
+</tbody>
+</table>
+
+<h3 id="wraprows">WRAPROWS</h3>
+<p><strong>Deskripsi:</strong> Mengalihkan data 1D menjadi beberapa baris dengan lebar tertentu—membentuk tabel referensi cepat.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=WRAPROWS(vector, wrap_count, [pad_with])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1</td><td>2</td><td>3</td></tr>
+<tr><td><strong>2</strong></td><td>4</td><td>5</td><td>6</td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=WRAPROWS(A1:C2, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td><td>2</td></tr>
+<tr><td></td><td></td><td>3</td><td>4</td></tr>
+<tr><td></td><td></td><td>5</td><td>6</td></tr>
+</tbody>
+</table>
+
+<h3 id="wrapcols">WRAPCOLS</h3>
+<p><strong>Deskripsi:</strong> Mengalihkan data 1D menjadi beberapa kolom; kebalikan WRAPROWS tergantung orientasi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=WRAPCOLS(vector, wrap_count, [pad_with])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1</td><td>2</td><td>3</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>4</td><td>5</td><td>6</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td></td><td><span class="syntax">=WRAPCOLS(A1:C2, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>1</td><td>4</td></tr>
+<tr><td></td><td></td><td></td><td>2</td><td>5</td></tr>
+<tr><td></td><td></td><td></td><td>3</td><td>6</td></tr>
+</tbody>
+</table>
+
+<h3 id="torow">TOROW</h3>
+<p><strong>Deskripsi:</strong> Meratakan array menjadi satu baris; memudahkan pencarian berbasis baris tunggal.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TOROW(array, [ignore], [scan_by_column])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>A</td><td>B</td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>2</strong></td><td>C</td><td>D</td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=TOROW(A1:B2)</span></td><td></td><td></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>A</td><td>B</td><td>C</td><td>D</td></tr>
+</tbody>
+</table>
+
+<h3 id="tocol">TOCOL</h3>
+<p><strong>Deskripsi:</strong> Meratakan array menjadi satu kolom; sangat cocok untuk daftar referensi konsolidasi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TOCOL(array, [ignore], [scan_by_column])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>A</td><td>B</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>C</td><td>D</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=TOCOL(A1:B2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>A</td></tr>
+<tr><td></td><td></td><td></td><td>B</td></tr>
+<tr><td></td><td></td><td></td><td>C</td></tr>
+<tr><td></td><td></td><td></td><td>D</td></tr>
+</tbody>
+</table>
+
+<h3 id="takedropsortby">TAKE + DROP + SORTBY (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Rantai fungsi modern untuk membentuk hasil lookup yang sangat terarah.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TAKE(SORTBY(DROP(array, 1), DROP(array, 1, 1), -1), 1)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Skor</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>90</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>Andi</td><td>95</td><td></td></tr>
+<tr><td><strong>4</strong></td><td>Citra</td><td>88</td><td></td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td><span class="syntax">=TAKE(SORTBY(A2:B4, B2:B4, -1), 1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>Andi</td><td>95</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>3. Pencarian Posisi & Pengambilan Nilai</h2>
+<h3 id="match">MATCH</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan posisi relatif dari sebuah nilai dalam rentang; pondasi banyak rumus lookup klasik.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=MATCH(lookup_value, lookup_array, [match_type])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Kopi</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Teh</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=MATCH("Teh", A1:A2, 0)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2</td></tr>
+</tbody>
+</table>
+
+<h3 id="index">INDEX</h3>
+<p><strong>Deskripsi:</strong> Mengambil nilai dari posisi baris/kolom tertentu di suatu rentang; pasangan alami untuk MATCH.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=INDEX(array, row_num, [column_num])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Kopi</td><td>15000</td></tr>
+<tr><td><strong>2</strong></td><td>Teh</td><td>10000</td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=INDEX(B1:B2, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>10000</td></tr>
+</tbody>
+</table>
+
+<h3 id="indexmatch">INDEX + MATCH (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Alternatif populer VLOOKUP karena bisa mencari ‘ke kiri’ dan lebih tangguh saat tabel berubah.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=INDEX(return_array, MATCH(lookup_value, lookup_array, 0))</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Harga</td><td>Produk</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>15000</td><td>Kopi</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>10000</td><td>Teh</td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td></td><td><span class="syntax">=INDEX(A2:A3, MATCH("Teh", B2:B3, 0))</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>10000</td></tr>
+</tbody>
+</table>
+
+<h3 id="xmatchindex">XMATCH + INDEX (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Versi modern kombinasi INDEX/MATCH dengan opsi pencarian lebih fleksibel.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=INDEX(return_array, XMATCH(lookup_value, lookup_array))</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Harga</td><td>Produk</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>15000</td><td>Kopi</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>10000</td><td>Teh</td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td></td><td><span class="syntax">=INDEX(A2:A3, XMATCH("Teh", B2:B3))</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>10000</td></tr>
+</tbody>
+</table>
+
+<h3 id="offset">OFFSET</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan referensi yang digeser dari sel awal; memungkinkan range dinamis untuk lookup.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=OFFSET(reference, rows, cols, [height], [width])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Data</td><td>10</td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=OFFSET(B1, 1, 0)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>#REF!</td></tr>
+<tr><td></td><td>11</td><td></td></tr>
+</tbody>
+</table>
+
+<h3 id="offsetmatch">OFFSET + MATCH (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Membentuk referensi dinamis ke baris/kolom hasil pencarian posisi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=OFFSET(top_left_cell, MATCH(lookup_val, lookup_col, 0)-1, MATCH(header, header_row, 0)-1)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>ID</td><td>Produk</td><td>Harga</td></tr>
+<tr><td><strong>2</strong></td><td>P001</td><td>Kopi</td><td>15000</td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=OFFSET(A1, MATCH("P001", A1:A2, 0)-1, MATCH("Harga", A1:C1, 0)-1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>15000</td></tr>
+</tbody>
+</table>
+
+<h3 id="transpose">TRANSPOSE</h3>
+<p><strong>Deskripsi:</strong> Menukar orientasi baris sebelum/sesudah lookup.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TRANSPOSE(array)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1</td><td>2</td></tr>
+<tr><td><strong>2</strong></td><td>3</td><td>4</td></tr>
+<tr><td><strong>3</strong></td><td><span class="syntax">=TRANSPOSE(A1:B2)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>1</td><td>3</td></tr>
+<tr><td></td><td>2</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>4. Referensi dan Alamat Cell</h2>
+<h3 id="address">ADDRESS</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan alamat sel (mis. $B$12) dari nomor baris dan kolom—berguna untuk pembuatan referensi tekstual.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ADDRESS(row_num, col_num, [abs_num], [a1], [sheet_text])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><span class="syntax">=ADDRESS(1, 2)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>$B$1</td><td></td></tr>
+</tbody>
+</table>
+
+<h3 id="indirect">INDIRECT</h3>
+<p><strong>Deskripsi:</strong> Mengubah teks alamat/range menjadi referensi hidup; memudahkan rujukan dinamis lintas sheet.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=INDIRECT(ref_text, [a1])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>B2</td><td>100</td></tr>
+<tr><td><strong>2</strong></td><td><span class="syntax">=INDIRECT(A1)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>100</td><td></td></tr>
+</tbody>
+</table>
+
+<h3 id="row">ROW</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan nomor baris dari sebuah referensi—sering dipakai dalam perhitungan posisi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ROW([reference])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td><span class="syntax">=ROW(A10)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>10</td></tr>
+</tbody>
+</table>
+
+<h3 id="rows">ROWS</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan jumlah baris dalam sebuah referensi/array—membantu iterasi dinamis.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ROWS(array)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=ROWS(A1:A3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>3</td></tr>
+</tbody>
+</table>
+
+<h3 id="column">COLUMN</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan nomor kolom; berguna untuk offset kolom pada lookup bergeser.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=COLUMN([reference])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td><span class="syntax">=COLUMN(B10)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2</td></tr>
+</tbody>
+</table>
+
+<h3 id="columns">COLUMNS</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan jumlah kolom dalam referensi/array; mendukung logika pergeseran kolom.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=COLUMNS(array)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=COLUMNS(A1:C1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>3</td></tr>
+</tbody>
+</table>
+
+<h3 id="areas">AREAS</h3>
+<p><strong>Deskripsi:</strong> Menghitung berapa banyak area pada referensi majemuk (range yang tidak saling berdampingan).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=AREAS(reference)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1</td><td></td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=AREAS((A1, C3))</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>2</td></tr>
+</tbody>
+</table>
+
+<h3 id="cell">CELL</h3>
+<p><strong>Deskripsi:</strong> Memberikan informasi tentang format/lokasi/konten sel.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CELL(info_type, [reference])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>123</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=CELL("address", A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>$A$1</td></tr>
+</tbody>
+</table>
+
+<h3 id="formulatext">FORMULATEXT</h3>
+<p><strong>Deskripsi:</strong> Menampilkan formula sebuah sel sebagai teks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=FORMULATEXT(reference)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><span class="syntax">=1+1</span></td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=FORMULATEXT(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>=1+1</td></tr>
+</tbody>
+</table>
+
+<h3 id="hyperlink">HYPERLINK</h3>
+<p><strong>Deskripsi:</strong> Membuat tautan aktif ke file, web, atau lokasi dalam workbook; navigasi referensi antarsheet jadi instan.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=HYPERLINK(link_location, [friendly_name])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td><span class="syntax">=HYPERLINK("https://google.com", "Buka Google")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Buka Google</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>5. Pivot, Tabel & Data Model (OLAP)</h2>
+<h3 id="getpivotdata">GETPIVOTDATA</h3>
+<p><strong>Deskripsi:</strong> Mengambil nilai dari PivotTable berdasarkan kombinasi field/item tertentu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=GETPIVOTDATA(data_field, pivot_table, [field1, item1], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td colspan="2">PivotTable (di B3:C6)</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=GETPIVOTDATA("Penjualan", $B$3, "Wilayah", "Timur")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>150000</td></tr>
+</tbody>
+</table>
+
+<h3 id="cubevalue">CUBEVALUE</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan nilai agregat dari model data/OLAP berdasarkan anggota/ukuran yang dipilih.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CUBEVALUE(connection, member1, [member2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td><span class="syntax">=CUBEVALUE("PenjualanCube", "[Measures].[Total Penjualan]", "[Wilayah].[Timur]")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>150000</td></tr>
+</tbody>
+</table>
+
+<h3 id="cubemember">CUBEMEMBER</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan anggota (member) dari kubus/OLAP untuk digunakan dalam rumus lain.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CUBEMEMBER(connection, member_expression, [caption])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td><span class="syntax">=CUBEMEMBER("PenjualanCube", "[Wilayah].[Timur]", "Penjualan Timur")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Penjualan Timur</td></tr>
+</tbody>
+</table>
+
+<h3 id="cubeset">CUBESET</h3>
+<p><strong>Deskripsi:</strong> Membuat set anggota yang bisa dipakai untuk agregasi atau iterasi pada model data.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CUBESET(connection, set_expression, [caption], [sort_order], [sort_by])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td><span class="syntax">=CUBESET("PenjualanCube", "ORDER([Wilayah].Members, [Measures].[Total Penjualan], DESC)")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>{Wilayah.Timur, Wilayah.Barat}</td></tr>
+</tbody>
+</table>
+
+<h3 id="cuberankedmember">CUBERANKEDMEMBER</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan anggota ke-n dari sebuah set—berguna untuk ranking dinamis.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CUBERANKEDMEMBER(connection, set_expression, rank, [caption])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td><span class="syntax">=CUBERANKEDMEMBER("PenjualanCube", "ORDER([Wilayah].Members, [Measures].[Total Penjualan], DESC)", 1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Wilayah.Timur</td></tr>
+</tbody>
+</table>
+
+<h3 id="cubesetcount">CUBESETCOUNT</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan jumlah anggota dalam CUBESET—membantu kontrol literasi laporan.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CUBESETCOUNT(set)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td><span class="syntax">=CUBESETCOUNT(CUBESET("PenjualanCube", "[Wilayah].Members"))</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>6. Utilitas Lookup & Referensi</h2>
+<h3 id="choose">CHOOSE</h3>
+<p><strong>Deskripsi:</strong> Memilih salah satu nilai dari daftar argumen berdasarkan indeks lookup sederhana berbasis nomor.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CHOOSE(index_num, value1, [value2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>2</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=CHOOSE(A1, "Satu", "Dua", "Tiga")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Dua</td></tr>
+</tbody>
+</table>
+
+<h3 id="rtd">RTD</h3>
+<p><strong>Deskripsi:</strong> Mengambil data real-time dari server otomatisasi COM; referensi bernilai waktu nyata untuk dashboard.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=RTD(ProgID, server, topic1, [topic2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td><span class="syntax">=RTD("rtd-server", "192.168.1.1", "Data.StockPrice", "GOOG")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>[Nilai Harga Saham]</td></tr>
+</tbody>
+</table>
+
+<h3 id="lookupmatchindex">LOOKUP + MATCH/INDEX (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Pola klasik sebelum XLOOKUP—tetap relevan untuk kompatibilitas versi lama.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=LOOKUP(2,1/(lookup_array=lookup_value), return_array)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Produk</td><td>Harga</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Kopi</td><td>15000</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>Teh</td><td>10000</td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td></td><td><span class="syntax">=LOOKUP(2,1/(A2:A3="Teh"), B2:B3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>10000</td></tr>
+</tbody>
+</table>
+
+<h3 id="isref">ISREF</h3>
+<p><strong>Deskripsi:</strong> Menguji apakah sebuah nilai adalah referensi yang valid mendeteksi rujukan sebelum dipakai pada lookup.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISREF(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>C5</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISREF(INDIRECT(A1))</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="hstackvstackxlookup">HSTACK/VSTACK + XLOOKUP (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Menggabung tabel lalu melakukan lookup silang secara dinamis.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=XLOOKUP(lookup_val, VSTACK(tbl1, tbl2), VSTACK(res1, res2))</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Tabel1</td><td></td><td>Tabel2</td><td></td><td></td></tr>
+<tr><td><strong>2</strong></td><td>ID1</td><td>Apel</td><td>ID3</td><td>Anggur</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>ID2</td><td>Jeruk</td><td>ID4</td><td>Mangga</td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td></td><td></td><td></td><td><span class="syntax">=XLOOKUP("ID3", VSTACK(A2:A3, C2:C3), VSTACK(B2:B3, D2:D3))</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td></td><td></td><td>Anggur</td></tr>
+</tbody>
+</table>
+
+<h3 id="indirectaddress">INDIRECT + ADDRESS (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Membangun referensi dari teks alamat untuk akses data lintas sheet/workbook.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=INDIRECT(sheet_name & "!" & ADDRESS(row_num, col_num))</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Sheet2</td><td>2</td><td><span class="syntax">=INDIRECT(A1 & "!A" & B1)</span></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>[Nilai dari Sheet2!A2]</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+function toggleMenu() {
+const menu = document.getElementById('menuList');
+menu.classList.toggle('active');
+}
+</script>
+</body>
+</html>

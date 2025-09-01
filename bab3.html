@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fungsi Logika</title>
+<style>
+/* Gaya CSS Utama */
+body {
+font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+margin: 0;
+padding: 40px;
+background-color: #f0f4f8;
+color: #334e68;
+line-height: 1.6;
+font-size: 16px;
+}
+.container {
+max-width: 900px;
+margin: auto;
+}
+.function-group {
+margin-bottom: 40px;
+padding: 30px;
+background-color: #ffffff;
+border-radius: 12px;
+box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+transition: all 0.3s ease;
+}
+.function-group:hover {
+transform: translateY(-5px);
+box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* Gaya Judul dan Teks */
+h1 {
+text-align: center;
+color: #1a4d80;
+margin-bottom: 30px;
+font-size: 2.5em;
+font-weight: 300;
+}
+h2 {
+color: #0d7377;
+border-bottom: 2px solid #e2e8f0;
+padding-bottom: 10px;
+margin-top: 0;
+font-weight: 600;
+}
+h3 {
+color: #2a6a96;
+margin-top: 25px;
+font-weight: 500;
+}
+p {
+margin-bottom: 10px;
+font-weight: 400;
+}
+strong {
+font-weight: 600;
+color: #2a6a96;
+}
+.syntax {
+font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+background-color: #e6f1f4;
+color: #004d40;
+padding: 5px 10px;
+border-radius: 6px;
+display: inline-block;
+margin-bottom: 15px;
+font-size: 0.9em;
+}
+
+/* Gaya Tabel */
+table {
+border-collapse: collapse;
+width: 100%;
+margin-top: 20px;
+font-size: 0.95em;
+}
+th, td {
+border: 1px solid #e2e8f0;
+padding: 12px;
+text-align: center;
+}
+th {
+background-color: #6d91ba;
+color: white;
+text-transform: uppercase;
+font-weight: normal;
+}
+tr:nth-child(even) {
+background-color: #f7f9fc;
+}
+.highlight {
+background-color: #d8e9e6;
+font-weight: 600;
+}
+
+/* Gaya Menu Navigasi */
+.menu-container {
+text-align: center;
+margin-bottom: 20px;
+}
+.menu-button {
+padding: 10px 20px;
+font-size: 1em;
+cursor: pointer;
+background-color: #1a4d80;
+color: white;
+border: none;
+border-radius: 8px;
+transition: background-color 0.3s, transform 0.2s;
+}
+.menu-button:hover {
+background-color: #143e69;
+transform: scale(1.05);
+}
+.menu-list {
+list-style: none;
+padding: 0;
+margin-top: 15px;
+background-color: #f7f9fc;
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+display: none;
+max-height: 400px;
+overflow-y: auto;
+text-align: left;
+}
+.menu-list.active {
+display: block;
+}
+.menu-list li {
+padding: 10px 15px;
+border-bottom: 1px solid #e2e8f0;
+}
+.menu-list li:last-child {
+border-bottom: none;
+}
+.menu-list a {
+text-decoration: none;
+color: #2a6a96;
+display: block;
+transition: color 0.3s, background-color 0.3s;
+}
+.menu-list a:hover {
+color: #1a4d80;
+background-color: #e6f1f4;
+}
+.family-title {
+font-weight: 600;
+color: #0d7377;
+background-color: #e2e8f0;
+padding: 8px 15px;
+border-radius: 6px;
+margin-top: 10px;
+}
+.function-group h3 {
+padding-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Bab 3 – Fungsi Logika</h1>
+
+<div class="menu-container">
+<button class="menu-button" onclick="toggleMenu()">
+<span class="icon">&#9776;</span> Daftar Isi Fungsi
+</button>
+<ul id="menuList" class="menu-list">
+<li><div class="family-title">IF Family</div></li>
+<li><a href="#if" onclick="toggleMenu()">IF</a></li>
+<li><a href="#ifs" onclick="toggleMenu()">IFS</a></li>
+<li><a href="#iferror" onclick="toggleMenu()">IFERROR</a></li>
+<li><a href="#ifna" onclick="toggleMenu()">IFNA</a></li>
+<li><div class="family-title">Operator Logika</div></li>
+<li><a href="#and" onclick="toggleMenu()">AND</a></li>
+<li><a href="#or" onclick="toggleMenu()">OR</a></li>
+<li><a href="#not" onclick="toggleMenu()">NOT</a></li>
+<li><a href="#xor" onclick="toggleMenu()">XOR</a></li>
+<li><div class="family-title">Kontrol Logika Tambahan</div></li>
+<li><a href="#switch" onclick="toggleMenu()">SWITCH</a></li>
+<li><a href="#choose" onclick="toggleMenu()">CHOOSE</a></li>
+<li><a href="#choosecols" onclick="toggleMenu()">CHOOSECOLS</a></li>
+<li><a href="#chooserows" onclick="toggleMenu()">CHOOSEROWS</a></li>
+<li><div class="family-title">Fungsi Definisi & Kustom</div></li>
+<li><a href="#let" onclick="toggleMenu()">LET</a></li>
+<li><a href="#lambda" onclick="toggleMenu()">LAMBDA</a></li>
+<li><a href="#byrow" onclick="toggleMenu()">BYROW</a></li>
+<li><a href="#bycol" onclick="toggleMenu()">BYCOL</a></li>
+<li><div class="family-title">Fungsi Dinamis (Dynamic Array Logic)</div></li>
+<li><a href="#filter" onclick="toggleMenu()">FILTER</a></li>
+<li><a href="#unique" onclick="toggleMenu()">UNIQUE</a></li>
+<li><a href="#sort" onclick="toggleMenu()">SORT</a></li>
+<li><a href="#sortby" onclick="toggleMenu()">SORTBY</a></li>
+<li><div class="family-title">Fungsi Informasi Logika</div></li>
+<li><a href="#true" onclick="toggleMenu()">TRUE</a></li>
+<li><a href="#false" onclick="toggleMenu()">FALSE</a></li>
+<li><a href="#islogical" onclick="toggleMenu()">ISLOGICAL</a></li>
+</ul>
+</div>
+
+<div class="function-group">
+<h2>1. IF Family</h2>
+<h3 id="if">IF</h3>
+<p><strong>Deskripsi:</strong> Mengevaluasi kondisi tertentu lalu mengembalikan nilai berbeda untuk hasil TRUE dan FALSE. Sering menjadi dasar hampir semua logika di Excel.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IF(logical_test, [value_if_true], [value_if_false])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>75</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IF(A1>=70, "Lulus", "Gagal")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Lulus</td></tr>
+</tbody>
+</table>
+
+<h3 id="ifs">IFS</h3>
+<p><strong>Deskripsi:</strong> Menangani banyak kondisi sekaligus tanpa perlu menulis IF bersarang. Membuat rumus panjang lebih mudah dibaca.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IFS(logical_test1, value_if_true1, [logical_test2, value_if_true2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>85</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IFS(A1>=90, "A", A1>=80, "B", A1>=70, "C", TRUE, "D")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>B</td></tr>
+</tbody>
+</table>
+
+<h3 id="iferror">IFERROR</h3>
+<p><strong>Deskripsi:</strong> Berguna untuk menutupi error seperti #DIV/0!, mengganti error dengan teks atau angka yang lebih informatif.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IFERROR(value, value_if_error)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10</td><td>0</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=IFERROR(A1/B1, "Tidak bisa dibagi nol")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>Tidak bisa dibagi nol</td></tr>
+</tbody>
+</table>
+
+<h3 id="ifna">IFNA</h3>
+<p><strong>Deskripsi:</strong> Versi lebih spesifik dari IFERROR, hanya menargetkan error #N/A. Umumnya digunakan pada fungsi lookup.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IFNA(value, value_if_na)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Produk X</td><td></td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Produk Y</td><td></td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=IFNA(VLOOKUP("Produk Z", A1:B2, 2, FALSE), "Data Tidak Ditemukan")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>Data Tidak Ditemukan</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>2. Operator Logika</h2>
+<h3 id="and">AND</h3>
+<p><strong>Deskripsi:</strong> Mengevaluasi banyak kondisi, hanya mengembalikan TRUE jika semua syarat benar.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=AND(logical1, [logical2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>90</td><td>75</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=AND(A1>80, B1>70)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="or">OR</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan TRUE jika minimal satu kondisi benar.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=OR(logical1, [logical2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>60</td><td>75</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=OR(A1>80, B1>70)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="not">NOT</h3>
+<p><strong>Deskripsi:</strong> Membalikkan hasil logika, TRUE jadi FALSE atau sebaliknya.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=NOT(logical)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>75</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=NOT(A1>80)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="xor">XOR</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan TRUE hanya jika jumlah kondisi TRUE bernilai ganjil (misalnya tepat satu benar dari dua kondisi).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=XOR(logical1, [logical2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>TRUE</td><td>FALSE</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=XOR(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>3. Kontrol Logika Tambahan</h2>
+<h3 id="switch">SWITCH</h3>
+<p><strong>Deskripsi:</strong> Membandingkan sebuah ekspresi dengan beberapa nilai kandidat, lalu mengembalikan hasil yang sesuai. Alternatif praktis untuk IF berlapis.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=SWITCH(expression, value1, result1, [value2, result2], ..., [default])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Merah</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=SWITCH(A1, "Merah", 1, "Hijau", 2, "Biru", 3, 0)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+</tbody>
+</table>
+
+<h3 id="choose">CHOOSE</h3>
+<p><strong>Deskripsi:</strong> Mengambil nilai dari daftar berdasarkan nomor indeks. Cocok untuk memilih kategori atau opsi terbatas.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CHOOSE(index_num, value1, [value2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>2</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=CHOOSE(A1, "Satu", "Dua", "Tiga")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Dua</td></tr>
+</tbody>
+</table>
+
+<h3 id="choosecols">CHOOSECOLS (Excel 365)</h3>
+<p><strong>Deskripsi:</strong> Memilih kolom tertentu dari sebuah array berdasarkan nomor indeks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CHOOSECOLS(array, col_num1, [col_num2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>ID001</td><td>Apel</td><td>Timur</td></tr>
+<tr><td><strong>2</strong></td><td>ID002</td><td>Jeruk</td><td>Barat</td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=CHOOSECOLS(A1:C2, 2, 1)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Apel</td><td>ID001</td></tr>
+<tr><td></td><td></td><td>Jeruk</td><td>ID002</td></tr>
+</tbody>
+</table>
+
+<h3 id="chooserows">CHOOSEROWS (Excel 365)</h3>
+<p><strong>Deskripsi:</strong> Sama seperti CHOOSECOLS, tetapi untuk memilih baris.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CHOOSEROWS(array, row_num1, [row_num2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>ID001</td><td>Apel</td><td>Timur</td></tr>
+<tr><td><strong>2</strong></td><td>ID002</td><td>Jeruk</td><td>Barat</td></tr>
+<tr><td><strong>3</strong></td><td>ID003</td><td>Anggur</td><td>Selatan</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=CHOOSEROWS(A1:C3, 1, 3)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>ID001</td><td>Apel</td><td>Timur</td></tr>
+<tr><td></td><td></td><td>ID003</td><td>Anggur</td><td>Selatan</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>4. Fungsi Definisi & Kustom</h2>
+<h3 id="let">LET</h3>
+<p><strong>Deskripsi:</strong> Memungkinkan kita menyimpan nilai sementara di dalam formula sehingga bisa dipanggil ulang tanpa ditulis ulang. Membuat formula lebih singkat dan efisien.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=LET(name1, value1, [name2, value2], ..., calculation)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>100</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=LET(x, A1*2, y, x+10, y*3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>630</td></tr>
+</tbody>
+</table>
+
+<h3 id="lambda">LAMBDA</h3>
+<p><strong>Deskripsi:</strong> Membuat fungsi buatan sendiri langsung di Excel, tanpa coding VBA. Dapat digunakan kembali seperti fungsi bawaan.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=LAMBDA(parameter1, [parameter2], ..., calculation)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=BENTUKAN_KUADRAT(A1)</span><br>Fungsi yang dibuat: <br><strong>BENTUKAN_KUADRAT</strong> = <span class="syntax">=LAMBDA(x, x*x)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>100</td></tr>
+</tbody>
+</table>
+
+<h3 id="byrow">BYROW</h3>
+<p><strong>Deskripsi:</strong> Mengevaluasi ekspresi logika atau fungsi untuk setiap baris dalam array.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=BYROW(array, LAMBDA)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10</td><td>20</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>5</td><td>15</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=BYROW(A1:B2, LAMBDA(r, SUM(r)))</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>30</td></tr>
+<tr><td></td><td></td><td></td><td>20</td></tr>
+</tbody>
+</table>
+
+<h3 id="bycol">BYCOL</h3>
+<p><strong>Deskripsi:</strong> Mengevaluasi ekspresi logika atau fungsi untuk setiap kolom dalam array.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=BYCOL(array, LAMBDA)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10</td><td>20</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>5</td><td>15</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=BYCOL(A1:B2, LAMBDA(c, MAX(c)))</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>10</td></tr>
+<tr><td></td><td></td><td></td><td>20</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>5. Fungsi Dinamis (Dynamic Array Logic)</h2>
+<h3 id="filter">FILTER</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan subset data berdasarkan kondisi logika tertentu. Sangat kuat untuk analisis data dinamis.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=FILTER(array, include, [if_empty])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Apel</td><td>100</td></tr>
+<tr><td><strong>2</strong></td><td>Jeruk</td><td>50</td></tr>
+<tr><td><strong>3</strong></td><td>Apel</td><td>150</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=FILTER(A1:B3, B1:B3>=100)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Apel</td><td>100</td></tr>
+<tr><td></td><td></td><td>Apel</td><td>150</td></tr>
+</tbody>
+</table>
+
+<h3 id="unique">UNIQUE</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan daftar nilai unik dari sebuah range, bisa dianggap logika seleksi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=UNIQUE(array, [by_col], [exactly_once])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Apel</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Jeruk</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>Apel</td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=UNIQUE(A1:A3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Apel</td></tr>
+<tr><td></td><td></td><td>Jeruk</td></tr>
+</tbody>
+</table>
+
+<h3 id="sort">SORT</h3>
+<p><strong>Deskripsi:</strong> Mengurutkan data berdasarkan kriteria tertentu, meski bukan logika murni, sering dipakai bersama FILTER.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=SORT(array, [sort_index], [sort_order], [by_col])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Apel</td><td>100</td></tr>
+<tr><td><strong>2</strong></td><td>Jeruk</td><td>50</td></tr>
+<tr><td><strong>3</strong></td><td>Anggur</td><td>150</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=SORT(A1:B3, 2, -1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Anggur</td><td>150</td></tr>
+<tr><td></td><td></td><td>Apel</td><td>100</td></tr>
+<tr><td></td><td></td><td>Jeruk</td><td>50</td></tr>
+</tbody>
+</table>
+
+<h3 id="sortby">SORTBY</h3>
+<p><strong>Deskripsi:</strong> Mengurutkan data berdasarkan range/array lain, cocok jika logika urutannya tidak langsung.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=SORTBY(array, by_array, [sort_order], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Apel</td><td>100</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Jeruk</td><td>50</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>Anggur</td><td>150</td><td></td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=SORTBY(A1:A3, B1:B3, 1)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Jeruk</td><td></td></tr>
+<tr><td></td><td></td><td>Apel</td><td></td></tr>
+<tr><td></td><td></td><td>Anggur</td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>6. Fungsi Informasi Logika</h2>
+<h3 id="true">TRUE</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan nilai logika TRUE, bisa dipakai sebagai konstanta dalam formula.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TRUE()</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><span class="syntax">=TRUE()</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>TRUE</td><td></td></tr>
+</tbody>
+</table>
+
+<h3 id="false">FALSE</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan nilai logika FALSE, sering digunakan sebagai default pada fungsi logika.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=FALSE()</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><span class="syntax">=FALSE()</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>FALSE</td><td></td></tr>
+</tbody>
+</table>
+
+<h3 id="islogical">ISLOGICAL</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah sebuah nilai adalah logika (TRUE atau FALSE).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISLOGICAL(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>TRUE</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISLOGICAL(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+function toggleMenu() {
+const menu = document.getElementById('menuList');
+menu.classList.toggle('active');
+}
+</script>
+</body>
+</html>

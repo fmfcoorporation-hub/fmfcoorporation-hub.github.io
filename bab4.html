@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fungsi Tanggal & Waktu</title>
+<style>
+/* Gaya CSS Utama */
+body {
+font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+margin: 0;
+padding: 40px;
+background-color: #f0f4f8;
+color: #334e68;
+line-height: 1.6;
+font-size: 16px;
+}
+.container {
+max-width: 900px;
+margin: auto;
+}
+.function-group {
+margin-bottom: 40px;
+padding: 30px;
+background-color: #ffffff;
+border-radius: 12px;
+box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+transition: all 0.3s ease;
+}
+.function-group:hover {
+transform: translateY(-5px);
+box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* Gaya Judul dan Teks */
+h1 {
+text-align: center;
+color: #1a4d80;
+margin-bottom: 30px;
+font-size: 2.5em;
+font-weight: 300;
+}
+h2 {
+color: #0d7377;
+border-bottom: 2px solid #e2e8f0;
+padding-bottom: 10px;
+margin-top: 0;
+font-weight: 600;
+}
+h3 {
+color: #2a6a96;
+margin-top: 25px;
+font-weight: 500;
+}
+p {
+margin-bottom: 10px;
+font-weight: 400;
+}
+strong {
+font-weight: 600;
+color: #2a6a96;
+}
+.syntax {
+font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+background-color: #e6f1f4;
+color: #004d40;
+padding: 5px 10px;
+border-radius: 6px;
+display: inline-block;
+margin-bottom: 15px;
+font-size: 0.9em;
+}
+
+/* Gaya Tabel */
+table {
+border-collapse: collapse;
+width: 100%;
+margin-top: 20px;
+font-size: 0.95em;
+}
+th, td {
+border: 1px solid #e2e8f0;
+padding: 12px;
+text-align: center;
+}
+th {
+background-color: #6d91ba;
+color: white;
+text-transform: uppercase;
+font-weight: normal;
+}
+tr:nth-child(even) {
+background-color: #f7f9fc;
+}
+.highlight {
+background-color: #d8e9e6;
+font-weight: 600;
+}
+
+/* Gaya Menu Navigasi */
+.menu-container {
+text-align: center;
+margin-bottom: 20px;
+}
+.menu-button {
+padding: 10px 20px;
+font-size: 1em;
+cursor: pointer;
+background-color: #1a4d80;
+color: white;
+border: none;
+border-radius: 8px;
+transition: background-color 0.3s, transform 0.2s;
+}
+.menu-button:hover {
+background-color: #143e69;
+transform: scale(1.05);
+}
+.menu-list {
+list-style: none;
+padding: 0;
+margin-top: 15px;
+background-color: #f7f9fc;
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+display: none;
+max-height: 400px;
+overflow-y: auto;
+text-align: left;
+}
+.menu-list.active {
+display: block;
+}
+.menu-list li {
+padding: 10px 15px;
+border-bottom: 1px solid #e2e8f0;
+}
+.menu-list li:last-child {
+border-bottom: none;
+}
+.menu-list a {
+text-decoration: none;
+color: #2a6a96;
+display: block;
+transition: color 0.3s, background-color 0.3s;
+}
+.menu-list a:hover {
+color: #1a4d80;
+background-color: #e6f1f4;
+}
+.family-title {
+font-weight: 600;
+color: #0d7377;
+background-color: #e2e8f0;
+padding: 8px 15px;
+border-radius: 6px;
+margin-top: 10px;
+}
+.function-group h3 {
+padding-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Bab 4 – Fungsi Tanggal & Waktu</h1>
+
+<div class="menu-container">
+<button class="menu-button" onclick="toggleMenu()">
+<span class="icon">&#9776;</span> Daftar Isi Fungsi
+</button>
+<ul id="menuList" class="menu-list">
+<li><div class="family-title">Fungsi Dasar</div></li>
+<li><a href="#today" onclick="toggleMenu()">TODAY</a></li>
+<li><a href="#now" onclick="toggleMenu()">NOW</a></li>
+<li><div class="family-title">Ekstrasi Komponen Tanggal</div></li>
+<li><a href="#day" onclick="toggleMenu()">DAY</a></li>
+<li><a href="#month" onclick="toggleMenu()">MONTH</a></li>
+<li><a href="#year" onclick="toggleMenu()">YEAR</a></li>
+<li><a href="#weekday" onclick="toggleMenu()">WEEKDAY</a></li>
+<li><a href="#weeknum" onclick="toggleMenu()">WEEKNUM</a></li>
+<li><a href="#isoweeknum" onclick="toggleMenu()">ISOWEEKNUM</a></li>
+<li><a href="#eomonth" onclick="toggleMenu()">EOMONTH</a></li>
+<li><a href="#eoy" onclick="toggleMenu()">EOY</a></li>
+<li><div class="family-title">Pembuatan Tanggal</div></li>
+<li><a href="#date" onclick="toggleMenu()">DATE</a></li>
+<li><a href="#datevalue" onclick="toggleMenu()">DATEVALUE</a></li>
+<li><a href="#edate" onclick="toggleMenu()">EDATE</a></li>
+<li><a href="#yearfrac" onclick="toggleMenu()">YEARFRAC</a></li>
+<li><div class="family-title">Ekstrasi Komponen Waktu</div></li>
+<li><a href="#hour" onclick="toggleMenu()">HOUR</a></li>
+<li><a href="#minute" onclick="toggleMenu()">MINUTE</a></li>
+<li><a href="#second" onclick="toggleMenu()">SECOND</a></li>
+<li><a href="#time" onclick="toggleMenu()">TIME</a></li>
+<li><a href="#timevalue" onclick="toggleMenu()">TIMEVALUE</a></li>
+<li><div class="family-title">Perhitungan Selisih Waktu</div></li>
+<li><a href="#datedif" onclick="toggleMenu()">DATEDIF</a></li>
+<li><a href="#days" onclick="toggleMenu()">DAYS</a></li>
+<li><a href="#networkdays" onclick="toggleMenu()">NETWORKDAYS</a></li>
+<li><a href="#networkdaysintl" onclick="toggleMenu()">NETWORKDAYS.INTL</a></li>
+<li><a href="#workday" onclick="toggleMenu()">WORKDAY</a></li>
+<li><a href="#workdayintl" onclick="toggleMenu()">WORKDAY.INTL</a></li>
+<li><div class="family-title">Fungsi Minggu dan Kuartal</div></li>
+<li><a href="#weeknum" onclick="toggleMenu()">WEEKNUM</a></li>
+<li><a href="#isoweeknum" onclick="toggleMenu()">ISOWEEKNUM</a></li>
+<li><a href="#quartileexc" onclick="toggleMenu()">QUARTILE.EXC</a></li>
+<li><a href="#quartileinc" onclick="toggleMenu()">QUARTILE.INC</a></li>
+<li><div class="family-title">Fungsi Modern & Dinamis</div></li>
+<li><a href="#sequence" onclick="toggleMenu()">SEQUENCE</a></li>
+<li><a href="#textafter" onclick="toggleMenu()">TEXTAFTER & TEXTBEFORE</a></li>
+<li><a href="#eomonthsequence" onclick="toggleMenu()">EOMONTH + SEQUENCE</a></li>
+</ul>
+</div>
+
+<div class="function-group">
+<h2>1. Fungsi Dasar</h2>
+<h3 id="today">TODAY</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan tanggal hari ini sesuai sistem komputer, tanpa jam.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TODAY()</span></p>
+<table>
+<thead><tr><th></th><th>A</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><span class="syntax">=TODAY()</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>[Tanggal Hari Ini]</td></tr>
+</tbody>
+</table>
+
+<h3 id="now">NOW</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan tanggal dan waktu saat ini, mencakup jam, menit, dan detik.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=NOW()</span></p>
+<table>
+<thead><tr><th></th><th>A</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><span class="syntax">=NOW()</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>[Tanggal dan Waktu Saat Ini]</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>2. Ekstrasi Komponen Tanggal</h2>
+<h3 id="day">DAY</h3>
+<p><strong>Deskripsi:</strong> Mengambil angka hari dari sebuah tanggal (1–31).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DAY(serial_number)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>15/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=DAY(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>15</td></tr>
+</tbody>
+</table>
+
+<h3 id="month">MONTH</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan nomor bulan dari sebuah tanggal (1–12).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=MONTH(serial_number)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>15/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=MONTH(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>9</td></tr>
+</tbody>
+</table>
+
+<h3 id="year">YEAR</h3>
+<p><strong>Deskripsi:</strong> Mengambil tahun dalam bentuk angka empat digit.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=YEAR(serial_number)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>15/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=YEAR(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2025</td></tr>
+</tbody>
+</table>
+
+<h3 id="weekday">WEEKDAY</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan nomor hari dalam seminggu (1–7), bergantung pada sistem awal minggu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=WEEKDAY(serial_number, [return_type])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>15/09/2025 (Senin)</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=WEEKDAY(A1, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+</tbody>
+</table>
+
+<h3 id="weeknum">WEEKNUM</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan nomor minggu dalam setahun, sering dipakai dalam laporan mingguan.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=WEEKNUM(serial_number, [return_type])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>01/01/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=WEEKNUM(A1, 1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+</tbody>
+</table>
+
+<h3 id="isoweeknum">ISOWEEKNUM</h3>
+<p><strong>Deskripsi:</strong> Menghitung nomor minggu sesuai standar ISO.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISOWEEKNUM(date)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>01/01/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISOWEEKNUM(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+</tbody>
+</table>
+
+<h3 id="eomonth">EOMONTH</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan tanggal akhir bulan dari sebuah tanggal tertentu, dengan opsi menambah/kurang bulan.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=EOMONTH(start_date, months)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>15/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=EOMONTH(A1, 0)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>30/09/2025</td></tr>
+</tbody>
+</table>
+
+<h3 id="eoy">EOY (Excel 365)</h3>
+<p><strong>Deskripsi:</strong> Memberikan tanggal akhir tahun dari sebuah tanggal.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=EOY(date)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>15/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=EOY(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>31/12/2025</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>3. Pembuatan Tanggal</h2>
+<h3 id="date">DATE</h3>
+<p><strong>Deskripsi:</strong> Membentuk tanggal dari kombinasi tahun, bulan, dan hari.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DATE(year, month, day)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>2025</td><td>9</td><td>15</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td></td><td><span class="syntax">=DATE(A1, B1, C1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td></td><td>15/09/2025</td></tr>
+</tbody>
+</table>
+
+<h3 id="datevalue">DATEVALUE</h3>
+<p><strong>Deskripsi:</strong> Mengubah teks yang berisi tanggal menjadi nilai tanggal Excel.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DATEVALUE(date_text)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"2025/09/15"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=DATEVALUE(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>45903</td></tr>
+</tbody>
+</table>
+
+<h3 id="edate">EDATE</h3>
+<p><strong>Deskripsi:</strong> Menambahkan atau mengurangi sejumlah bulan dari tanggal tertentu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=EDATE(start_date, months)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>15/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=EDATE(A1, 3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>15/12/2025</td></tr>
+</tbody>
+</table>
+
+<h3 id="yearfrac">YEARFRAC</h3>
+<p><strong>Deskripsi:</strong> Menghitung proporsi tahun yang telah berlalu antara dua tanggal.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=YEARFRAC(start_date, end_date, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>01/01/2025</td><td>30/06/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=YEARFRAC(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>0.4986...</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>4. Ekstrasi Komponen Waktu</h2>
+<h3 id="hour">HOUR</h3>
+<p><strong>Deskripsi:</strong> Mengambil jam dari sebuah nilai waktu (0–23).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=HOUR(serial_number)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10:30:45 AM</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=HOUR(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>10</td></tr>
+</tbody>
+</table>
+
+<h3 id="minute">MINUTE</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan menit dari sebuah waktu (0–59).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=MINUTE(serial_number)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10:30:45 AM</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=MINUTE(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>30</td></tr>
+</tbody>
+</table>
+
+<h3 id="second">SECOND</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan detik dari sebuah waktu (0–59).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=SECOND(serial_number)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10:30:45 AM</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=SECOND(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>45</td></tr>
+</tbody>
+</table>
+
+<h3 id="time">TIME</h3>
+<p><strong>Deskripsi:</strong> Menggabungkan jam, menit, dan detik menjadi nilai waktu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TIME(hour, minute, second)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10</td><td>30</td><td>45</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td></td><td><span class="syntax">=TIME(A1, B1, C1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td></td><td>10:30:45</td></tr>
+</tbody>
+</table>
+
+<h3 id="timevalue">TIMEVALUE</h3>
+<p><strong>Deskripsi:</strong> Mengonversi teks yang berisi jam menjadi nilai waktu Excel.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TIMEVALUE(time_text)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"14:30"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=TIMEVALUE(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.604166...</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>5. Perhitungan Selisih Waktu</h2>
+<h3 id="datedif">DATEDIF</h3>
+<p><strong>Deskripsi:</strong> Menghitung selisih antara dua tanggal dalam hari, bulan, atau tahun.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DATEDIF(start_date, end_date, unit)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>01/01/2025</td><td>15/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=DATEDIF(A1, B1, "M")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>8</td></tr>
+</tbody>
+</table>
+
+<h3 id="days">DAYS</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan jumlah hari antara dua tanggal.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DAYS(end_date, start_date)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>01/01/2025</td><td>15/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=DAYS(B1, A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>257</td></tr>
+</tbody>
+</table>
+
+<h3 id="networkdays">NETWORKDAYS</h3>
+<p><strong>Deskripsi:</strong> Menghitung jumlah hari kerja (tidak termasuk akhir pekan & libur).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=NETWORKDAYS(start_date, end_date, [holidays])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>01/09/2025</td><td>30/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=NETWORKDAYS(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>22</td></tr>
+</tbody>
+</table>
+
+<h3 id="networkdaysintl">NETWORKDAYS.INTL</h3>
+<p><strong>Deskripsi:</strong> Versi fleksibel, bisa menentukan pola hari kerja sendiri.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=NETWORKDAYS.INTL(start_date, end_date, [weekend], [holidays])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>01/09/2025</td><td>30/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=NETWORKDAYS.INTL(A1, B1, 11)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>26</td></tr>
+</tbody>
+</table>
+
+<h3 id="workday">WORKDAY</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan tanggal setelah menambahkan sejumlah hari kerja.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=WORKDAY(start_date, days, [holidays])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>01/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=WORKDAY(A1, 10)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>15/09/2025</td></tr>
+</tbody>
+</table>
+
+<h3 id="workdayintl">WORKDAY.INTL</h3>
+<p><strong>Deskripsi:</strong> Sama dengan WORKDAY, tetapi dengan pola kerja kustom.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=WORKDAY.INTL(start_date, days, [weekend], [holidays])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>01/09/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=WORKDAY.INTL(A1, 10, 11)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>11/09/2025</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>6. Fungsi Minggu dan Kuartal</h2>
+<h3 id="weeknum">WEEKNUM</h3>
+<p><strong>Deskripsi:</strong> Memberikan nomor minggu dalam setahun.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=WEEKNUM(serial_number, [return_type])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>01/01/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=WEEKNUM(A1, 1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+</tbody>
+</table>
+
+<h3 id="isoweeknum">ISOWEEKNUM</h3>
+<p><strong>Deskripsi:</strong> Menyediakan nomor minggu sesuai kalender ISO.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISOWEEKNUM(date)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>01/01/2025</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISOWEEKNUM(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+</tbody>
+</table>
+
+<h3 id="quartileexc">QUARTILE.EXC</h3>
+<p><strong>Deskripsi:</strong> Fungsi statistik untuk menentukan nilai kuartal, kadang digunakan pada analisis periode.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=QUARTILE.EXC(array, quart)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>20</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>30</td><td></td></tr>
+<tr><td><strong>4</strong></td><td>40</td><td></td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=QUARTILE.EXC(A1:A4, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>25</td></tr>
+</tbody>
+</table>
+
+<h3 id="quartileinc">QUARTILE.INC</h3>
+<p><strong>Deskripsi:</strong> Versi inklusif dari QUARTILE.EXC.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=QUARTILE.INC(array, quart)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>20</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>30</td><td></td></tr>
+<tr><td><strong>4</strong></td><td>40</td><td></td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=QUARTILE.INC(A1:A4, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>25</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>7. Fungsi Modern & Dinamis (Excel 365)</h2>
+<h3 id="sequence">SEQUENCE (tanggal)</h3>
+<p><strong>Deskripsi:</strong> Membuat deretan tanggal berurutan secara otomatis.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=SEQUENCE(rows, [columns], [start], [step])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td><span class="syntax">=SEQUENCE(7, 1, DATE(2025,9,1), 1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>01/09/2025</td></tr>
+<tr><td></td><td></td><td>02/09/2025</td></tr>
+<tr><td></td><td></td><td>...</td></tr>
+</tbody>
+</table>
+
+<h3 id="textafter">TEXTAFTER & TEXTBEFORE</h3>
+<p><strong>Deskripsi:</strong> Membantu parsing tanggal berbentuk teks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TEXTAFTER(text, delimiter, [instance_num])</span> & <span class="syntax">=TEXTBEFORE(text, delimiter, [instance_num])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"2025/09/15"</td><td></td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=TEXTBEFORE(A1, "/")</span></td><td><span class="syntax">=TEXTAFTER(A1, "/")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2025</td><td>09/15</td></tr>
+</tbody>
+</table>
+
+<h3 id="eomonthsequence">Kombinasi EOMONTH + SEQUENCE</h3>
+<p><strong>Deskripsi:</strong> Dipakai untuk membuat kalender otomatis bulanan.</p>
+<p><strong>Sintaks:</strong> Kombinasi dari fungsi EOMONTH dan SEQUENCE.</p>
+<table>
+<thead><tr><th></th><th>A</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>15/09/2025</td></tr>
+<tr><td><strong>2</strong></td><td><span class="syntax">=SEQUENCE(DAY(EOMONTH(A1,0)),1,A1,1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>15/09/2025</td></tr>
+<tr><td></td><td>16/09/2025</td></tr>
+<tr><td></td><td>...</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+function toggleMenu() {
+const menu = document.getElementById('menuList');
+menu.classList.toggle('active');
+}
+</script>
+</body>
+</html>
