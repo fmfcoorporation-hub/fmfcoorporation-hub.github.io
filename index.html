@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panduan Lengkap Excel</title>
+<style>
+body, html {
+margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;
+height: 100%;
+overflow-x: hidden;
+}
+
+/* =======================
+Grid background ala Excel
+======================= */
+.content {
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+background: #16a085;
+overflow: hidden;
+}
+
+/* Grid cell */
+.cell {
+position: absolute;
+width: 40px;
+height: 40px;
+border: 1px solid rgba(255,255,255,0.2);
+box-sizing: border-box;
+background: rgba(255,255,255,0.05);
+transition: background 0.3s;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 10px;
+color: rgba(255,255,255,0.3);
+}
+
+/* Highlight sel acak */
+.cell.active {
+background: rgba(255,255,255,0.4);
+color: rgba(0,0,0,0.8);
+font-weight: bold;
+}
+
+/* =======================
+Tampilan awal
+======================= */
+#welcome {
+text-align: center;
+color: white;
+z-index: 10;
+position: relative;
+}
+#welcome h1 {
+font-size: 48px;
+margin-bottom: 10px;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+#welcome small {
+color: #ecf0f1;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* =======================
+Sidebar, tombol, iframe
+======================= */
+.sidebar {
+width: 280px;
+background: linear-gradient(180deg, #2c3e50, #2980b9, #27ae60);
+color: white;
+height: 100vh;
+padding: 20px 15px;
+box-sizing: border-box;
+display: flex;
+flex-direction: column;
+align-items: center;
+position: fixed;
+left: -280px;
+top: 0;
+transition: left 0.3s;
+z-index: 20;
+}
+.sidebar.active { left: 0; }
+.logo { width: 120px; height: auto; margin-bottom: 10px; }
+.sidebar h1 { font-size: 18px; margin: 5px 0; text-align: center; color: #f1c40f; }
+.sidebar p { font-size: 13px; margin: 0 0 20px 0; text-align: center; color: #ecf0f1; }
+.sidebar h2 { text-align: center; margin: 15px 0; font-size: 16px; color: #ffeb3b; }
+.sidebar a, .sidebar .home-btn { display: block; padding: 10px; color: white; text-decoration: none; margin: 5px 0; border-radius: 4px; width: 100%; text-align: left; transition: 0.3s; cursor: pointer; }
+.sidebar a:hover, .sidebar .home-btn:hover { background: #16a085; transform: translateX(5px); }
+
+iframe { width: 100%; height: 100vh; border: none; display: none; }
+.toggle-btn, .small-toggle-btn { position: fixed; z-index: 30; cursor: pointer; border-radius: 4px; display: flex; align-items: center; gap: 8px; }
+.toggle-btn { top: 15px; left: 15px; background: #27ae60; color: white; border: none; padding: 10px 15px; }
+.toggle-btn.hidden { display: none; }
+.toggle-btn img { width: 30px; height: auto; display: block; }
+.small-toggle-btn { top: 10px; left: 10px; background: #2980b9; color: white; border: none; padding: 8px 12px; display: none; }
+</style>
+</head>
+<body>
+
+<button class="toggle-btn">
+<img src="logo.png" alt="Logo"> ☰ Menu
+</button>
+
+<button class="small-toggle-btn">☰ Menu</button>
+
+<div class="sidebar">
+<img src="logo.png" alt="Logo FMF Excel" class="logo">
+<h1>📘 Panduan Lengkap Excel</h1>
+<p>Kuasai 350+ formula fungsi dan formula dinamis</p>
+<button class="home-btn">🏠 Beranda</button>
+<h2>Daftar Bab</h2>
+<a href="bab1.html" target="konten">Bab 1 - Matematika & Aritmatika</a>
+<a href="bab2.html" target="konten">Bab 2 - Fungsi Teks</a>
+<a href="bab3.html" target="konten">Bab 3 - Fungsi Logika</a>
+<a href="bab4.html" target="konten">Bab 4 - Tanggal & Waktu</a>
+<a href="bab5.html" target="konten">Bab 5 - Lookup & Referensi</a>
+<a href="bab6.html" target="konten">Bab 6 - Keuangan</a>
+<a href="bab7.html" target="konten">Bab 7 - Database</a>
+<a href="bab8.html" target="konten">Bab 8 - Informasi</a>
+<a href="bab9.html" target="konten">Bab 9 - Engineering</a>
+</div>
+
+<div class="content" id="content">
+<div id="welcome">
+<h1>Selamat Datang di Panduan Lengkap Excel</h1>
+<small>Klik Menu untuk mulai belajar</small>
+</div>
+<iframe name="konten"></iframe>
+</div>
+
+<script>
+const toggleBtn = document.querySelector('.toggle-btn');
+const sidebar = document.querySelector('.sidebar');
+const content = document.querySelector('.content');
+const smallBtn = document.querySelector('.small-toggle-btn');
+const iframe = document.querySelector('iframe');
+const welcome = document.getElementById('welcome');
+const homeBtn = document.querySelector('.home-btn');
+
+// Tombol menu utama
+toggleBtn.addEventListener('click', () => {
+sidebar.classList.add('active');
+toggleBtn.classList.add('hidden');
+});
+
+// Tombol kecil untuk membuka sidebar ketika iframe terbuka
+smallBtn.addEventListener('click', () => {
+sidebar.classList.add('active');
+smallBtn.style.display = 'none';
+});
+
+// Tombol home di sidebar
+homeBtn.addEventListener('click', () => {
+sidebar.classList.remove('active');
+iframe.style.display = 'none';
+welcome.style.display = 'block';
+smallBtn.style.display = 'none';
+toggleBtn.classList.remove('hidden');
+});
+
+// Tutup sidebar otomatis ketika klik bab
+sidebar.querySelectorAll('a').forEach(link => {
+link.addEventListener('click', () => {
+sidebar.classList.remove('active');
+iframe.style.display = 'block';
+welcome.style.display = 'none';
+smallBtn.style.display = 'block';
+});
+});
+
+// =======================
+// Generate sel Excel dengan label
+// =======================
+const rows = Math.ceil(window.innerHeight / 40);
+const cols = Math.ceil(window.innerWidth / 40);
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+for(let r=0; r<rows; r++){
+for(let c=0; c<cols; c++){
+const cell = document.createElement('div');
+cell.classList.add('cell');
+cell.style.top = (r*40)+'px';
+cell.style.left = (c*40)+'px';
+cell.textContent = letters[c % 26] + (r+1); // label A1, B1, C1...
+content.appendChild(cell);
+}
+}
+
+// Animasi highlight sel acak
+setInterval(() => {
+const cells = document.querySelectorAll('.cell');
+cells.forEach(cell => cell.classList.remove('active'));
+for(let i=0;i<10;i++){
+const idx = Math.floor(Math.random()*cells.length);
+cells[idx].classList.add('active');
+}
+}, 500);
+
+</script>
+</body>
+</html>
