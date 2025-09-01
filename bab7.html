@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fungsi Database</title>
+<style>
+/* Gaya CSS Utama */
+body {
+font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+margin: 0;
+padding: 40px;
+background-color: #f0f4f8;
+color: #334e68;
+line-height: 1.6;
+font-size: 16px;
+}
+.container {
+max-width: 900px;
+margin: auto;
+}
+.function-group {
+margin-bottom: 40px;
+padding: 30px;
+background-color: #ffffff;
+border-radius: 12px;
+box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+transition: all 0.3s ease;
+}
+.function-group:hover {
+transform: translateY(-5px);
+box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* Gaya Judul dan Teks */
+h1 {
+text-align: center;
+color: #1a4d80;
+margin-bottom: 30px;
+font-size: 2.5em;
+font-weight: 300;
+}
+h2 {
+color: #0d7377;
+border-bottom: 2px solid #e2e8f0;
+padding-bottom: 10px;
+margin-top: 0;
+font-weight: 600;
+}
+h3 {
+color: #2a6a96;
+margin-top: 25px;
+font-weight: 500;
+}
+p {
+margin-bottom: 10px;
+font-weight: 400;
+}
+strong {
+font-weight: 600;
+color: #2a6a96;
+}
+.syntax {
+font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+background-color: #e6f1f4;
+color: #004d40;
+padding: 5px 10px;
+border-radius: 6px;
+display: inline-block;
+margin-bottom: 15px;
+font-size: 0.9em;
+}
+
+/* Gaya Tabel */
+table {
+border-collapse: collapse;
+width: 100%;
+margin-top: 20px;
+font-size: 0.95em;
+}
+th, td {
+border: 1px solid #e2e8f0;
+padding: 12px;
+text-align: center;
+}
+th {
+background-color: #6d91ba;
+color: white;
+text-transform: uppercase;
+font-weight: normal;
+}
+tr:nth-child(even) {
+background-color: #f7f9fc;
+}
+.highlight {
+background-color: #d8e9e6;
+font-weight: 600;
+}
+
+/* Gaya Menu Navigasi */
+.menu-container {
+text-align: center;
+margin-bottom: 20px;
+}
+.menu-button {
+padding: 10px 20px;
+font-size: 1em;
+cursor: pointer;
+background-color: #1a4d80;
+color: white;
+border: none;
+border-radius: 8px;
+transition: background-color 0.3s, transform 0.2s;
+}
+.menu-button:hover {
+background-color: #143e69;
+transform: scale(1.05);
+}
+.menu-list {
+list-style: none;
+padding: 0;
+margin-top: 15px;
+background-color: #f7f9fc;
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+display: none;
+max-height: 400px;
+overflow-y: auto;
+text-align: left;
+}
+.menu-list.active {
+display: block;
+}
+.menu-list li {
+padding: 10px 15px;
+border-bottom: 1px solid #e2e8f0;
+}
+.menu-list li:last-child {
+border-bottom: none;
+}
+.menu-list a {
+text-decoration: none;
+color: #2a6a96;
+display: block;
+transition: color 0.3s, background-color 0.3s;
+}
+.menu-list a:hover {
+color: #1a4d80;
+background-color: #e6f1f4;
+}
+.family-title {
+font-weight: 600;
+color: #0d7377;
+background-color: #e2e8f0;
+padding: 8px 15px;
+border-radius: 6px;
+margin-top: 10px;
+}
+.function-group h3 {
+padding-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Bab 7 – Fungsi Database</h1>
+
+<div class="menu-container">
+<button class="menu-button" onclick="toggleMenu()">
+<span class="icon">&#9776;</span> Daftar Isi Fungsi
+</button>
+<ul id="menuList" class="menu-list">
+<li><div class="family-title">Fungsi Database Utama</div></li>
+<li><a href="#daverage" onclick="toggleMenu()">DAVERAGE</a></li>
+<li><a href="#dcount" onclick="toggleMenu()">DCOUNT</a></li>
+<li><a href="#dcounta" onclick="toggleMenu()">DCOUNTA</a></li>
+<li><a href="#dget" onclick="toggleMenu()">DGET</a></li>
+<li><a href="#dmax" onclick="toggleMenu()">DMAX</a></li>
+<li><a href="#dmin" onclick="toggleMenu()">DMIN</a></li>
+<li><a href="#dproduct" onclick="toggleMenu()">DPRODUCT</a></li>
+<li><a href="#dstdev" onclick="toggleMenu()">DSTDEV</a></li>
+<li><a href="#dstdevp" onclick="toggleMenu()">DSTDEVP</a></li>
+<li><a href="#dsum" onclick="toggleMenu()">DSUM</a></li>
+<li><a href="#dvar" onclick="toggleMenu()">DVAR</a></li>
+<li><a href="#dvarp" onclick="toggleMenu()">DVARP</a></li>
+</ul>
+</div>
+
+<div class="function-group">
+<h2>1. Fungsi Database Utama</h2>
+<p>Fungsi-fungsi ini bekerja dengan database yang terstruktur dengan baris dan kolom. Kriteria filter harus disiapkan dalam rentang sel terpisah.</p>
+
+<h3 id="daverage">DAVERAGE</h3>
+<p><strong>Deskripsi:</strong> Menghitung rata-rata dari data di kolom tertentu yang memenuhi kriteria.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DAVERAGE(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Departemen</td><td>Gaji</td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>Keuangan</td><td>5000000</td></tr>
+<tr><td><strong>3</strong></td><td>Ana</td><td>HRD</td><td>4500000</td></tr>
+<tr><td><strong>4</strong></td><td>Cici</td><td>Keuangan</td><td>6000000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>Departemen</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Keuangan</td><td></td><td></td></tr>
+<tr><td><strong>8</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DAVERAGE(A1:C4, "Gaji", A6:A7)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>5,500,000</td></tr>
+</tbody>
+</table>
+
+<h3 id="dcount">DCOUNT</h3>
+<p><strong>Deskripsi:</strong> Menghitung jumlah sel berisi angka pada field yang memenuhi kriteria.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DCOUNT(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Departemen</td><td>Gaji</td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>Keuangan</td><td>5000000</td></tr>
+<tr><td><strong>3</strong></td><td>Ana</td><td>HRD</td><td>4500000</td></tr>
+<tr><td><strong>4</strong></td><td>Cici</td><td>Keuangan</td><td>6000000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>Departemen</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Keuangan</td><td></td><td></td></tr>
+<tr><td><strong>8</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DCOUNT(A1:C4, "Gaji", A6:A7)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>2</td></tr>
+</tbody>
+</table>
+
+<h3 id="dcounta">DCOUNTA</h3>
+<p><strong>Deskripsi:</strong> Menghitung jumlah sel tidak kosong pada field yang memenuhi kriteria.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DCOUNTA(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Departemen</td><td>Gaji</td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>Keuangan</td><td>5000000</td></tr>
+<tr><td><strong>3</strong></td><td>Ana</td><td>HRD</td><td>4500000</td></tr>
+<tr><td><strong>4</strong></td><td>Cici</td><td>Keuangan</td><td>6000000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>Departemen</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Keuangan</td><td></td><td></td></tr>
+<tr><td><strong>8</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DCOUNTA(A1:C4, "Nama", A6:A7)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>2</td></tr>
+</tbody>
+</table>
+
+<h3 id="dget">DGET</h3>
+<p><strong>Deskripsi:</strong> Mengambil satu nilai dari field yang cocok dengan kriteria. Error jika ada lebih dari satu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DGET(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>ID</td><td>Nama</td><td>Gaji</td></tr>
+<tr><td><strong>2</strong></td><td>101</td><td>Budi</td><td>5000000</td></tr>
+<tr><td><strong>3</strong></td><td>102</td><td>Ana</td><td>4500000</td></tr>
+<tr><td><strong>4</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>5</strong></td><td>ID</td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>101</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DGET(A1:C3, "Gaji", A5:A6)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>5,000,000</td></tr>
+</tbody>
+</table>
+
+<h3 id="dmax">DMAX</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan nilai maksimum dari field yang memenuhi kriteria.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DMAX(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Departemen</td><td>Gaji</td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>Keuangan</td><td>5000000</td></tr>
+<tr><td><strong>3</strong></td><td>Ana</td><td>HRD</td><td>4500000</td></tr>
+<tr><td><strong>4</strong></td><td>Cici</td><td>Keuangan</td><td>6000000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>Departemen</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Keuangan</td><td></td><td></td></tr>
+<tr><td><strong>8</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DMAX(A1:C4, "Gaji", A6:A7)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>6,000,000</td></tr>
+</tbody>
+</table>
+
+<h3 id="dmin">DMIN</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan nilai minimum dari field yang memenuhi kriteria.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DMIN(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Departemen</td><td>Gaji</td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>Keuangan</td><td>5000000</td></tr>
+<tr><td><strong>3</strong></td><td>Ana</td><td>HRD</td><td>4500000</td></tr>
+<tr><td><strong>4</strong></td><td>Cici</td><td>Keuangan</td><td>6000000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>Departemen</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Keuangan</td><td></td><td></td></tr>
+<tr><td><strong>8</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DMIN(A1:C4, "Gaji", A6:A7)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>5,000,000</td></tr>
+</tbody>
+</table>
+
+<h3 id="dproduct">DPRODUCT</h3>
+<p><strong>Deskripsi:</strong> Mengalikan semua nilai pada field yang memenuhi kriteria.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DPRODUCT(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Departemen</td><td>Nilai</td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>Keuangan</td><td>5</td></tr>
+<tr><td><strong>3</strong></td><td>Ana</td><td>HRD</td><td>2</td></tr>
+<tr><td><strong>4</strong></td><td>Cici</td><td>Keuangan</td><td>3</td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>Departemen</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Keuangan</td><td></td><td></td></tr>
+<tr><td><strong>8</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DPRODUCT(A1:C4, "Nilai", A6:A7)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>15</td></tr>
+</tbody>
+</table>
+
+<h3 id="dstdev">DSTDEV</h3>
+<p><strong>Deskripsi:</strong> Menghitung perkiraan standar deviasi populasi dari sampel data yang memenuhi kriteria.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DSTDEV(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Departemen</td><td>Gaji</td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>Keuangan</td><td>5000000</td></tr>
+<tr><td><strong>3</strong></td><td>Ana</td><td>HRD</td><td>4500000</td></tr>
+<tr><td><strong>4</strong></td><td>Cici</td><td>Keuangan</td><td>6000000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>Departemen</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Keuangan</td><td></td><td></td></tr>
+<tr><td><strong>8</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DSTDEV(A1:C4, "Gaji", A6:A7)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>707,106.78</td></tr>
+</tbody>
+</table>
+
+<h3 id="dstdevp">DSTDEVP</h3>
+<p><strong>Deskripsi:</strong> Menghitung standar deviasi dari seluruh populasi data yang memenuhi kriteria.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DSTDEVP(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Departemen</td><td>Gaji</td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>Keuangan</td><td>5000000</td></tr>
+<tr><td><strong>3</strong></td><td>Ana</td><td>HRD</td><td>4500000</td></tr>
+<tr><td><strong>4</strong></td><td>Cici</td><td>Keuangan</td><td>6000000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>Departemen</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Keuangan</td><td></td><td></td></tr>
+<tr><td><strong>8</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DSTDEVP(A1:C4, "Gaji", A6:A7)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>500,000</td></tr>
+</tbody>
+</table>
+
+<h3 id="dsum">DSUM</h3>
+<p><strong>Deskripsi:</strong> Menjumlahkan nilai pada field database sesuai kriteria.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DSUM(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Departemen</td><td>Gaji</td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>Keuangan</td><td>5000000</td></tr>
+<tr><td><strong>3</strong></td><td>Ana</td><td>HRD</td><td>4500000</td></tr>
+<tr><td><strong>4</strong></td><td>Cici</td><td>Keuangan</td><td>6000000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>Departemen</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Keuangan</td><td></td><td></td></tr>
+<tr><td><strong>8</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DSUM(A1:C4, "Gaji", A6:A7)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>11,000,000</td></tr>
+</tbody>
+</table>
+
+<h3 id="dvar">DVAR</h3>
+<p><strong>Deskripsi:</strong> Menghitung varian sampel dari data yang memenuhi kriteria.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DVAR(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Departemen</td><td>Gaji</td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>Keuangan</td><td>5000000</td></tr>
+<tr><td><strong>3</strong></td><td>Ana</td><td>HRD</td><td>4500000</td></tr>
+<tr><td><strong>4</strong></td><td>Cici</td><td>Keuangan</td><td>6000000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>Departemen</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Keuangan</td><td></td><td></td></tr>
+<tr><td><strong>8</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DVAR(A1:C4, "Gaji", A6:A7)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>500,000,000,000</td></tr>
+</tbody>
+</table>
+
+<h3 id="dvarp">DVARP</h3>
+<p><strong>Deskripsi:</strong> Menghitung varian populasi penuh dari data yang memenuhi kriteria.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DVARP(database, field, criteria)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nama</td><td>Departemen</td><td>Gaji</td></tr>
+<tr><td><strong>2</strong></td><td>Budi</td><td>Keuangan</td><td>5000000</td></tr>
+<tr><td><strong>3</strong></td><td>Ana</td><td>HRD</td><td>4500000</td></tr>
+<tr><td><strong>4</strong></td><td>Cici</td><td>Keuangan</td><td>6000000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>Departemen</td><td></td><td></td></tr>
+<tr><td><strong>7</strong></td><td>Keuangan</td><td></td><td></td></tr>
+<tr><td><strong>8</strong></td><td>Hasil</td><td colspan="2"><span class="syntax">=DVARP(A1:C4, "Gaji", A6:A7)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>250,000,000,000</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+function toggleMenu() {
+const menu = document.getElementById('menuList');
+menu.classList.toggle('active');
+}
+</script>
+</body>
+</html>

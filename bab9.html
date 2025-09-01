@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fungsi Engineering</title>
+<style>
+/* Gaya CSS Utama */
+body {
+font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+margin: 0;
+padding: 40px;
+background-color: #f0f4f8;
+color: #334e68;
+line-height: 1.6;
+font-size: 16px;
+}
+.container {
+max-width: 900px;
+margin: auto;
+}
+.function-group {
+margin-bottom: 40px;
+padding: 30px;
+background-color: #ffffff;
+border-radius: 12px;
+box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+transition: all 0.3s ease;
+}
+.function-group:hover {
+transform: translateY(-5px);
+box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* Gaya Judul dan Teks */
+h1 {
+text-align: center;
+color: #1a4d80;
+margin-bottom: 30px;
+font-size: 2.5em;
+font-weight: 300;
+}
+h2 {
+color: #0d7377;
+border-bottom: 2px solid #e2e8f0;
+padding-bottom: 10px;
+margin-top: 0;
+font-weight: 600;
+}
+h3 {
+color: #2a6a96;
+margin-top: 25px;
+font-weight: 500;
+}
+p {
+margin-bottom: 10px;
+font-weight: 400;
+}
+strong {
+font-weight: 600;
+color: #2a6a96;
+}
+.syntax {
+font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+background-color: #e6f1f4;
+color: #004d40;
+padding: 5px 10px;
+border-radius: 6px;
+display: inline-block;
+margin-bottom: 15px;
+font-size: 0.9em;
+}
+
+/* Gaya Tabel */
+table {
+border-collapse: collapse;
+width: 100%;
+margin-top: 20px;
+font-size: 0.95em;
+}
+th, td {
+border: 1px solid #e2e8f0;
+padding: 12px;
+text-align: center;
+}
+th {
+background-color: #6d91ba;
+color: white;
+text-transform: uppercase;
+font-weight: normal;
+}
+tr:nth-child(even) {
+background-color: #f7f9fc;
+}
+.highlight {
+background-color: #d8e9e6;
+font-weight: 600;
+}
+
+/* Gaya Menu Navigasi */
+.menu-container {
+text-align: center;
+margin-bottom: 20px;
+}
+.menu-button {
+padding: 10px 20px;
+font-size: 1em;
+cursor: pointer;
+background-color: #1a4d80;
+color: white;
+border: none;
+border-radius: 8px;
+transition: background-color 0.3s, transform 0.2s;
+}
+.menu-button:hover {
+background-color: #143e69;
+transform: scale(1.05);
+}
+.menu-list {
+list-style: none;
+padding: 0;
+margin-top: 15px;
+background-color: #f7f9fc;
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+display: none;
+max-height: 400px;
+overflow-y: auto;
+text-align: left;
+}
+.menu-list.active {
+display: block;
+}
+.menu-list li {
+padding: 10px 15px;
+border-bottom: 1px solid #e2e8f0;
+}
+.menu-list li:last-child {
+border-bottom: none;
+}
+.menu-list a {
+text-decoration: none;
+color: #2a6a96;
+display: block;
+transition: color 0.3s, background-color 0.3s;
+}
+.menu-list a:hover {
+color: #1a4d80;
+background-color: #e6f1f4;
+}
+.family-title {
+font-weight: 600;
+color: #0d7377;
+background-color: #e2e8f0;
+padding: 8px 15px;
+border-radius: 6px;
+margin-top: 10px;
+}
+.function-group h3 {
+padding-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Bab 9 – Fungsi Engineering</h1>
+
+<div class="menu-container">
+<button class="menu-button" onclick="toggleMenu()">
+<span class="icon">&#9776;</span> Daftar Isi Fungsi
+</button>
+<ul id="menuList" class="menu-list">
+<li><div class="family-title">Fungsi Konversi Satuan</div></li>
+<li><a href="#convert" onclick="toggleMenu()">CONVERT</a></li>
+<li><div class="family-title">Fungsi Bilangan Kompleks</div></li>
+<li><a href="#imabs" onclick="toggleMenu()">IMABS</a></li>
+<li><a href="#imaginary" onclick="toggleMenu()">IMAGINARY</a></li>
+<li><a href="#imreal" onclick="toggleMenu()">IMREAL</a></li>
+<li><a href="#imconjugate" onclick="toggleMenu()">IMCONJUGATE</a></li>
+<li><a href="#imargument" onclick="toggleMenu()">IMARGUMENT</a></li>
+<li><a href="#imsum" onclick="toggleMenu()">IMSUM</a></li>
+<li><a href="#imsub" onclick="toggleMenu()">IMSUB</a></li>
+<li><a href="#improduct" onclick="toggleMenu()">IMPRODUCT</a></li>
+<li><a href="#imdiv" onclick="toggleMenu()">IMDIV</a></li>
+<li><a href="#impower" onclick="toggleMenu()">IMPOWER</a></li>
+<li><a href="#imsqrt" onclick="toggleMenu()">IMSQRT</a></li>
+<li><a href="#imexp" onclick="toggleMenu()">IMEXP</a></li>
+<li><a href="#imln" onclick="toggleMenu()">IMLN</a></li>
+<li><a href="#imlog10" onclick="toggleMenu()">IMLOG10</a></li>
+<li><a href="#imlog2" onclick="toggleMenu()">IMLOG2</a></li>
+<li><a href="#imcos" onclick="toggleMenu()">IMCOS</a></li>
+<li><a href="#imsin" onclick="toggleMenu()">IMSIN</a></li>
+<li><a href="#imtan" onclick="toggleMenu()">IMTAN</a></li>
+<li><a href="#imcosh" onclick="toggleMenu()">IMCOSH</a></li>
+<li><a href="#imsinh" onclick="toggleMenu()">IMSINH</a></li>
+<li><a href="#imtanh" onclick="toggleMenu()">IMTANH</a></li>
+<li><div class="family-title">Fungsi Bessel</div></li>
+<li><a href="#besseli" onclick="toggleMenu()">BESSELI</a></li>
+<li><a href="#besselj" onclick="toggleMenu()">BESSELJ</a></li>
+<li><a href="#besselk" onclick="toggleMenu()">BESSELK</a></li>
+<li><a href="#bessely" onclick="toggleMenu()">BESSELY</a></li>
+<li><div class="family-title">Fungsi Bitewise</div></li>
+<li><a href="#bitand" onclick="toggleMenu()">BITAND</a></li>
+<li><a href="#bitor" onclick="toggleMenu()">BITOR</a></li>
+<li><a href="#bitxor" onclick="toggleMenu()">BITXOR</a></li>
+<li><a href="#bitlshift" onclick="toggleMenu()">BITLSHIFT</a></li>
+<li><a href="#bitrshift" onclick="toggleMenu()">BITRSHIFT</a></li>
+<li><div class="family-title">Fungsi Numerik Khusus</div></li>
+<li><a href="#complex" onclick="toggleMenu()">COMPLEX</a></li>
+<li><a href="#delta" onclick="toggleMenu()">DELTA</a></li>
+<li><a href="#erf" onclick="toggleMenu()">ERF</a></li>
+<li><a href="#erfprecise" onclick="toggleMenu()">ERF.PRECISE</a></li>
+<li><a href="#erfc" onclick="toggleMenu()">ERFC</a></li>
+<li><a href="#erfcprecise" onclick="toggleMenu()">ERFC.PRECISE</a></li>
+<li><a href="#gestep" onclick="toggleMenu()">GESTEP</a></li>
+</ul>
+</div>
+
+<div class="function-group">
+<h2>1. Fungsi Konversi Satuan</h2>
+<h3 id="convert">CONVERT</h3>
+<p><strong>Deskripsi:</strong> Mengubah angka dari satu satuan ke satuan lain.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CONVERT(number, from_unit, to_unit)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>12</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=CONVERT(A1, "in", "cm")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>30.48</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>2. Fungsi Bilangan Kompleks</h2>
+<h3 id="imabs">IMABS</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan nilai absolut (magnitudo) dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMABS(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"3+4i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMABS(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>5</td></tr>
+</tbody>
+</table>
+
+<h3 id="imaginary">IMAGINARY</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan bagian imajiner dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMAGINARY(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"3+4i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMAGINARY(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>4</td></tr>
+</tbody>
+</table>
+
+<h3 id="imreal">IMREAL</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan bagian real dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMREAL(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"3+4i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMREAL(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>3</td></tr>
+</tbody>
+</table>
+
+<h3 id="imconjugate">IMCONJUGATE</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan konjugat dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMCONJUGATE(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"3+4i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMCONJUGATE(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>3-4i</td></tr>
+</tbody>
+</table>
+
+<h3 id="imargument">IMARGUMENT</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan argumen atau sudut fase dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMARGUMENT(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"1+i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMARGUMENT(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.785398163 (π/4)</td></tr>
+</tbody>
+</table>
+
+<h3 id="imsum">IMSUM</h3>
+<p><strong>Deskripsi:</strong> Menjumlahkan dua atau lebih bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMSUM(inumber1, [inumber2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"3+4i"</td><td>"1+2i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=IMSUM(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>4+6i</td></tr>
+</tbody>
+</table>
+
+<h3 id="imsub">IMSUB</h3>
+<p><strong>Deskripsi:</strong> Mengurangi satu bilangan kompleks dari bilangan kompleks lain.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMSUB(inumber1, inumber2)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"3+4i"</td><td>"1+2i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=IMSUB(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>2+2i</td></tr>
+</tbody>
+</table>
+
+<h3 id="improduct">IMPRODUCT</h3>
+<p><strong>Deskripsi:</strong> Mengalikan bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMPRODUCT(inumber1, [inumber2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"3+4i"</td><td>"1+i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=IMPRODUCT(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>-1+7i</td></tr>
+</tbody>
+</table>
+
+<h3 id="imdiv">IMDIV</h3>
+<p><strong>Deskripsi:</strong> Membagi bilangan kompleks dengan bilangan kompleks lain.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMDIV(inumber1, inumber2)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"10+20i"</td><td>"2+i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=IMDIV(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>8+4i</td></tr>
+</tbody>
+</table>
+
+<h3 id="impower">IMPOWER</h3>
+<p><strong>Deskripsi:</strong> Menaikkan bilangan kompleks pada pangkat tertentu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMPOWER(inumber, number)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMPOWER(A1, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>-1</td></tr>
+</tbody>
+</table>
+
+<h3 id="imsqrt">IMSQRT</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan akar kuadrat dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMSQRT(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"-4"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMSQRT(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2i</td></tr>
+</tbody>
+</table>
+
+<h3 id="imexp">IMEXP</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan eksponensial bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMEXP(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"1+i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMEXP(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1.46869... + 2.28735...i</td></tr>
+</tbody>
+</table>
+
+<h3 id="imln">IMLN</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan logaritma natural dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMLN(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"1+i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMLN(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.34657... + 0.78539...i</td></tr>
+</tbody>
+</table>
+
+<h3 id="imlog10">IMLOG10</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan logaritma basis 10 dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMLOG10(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"100i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMLOG10(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2 + 0.68218...i</td></tr>
+</tbody>
+</table>
+
+<h3 id="imlog2">IMLOG2</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan logaritma basis 2 dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMLOG2(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"8"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMLOG2(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>3</td></tr>
+</tbody>
+</table>
+
+<h3 id="imcos">IMCOS</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan cosinus dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMCOS(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMCOS(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1.54308...</td></tr>
+</tbody>
+</table>
+
+<h3 id="imsin">IMSIN</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan sinus dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMSIN(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMSIN(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.84147...i</td></tr>
+</tbody>
+</table>
+
+<h3 id="imtan">IMTAN</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan tangen dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMTAN(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMTAN(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.76159...i</td></tr>
+</tbody>
+</table>
+
+<h3 id="imcosh">IMCOSH</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan cosinus hiperbolik dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMCOSH(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMCOSH(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.54030...</td></tr>
+</tbody>
+</table>
+
+<h3 id="imsinh">IMSINH</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan sinus hiperbolik dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMSINH(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMSINH(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.84147...i</td></tr>
+</tbody>
+</table>
+
+<h3 id="imtanh">IMTANH</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan tangen hiperbolik dari bilangan kompleks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IMTANH(inumber)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"i"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IMTANH(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2.18503...i</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>3. Fungsi Bessel</h2>
+<h3 id="besseli">BESSELI</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan fungsi Bessel termodifikasi In(x).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=BESSELI(x, n)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1.5</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>1</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=BESSELI(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.75116...</td></tr>
+</tbody>
+</table>
+
+<h3 id="besselj">BESSELJ</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan fungsi Bessel Jn(x).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=BESSELJ(x, n)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>1</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=BESSELJ(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.44005...</td></tr>
+</tbody>
+</table>
+
+<h3 id="besselk">BESSELK</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan fungsi Bessel termodifikasi Kn(x).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=BESSELK(x, n)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1.5</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>1</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=BESSELK(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.20815...</td></tr>
+</tbody>
+</table>
+
+<h3 id="bessely">BESSELY</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan fungsi Bessel Yn(x).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=BESSELY(x, n)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1.5</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>1</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=BESSELY(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.41231...</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>4. Fungsi Bitewise</h2>
+<h3 id="bitand">BITAND</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan operasi logika bitwise AND dari dua angka.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=BITAND(number1, number2)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>5</td><td>3</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>(101)</td><td>(011)</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=BITAND(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>1 (001)</td></tr>
+</tbody>
+</table>
+
+<h3 id="bitor">BITOR</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan operasi logika bitwise OR dari dua angka.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=BITOR(number1, number2)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>5</td><td>3</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>(101)</td><td>(011)</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=BITOR(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>7 (111)</td></tr>
+</tbody>
+</table>
+
+<h3 id="bitxor">BITXOR</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan operasi logika bitwise XOR dari dua angka.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=BITXOR(number1, number2)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>5</td><td>3</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>(101)</td><td>(011)</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=BITXOR(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>6 (110)</td></tr>
+</tbody>
+</table>
+
+<h3 id="bitlshift">BITLSHIFT</h3>
+<p><strong>Deskripsi:</strong> Menggeser bit angka ke kiri dengan jumlah tertentu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=BITLSHIFT(number, shift_amount)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>2</td><td>2</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>(0010)</td><td></td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=BITLSHIFT(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>8 (1000)</td></tr>
+</tbody>
+</table>
+
+<h3 id="bitrshift">BITRSHIFT</h3>
+<p><strong>Deskripsi:</strong> Menggeser bit angka ke kanan dengan jumlah tertentu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=BITRSHIFT(number, shift_amount)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>8</td><td>2</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>(1000)</td><td></td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td></td><td><span class="syntax">=BITRSHIFT(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>2 (0010)</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>5. Fungsi Numerik Khusus</h2>
+<h3 id="complex">COMPLEX</h3>
+<p><strong>Deskripsi:</strong> Membuat bilangan kompleks dari bagian real dan imajiner.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=COMPLEX(real_num, i_num, [suffix])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>3</td><td>4</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=COMPLEX(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>3+4i</td></tr>
+</tbody>
+</table>
+
+<h3 id="delta">DELTA</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah dua angka sama, mengembalikan 1 jika sama, 0 jika berbeda.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DELTA(number1, [number2])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>5</td><td>5</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=DELTA(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>1</td></tr>
+</tbody>
+</table>
+
+<h3 id="erf">ERF</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan fungsi error integral.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ERF(lower_limit, [upper_limit])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ERF(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.84270...</td></tr>
+</tbody>
+</table>
+
+<h3 id="erfprecise">ERF.PRECISE</h3>
+<p><strong>Deskripsi:</strong> Versi modern dari ERF untuk hasil lebih akurat.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ERF.PRECISE(x)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ERF.PRECISE(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.84270...</td></tr>
+</tbody>
+</table>
+
+<h3 id="erfc">ERFC</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan fungsi error komplementer.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ERFC(x)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ERFC(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.15729...</td></tr>
+</tbody>
+</table>
+
+<h3 id="erfcprecise">ERFC.PRECISE</h3>
+<p><strong>Deskripsi:</strong> Versi modern dari ERFC.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ERFC.PRECISE(x)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ERFC.PRECISE(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>0.15729...</td></tr>
+</tbody>
+</table>
+
+<h3 id="gestep">GESTEP</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu angka lebih besar atau sama dengan angka batas.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=GESTEP(number, [step])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>5</td><td>4</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td></td><td><span class="syntax">=GESTEP(A1, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>1</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+function toggleMenu() {
+const menu = document.getElementById('menuList');
+menu.classList.toggle('active');
+}
+</script>
+</body>
+</html>

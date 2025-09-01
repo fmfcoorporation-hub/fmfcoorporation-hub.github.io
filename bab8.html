@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fungsi Informasi</title>
+<style>
+/* Gaya CSS Utama */
+body {
+font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+margin: 0;
+padding: 40px;
+background-color: #f0f4f8;
+color: #334e68;
+line-height: 1.6;
+font-size: 16px;
+}
+.container {
+max-width: 900px;
+margin: auto;
+}
+.function-group {
+margin-bottom: 40px;
+padding: 30px;
+background-color: #ffffff;
+border-radius: 12px;
+box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+transition: all 0.3s ease;
+}
+.function-group:hover {
+transform: translateY(-5px);
+box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* Gaya Judul dan Teks */
+h1 {
+text-align: center;
+color: #1a4d80;
+margin-bottom: 30px;
+font-size: 2.5em;
+font-weight: 300;
+}
+h2 {
+color: #0d7377;
+border-bottom: 2px solid #e2e8f0;
+padding-bottom: 10px;
+margin-top: 0;
+font-weight: 600;
+}
+h3 {
+color: #2a6a96;
+margin-top: 25px;
+font-weight: 500;
+}
+p {
+margin-bottom: 10px;
+font-weight: 400;
+}
+strong {
+font-weight: 600;
+color: #2a6a96;
+}
+.syntax {
+font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+background-color: #e6f1f4;
+color: #004d40;
+padding: 5px 10px;
+border-radius: 6px;
+display: inline-block;
+margin-bottom: 15px;
+font-size: 0.9em;
+}
+
+/* Gaya Tabel */
+table {
+border-collapse: collapse;
+width: 100%;
+margin-top: 20px;
+font-size: 0.95em;
+}
+th, td {
+border: 1px solid #e2e8f0;
+padding: 12px;
+text-align: center;
+}
+th {
+background-color: #6d91ba;
+color: white;
+text-transform: uppercase;
+font-weight: normal;
+}
+tr:nth-child(even) {
+background-color: #f7f9fc;
+}
+.highlight {
+background-color: #d8e9e6;
+font-weight: 600;
+}
+
+/* Gaya Menu Navigasi */
+.menu-container {
+text-align: center;
+margin-bottom: 20px;
+}
+.menu-button {
+padding: 10px 20px;
+font-size: 1em;
+cursor: pointer;
+background-color: #1a4d80;
+color: white;
+border: none;
+border-radius: 8px;
+transition: background-color 0.3s, transform 0.2s;
+}
+.menu-button:hover {
+background-color: #143e69;
+transform: scale(1.05);
+}
+.menu-list {
+list-style: none;
+padding: 0;
+margin-top: 15px;
+background-color: #f7f9fc;
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+display: none;
+max-height: 400px;
+overflow-y: auto;
+text-align: left;
+}
+.menu-list.active {
+display: block;
+}
+.menu-list li {
+padding: 10px 15px;
+border-bottom: 1px solid #e2e8f0;
+}
+.menu-list li:last-child {
+border-bottom: none;
+}
+.menu-list a {
+text-decoration: none;
+color: #2a6a96;
+display: block;
+transition: color 0.3s, background-color 0.3s;
+}
+.menu-list a:hover {
+color: #1a4d80;
+background-color: #e6f1f4;
+}
+.family-title {
+font-weight: 600;
+color: #0d7377;
+background-color: #e2e8f0;
+padding: 8px 15px;
+border-radius: 6px;
+margin-top: 10px;
+}
+.function-group h3 {
+padding-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Bab 8 – Fungsi Informasi</h1>
+
+<div class="menu-container">
+<button class="menu-button" onclick="toggleMenu()">
+<span class="icon">&#9776;</span> Daftar Isi Fungsi
+</button>
+<ul id="menuList" class="menu-list">
+<li><div class="family-title">Fungsi Informasi Error Handling</div></li>
+<li><a href="#iserror" onclick="toggleMenu()">ISERROR</a></li>
+<li><a href="#iserr" onclick="toggleMenu()">ISERR</a></li>
+<li><a href="#isna" onclick="toggleMenu()">ISNA</a></li>
+<li><a href="#iferror" onclick="toggleMenu()">IFERROR</a></li>
+<li><a href="#ifna" onclick="toggleMenu()">IFNA</a></li>
+<li><div class="family-title">Fungsi Informasi Tipe Data</div></li>
+<li><a href="#isblank" onclick="toggleMenu()">ISBLANK</a></li>
+<li><a href="#isnumber" onclick="toggleMenu()">ISNUMBER</a></li>
+<li><a href="#istext" onclick="toggleMenu()">ISTEXT</a></li>
+<li><a href="#islogical" onclick="toggleMenu()">ISLOGICAL</a></li>
+<li><a href="#isnontext" onclick="toggleMenu()">ISNONTEXT</a></li>
+<li><a href="#isformula" onclick="toggleMenu()">ISFORMULA</a></li>
+<li><a href="#n" onclick="toggleMenu()">N</a></li>
+<li><a href="#type" onclick="toggleMenu()">TYPE</a></li>
+<li><div class="family-title">Fungsi Informasi Logis Tambahan</div></li>
+<li><a href="#isref" onclick="toggleMenu()">ISREF</a></li>
+<li><a href="#isodd" onclick="toggleMenu()">ISODD</a></li>
+<li><a href="#iseven" onclick="toggleMenu()">ISEVEN</a></li>
+<li><a href="#na" onclick="toggleMenu()">NA</a></li>
+<li><div class="family-title">Fungsi Informasi Lingkungan & Sistem</div></li>
+<li><a href="#cell" onclick="toggleMenu()">CELL</a></li>
+<li><a href="#info" onclick="toggleMenu()">INFO</a></li>
+<li><a href="#sheet" onclick="toggleMenu()">SHEET</a></li>
+<li><a href="#sheets" onclick="toggleMenu()">SHEETS</a></li>
+<li><a href="#formulatext" onclick="toggleMenu()">FORMULATEXT</a></li>
+<li><a href="#errortype" onclick="toggleMenu()">ERROR.TYPE</a></li>
+</ul>
+</div>
+
+<div class="function-group">
+<h2>1. Fungsi Informasi Error Handling</h2>
+<h3 id="iserror">ISERROR</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu nilai menghasilkan error (jenis apapun).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISERROR(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10/0</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISERROR(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="iserr">ISERR</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu nilai error, kecuali #N/A.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISERR(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10/0</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISERR(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="isna">ISNA</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu nilai menghasilkan error #N/A.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISNA(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>#N/A</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISNA(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="iferror">IFERROR</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan nilai alternatif jika formula menghasilkan error.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IFERROR(value, value_if_error)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>10/0</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IFERROR(A1, "Error!")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Error!</td></tr>
+</tbody>
+</table>
+
+<h3 id="ifna">IFNA</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan nilai alternatif jika formula menghasilkan error #N/A.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IFNA(value, value_if_na)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>#N/A</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=IFNA(A1, "Data tidak ada")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Data tidak ada</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>2. Fungsi Informasi Tipe Data</h2>
+<h3 id="isblank">ISBLANK</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu sel kosong.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISBLANK(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISBLANK(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="isnumber">ISNUMBER</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu nilai berupa angka.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISNUMBER(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>123</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISNUMBER(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="istext">ISTEXT</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu nilai berupa teks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISTEXT(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Halo</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISTEXT(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="islogical">ISLOGICAL</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu nilai berupa logika TRUE/FALSE.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISLOGICAL(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>TRUE</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISLOGICAL(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="isnontext">ISNONTEXT</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu nilai bukan teks.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISNONTEXT(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>123</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISNONTEXT(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="isformula">ISFORMULA</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah sel berisi formula.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISFORMULA(reference)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>100</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>=A1*2</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=ISFORMULA(A2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="n">N</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan nilai numerik dari input (TRUE=1, FALSE=0, teks=0).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=N(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>TRUE</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=N(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+</tbody>
+</table>
+
+<h3 id="type">TYPE</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan kode numerik tipe data (1=angka, 2=teks, 4=logika, 16=error).</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TYPE(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>"Test"</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=TYPE(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>3. Fungsi Informasi Logis Tambahan</h2>
+<h3 id="isref">ISREF</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu nilai merupakan referensi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISREF(value)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISREF(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="isodd">ISODD</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu angka bilangan ganjil.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISODD(number)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>5</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISODD(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="iseven">ISEVEN</h3>
+<p><strong>Deskripsi:</strong> Mengecek apakah suatu angka bilangan genap.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ISEVEN(number)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>4</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ISEVEN(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>TRUE</td></tr>
+</tbody>
+</table>
+
+<h3 id="na">NA</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan error #N/A secara sengaja.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=NA()</span></p>
+<table>
+<thead><tr><th></th><th>A</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><span class="syntax">=NA()</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>#N/A</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>4. Fungsi Informasi Lingkungan & Sistem</h2>
+<h3 id="cell">CELL</h3>
+<p><strong>Deskripsi:</strong> Memberikan informasi tentang format, lokasi, atau isi sel.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CELL(info_type, [reference])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Contoh</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=CELL("address", A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>$A$1</td></tr>
+</tbody>
+</table>
+
+<h3 id="info">INFO</h3>
+<p><strong>Deskripsi:</strong> Memberikan informasi tentang lingkungan operasi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=INFO(type_text)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td></td><td><span class="syntax">=INFO("osversion")</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>Windows (atau sesuai OS)</td></tr>
+</tbody>
+</table>
+
+<h3 id="sheet">SHEET</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan nomor indeks dari sheet tertentu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=SHEET([value])</span></p>
+<table>
+<thead><tr><th></th><th>A</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><span class="syntax">=SHEET()</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>1</td></tr>
+</tbody>
+</table>
+
+<h3 id="sheets">SHEETS</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan jumlah total sheet dalam workbook.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=SHEETS([reference])</span></p>
+<table>
+<thead><tr><th></th><th>A</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><span class="syntax">=SHEETS()</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td>3 (jika ada 3 sheet)</td></tr>
+</tbody>
+</table>
+
+<h3 id="formulatext">FORMULATEXT</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan teks formula dari sel tertentu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=FORMULATEXT(reference)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>=SUM(1,2)</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=FORMULATEXT(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>=SUM(1,2)</td></tr>
+</tbody>
+</table>
+
+<h3 id="errortype">ERROR.TYPE</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan kode numerik yang sesuai dengan jenis error.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ERROR.TYPE(error_val)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>#DIV/0!</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=ERROR.TYPE(A1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+function toggleMenu() {
+const menu = document.getElementById('menuList');
+menu.classList.toggle('active');
+}
+</script>
+</body>
+</html>

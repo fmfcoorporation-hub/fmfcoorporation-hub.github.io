@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fungsi Keuangan</title>
+<style>
+/* Gaya CSS Utama */
+body {
+font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+margin: 0;
+padding: 40px;
+background-color: #f0f4f8;
+color: #334e68;
+line-height: 1.6;
+font-size: 16px;
+}
+.container {
+max-width: 900px;
+margin: auto;
+}
+.function-group {
+margin-bottom: 40px;
+padding: 30px;
+background-color: #ffffff;
+border-radius: 12px;
+box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+transition: all 0.3s ease;
+}
+.function-group:hover {
+transform: translateY(-5px);
+box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* Gaya Judul dan Teks */
+h1 {
+text-align: center;
+color: #1a4d80;
+margin-bottom: 30px;
+font-size: 2.5em;
+font-weight: 300;
+}
+h2 {
+color: #0d7377;
+border-bottom: 2px solid #e2e8f0;
+padding-bottom: 10px;
+margin-top: 0;
+font-weight: 600;
+}
+h3 {
+color: #2a6a96;
+margin-top: 25px;
+font-weight: 500;
+}
+p {
+margin-bottom: 10px;
+font-weight: 400;
+}
+strong {
+font-weight: 600;
+color: #2a6a96;
+}
+.syntax {
+font-family: 'Menlo', 'Consolas', 'Courier New', monospace;
+background-color: #e6f1f4;
+color: #004d40;
+padding: 5px 10px;
+border-radius: 6px;
+display: inline-block;
+margin-bottom: 15px;
+font-size: 0.9em;
+}
+
+/* Gaya Tabel */
+table {
+border-collapse: collapse;
+width: 100%;
+margin-top: 20px;
+font-size: 0.95em;
+}
+th, td {
+border: 1px solid #e2e8f0;
+padding: 12px;
+text-align: center;
+}
+th {
+background-color: #6d91ba;
+color: white;
+text-transform: uppercase;
+font-weight: normal;
+}
+tr:nth-child(even) {
+background-color: #f7f9fc;
+}
+.highlight {
+background-color: #d8e9e6;
+font-weight: 600;
+}
+
+/* Gaya Menu Navigasi */
+.menu-container {
+text-align: center;
+margin-bottom: 20px;
+}
+.menu-button {
+padding: 10px 20px;
+font-size: 1em;
+cursor: pointer;
+background-color: #1a4d80;
+color: white;
+border: none;
+border-radius: 8px;
+transition: background-color 0.3s, transform 0.2s;
+}
+.menu-button:hover {
+background-color: #143e69;
+transform: scale(1.05);
+}
+.menu-list {
+list-style: none;
+padding: 0;
+margin-top: 15px;
+background-color: #f7f9fc;
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+display: none;
+max-height: 400px;
+overflow-y: auto;
+text-align: left;
+}
+.menu-list.active {
+display: block;
+}
+.menu-list li {
+padding: 10px 15px;
+border-bottom: 1px solid #e2e8f0;
+}
+.menu-list li:last-child {
+border-bottom: none;
+}
+.menu-list a {
+text-decoration: none;
+color: #2a6a96;
+display: block;
+transition: color 0.3s, background-color 0.3s;
+}
+.menu-list a:hover {
+color: #1a4d80;
+background-color: #e6f1f4;
+}
+.family-title {
+font-weight: 600;
+color: #0d7377;
+background-color: #e2e8f0;
+padding: 8px 15px;
+border-radius: 6px;
+margin-top: 10px;
+}
+.function-group h3 {
+padding-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Bab 6 – Fungsi Keuangan</h1>
+
+<div class="menu-container">
+<button class="menu-button" onclick="toggleMenu()">
+<span class="icon">&#9776;</span> Daftar Isi Fungsi
+</button>
+<ul id="menuList" class="menu-list">
+<li><div class="family-title">Nilai Waktu Uang</div></li>
+<li><a href="#pv" onclick="toggleMenu()">PV</a></li>
+<li><a href="#fv" onclick="toggleMenu()">FV</a></li>
+<li><a href="#npv" onclick="toggleMenu()">NPV</a></li>
+<li><a href="#xnpv" onclick="toggleMenu()">XNPV</a></li>
+<li><a href="#rate" onclick="toggleMenu()">RATE</a></li>
+<li><a href="#irr" onclick="toggleMenu()">IRR</a></li>
+<li><a href="#xirr" onclick="toggleMenu()">XIRR</a></li>
+<li><a href="#mirr" onclick="toggleMenu()">MIRR</a></li>
+<li><div class="family-title">Pembayaran & Angsuran</div></li>
+<li><a href="#pmt" onclick="toggleMenu()">PMT</a></li>
+<li><a href="#ipmt" onclick="toggleMenu()">IPMT</a></li>
+<li><a href="#ppmt" onclick="toggleMenu()">PPMT</a></li>
+<li><a href="#cumipmt" onclick="toggleMenu()">CUMIPMT</a></li>
+<li><a href="#cumprinc" onclick="toggleMenu()">CUMPRINC</a></li>
+<li><a href="#nper" onclick="toggleMenu()">NPER</a></li>
+<li><a href="#pvpmt" onclick="toggleMenu()">PV + PMT</a></li>
+<li><a href="#fvpmt" onclick="toggleMenu()">FV + PMT</a></li>
+<li><div class="family-title">Obligasi & Sekuritas</div></li>
+<li><a href="#price" onclick="toggleMenu()">PRICE</a></li>
+<li><a href="#yield" onclick="toggleMenu()">YIELD</a></li>
+<li><a href="#pricedisc" onclick="toggleMenu()">PRICEDISC</a></li>
+<li><a href="#yielddisc" onclick="toggleMenu()">YIELDDISC</a></li>
+<li><a href="#pricemat" onclick="toggleMenu()">PRICE.MAT</a></li>
+<li><a href="#yieldmat" onclick="toggleMenu()">YIELD.MAT</a></li>
+<li><a href="#oddfprice" onclick="toggleMenu()">ODDFPRICE</a></li>
+<li><a href="#oddfyield" onclick="toggleMenu()">ODDFYIELD</a></li>
+<li><a href="#oddlprice" onclick="toggleMenu()">ODDLPRICE</a></li>
+<li><a href="#oddlyield" onclick="toggleMenu()">ODDLYIELD</a></li>
+<li><a href="#duration" onclick="toggleMenu()">DURATION</a></li>
+<li><a href="#mduration" onclick="toggleMenu()">MDURATION</a></li>
+<li><a href="#received" onclick="toggleMenu()">RECEIVED</a></li>
+<li><a href="#intrate" onclick="toggleMenu()">INTRATE</a></li>
+<li><div class="family-title">Fungsi Treasury & Investasi</div></li>
+<li><a href="#tbilleq" onclick="toggleMenu()">TBILLEQ</a></li>
+<li><a href="#tbillprice" onclick="toggleMenu()">TBILLPRICE</a></li>
+<li><a href="#tbillyield" onclick="toggleMenu()">TBILLYIELD</a></li>
+<li><a href="#disc" onclick="toggleMenu()">DISC</a></li>
+<li><a href="#yieldredemption" onclick="toggleMenu()">YIELDREDEMPTION</a></li>
+<li><div class="family-title">Analisis Investasi & Evaluasi Proyek</div></li>
+<li><a href="#npvirr" onclick="toggleMenu()">NPV + IRR</a></li>
+<li><a href="#xnpvxirr" onclick="toggleMenu()">XNPV + XIRR</a></li>
+<li><a href="#mirrrate" onclick="toggleMenu()">MIRR + RATE</a></li>
+<li><a href="#ddb" onclick="toggleMenu()">DDB</a></li>
+<li><a href="#sln" onclick="toggleMenu()">SLN</a></li>
+<li><a href="#syd" onclick="toggleMenu()">SYD</a></li>
+<li><a href="#vdb" onclick="toggleMenu()">VDB</a></li>
+<li><a href="#amordegrc" onclick="toggleMenu()">AMORDEGRC</a></li>
+<li><a href="#amorlinc" onclick="toggleMenu()">AMORLINC</a></li>
+<li><div class="family-title">Utilitas Keuangan Tambahan</div></li>
+<li><a href="#accrint" onclick="toggleMenu()">ACCRINT</a></li>
+<li><a href="#accrintm" onclick="toggleMenu()">ACCRINTM</a></li>
+<li><a href="#dollarde" onclick="toggleMenu()">DOLLARDE</a></li>
+<li><a href="#dollarfr" onclick="toggleMenu()">DOLLARFR</a></li>
+<li><a href="#coupdaybs" onclick="toggleMenu()">COUPDAYBS</a></li>
+<li><a href="#coupdays" onclick="toggleMenu()">COUPDAYS</a></li>
+<li><a href="#coupdaysnc" onclick="toggleMenu()">COUPDAYSNC</a></li>
+<li><a href="#coupncd" onclick="toggleMenu()">COUPNCD</a></li>
+<li><a href="#coupnum" onclick="toggleMenu()">COUPNUM</a></li>
+<li><a href="#couppcd" onclick="toggleMenu()">COUPPCD</a></li>
+</ul>
+</div>
+
+<div class="function-group">
+<h2>1. Nilai Waktu Uang</h2>
+<h3 id="pv">PV</h3>
+<p><strong>Deskripsi:</strong> Menghitung nilai sekarang (Present Value) dari serangkaian pembayaran di masa depan.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=PV(rate, nper, pmt, [fv], [type])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Bunga</td><td>5%</td></tr>
+<tr><td><strong>2</strong></td><td>Periode</td><td>10</td></tr>
+<tr><td><strong>3</strong></td><td>Pembayaran</td><td>-1000</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=PV(B1, B2, B3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>9,019.54</td></tr>
+</tbody>
+</table>
+
+<h3 id="fv">FV</h3>
+<p><strong>Deskripsi:</strong> Menghitung nilai masa depan (Future Value) dari investasi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=FV(rate, nper, pmt, [pv], [type])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Bunga</td><td>5%</td></tr>
+<tr><td><strong>2</strong></td><td>Periode</td><td>10</td></tr>
+<tr><td><strong>3</strong></td><td>Pembayaran</td><td>-1000</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=FV(B1, B2, B3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>12,577.89</td></tr>
+</tbody>
+</table>
+
+<h3 id="npv">NPV</h3>
+<p><strong>Deskripsi:</strong> Menghitung nilai bersih saat ini dari arus kas masa depan.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=NPV(rate, value1, [value2], ...)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Investasi Awal</td><td>-10000</td></tr>
+<tr><td><strong>2</strong></td><td>Arus Kas 1</td><td>3000</td></tr>
+<tr><td><strong>3</strong></td><td>Arus Kas 2</td><td>4000</td></tr>
+<tr><td><strong>4</strong></td><td>Arus Kas 3</td><td>5000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=NPV(10%, B2:B4) + B1</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>3,745.02</td></tr>
+</tbody>
+</table>
+
+<h3 id="xnpv">XNPV</h3>
+<p><strong>Deskripsi:</strong> Menghitung NPV yang memperhitungkan tanggal arus kas yang tidak teratur.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=XNPV(rate, values, dates)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Tanggal</td><td>Nilai</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>01/01/2025</td><td>-10000</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>01/07/2025</td><td>5000</td><td></td></tr>
+<tr><td><strong>4</strong></td><td>01/01/2026</td><td>6000</td><td></td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td><span class="syntax">=XNPV(10%, B2:B4, A2:A4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>543.15</td></tr>
+</tbody>
+</table>
+
+<h3 id="rate">RATE</h3>
+<p><strong>Deskripsi:</strong> Menghitung tingkat bunga per periode dari investasi atau pinjaman.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=RATE(nper, pmt, pv, [fv], [type], [guess])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Periode</td><td>12</td></tr>
+<tr><td><strong>2</strong></td><td>Pembayaran</td><td>-1000</td></tr>
+<tr><td><strong>3</strong></td><td>Nilai Sekarang</td><td>10000</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=RATE(B1, B2, B3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>2.92%</td></tr>
+</tbody>
+</table>
+
+<h3 id="irr">IRR</h3>
+<p><strong>Deskripsi:</strong> Menghitung tingkat pengembalian rata-rata dari serangkaian arus kas reguler.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IRR(values, [guess])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Investasi Awal</td><td>-10000</td></tr>
+<tr><td><strong>2</strong></td><td>Arus Kas 1</td><td>3000</td></tr>
+<tr><td><strong>3</strong></td><td>Arus Kas 2</td><td>4000</td></tr>
+<tr><td><strong>4</strong></td><td>Arus Kas 3</td><td>5000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=IRR(B1:B4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>13.6%</td></tr>
+</tbody>
+</table>
+
+<h3 id="xirr">XIRR</h3>
+<p><strong>Deskripsi:</strong> Versi IRR yang memperhitungkan jadwal arus kas tidak teratur.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=XIRR(values, dates, [guess])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Tanggal</td><td>Nilai</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>01/01/2025</td><td>-10000</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>01/07/2025</td><td>5000</td><td></td></tr>
+<tr><td><strong>4</strong></td><td>01/01/2026</td><td>6000</td><td></td></tr>
+<tr><td><strong>5</strong></td><td></td><td></td><td><span class="syntax">=XIRR(B2:B4, A2:A4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td></td><td>17.06%</td></tr>
+</tbody>
+</table>
+
+<h3 id="mirr">MIRR</h3>
+<p><strong>Deskripsi:</strong> Modified IRR; memperbaiki kelemahan IRR dengan memperhitungkan biaya modal dan tingkat reinvestasi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=MIRR(values, finance_rate, reinvest_rate)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Nilai</td><td></td><td></td></tr>
+<tr><td><strong>2</strong></td><td>-10000</td><td></td><td></td></tr>
+<tr><td><strong>3</strong></td><td>5000</td><td></td><td></td></tr>
+<tr><td><strong>4</strong></td><td>6000</td><td></td><td></td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=MIRR(A2:A4, 10%, 12%)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>15.7%</td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>2. Pembayaran & Angsuran</h2>
+<h3 id="pmt">PMT</h3>
+<p><strong>Deskripsi:</strong> Menghitung jumlah pembayaran per periode untuk pinjaman dengan bunga tetap.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=PMT(rate, nper, pv, [fv], [type])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Bunga Tahunan</td><td>6%</td></tr>
+<tr><td><strong>2</strong></td><td>Periode</td><td>120</td></tr>
+<tr><td><strong>3</strong></td><td>Pinjaman</td><td>100000</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=PMT(B1/12, B2, B3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>-1,110.21</td></tr>
+</tbody>
+</table>
+
+<h3 id="ipmt">IPMT</h3>
+<p><strong>Deskripsi:</strong> Menghitung porsi bunga dari suatu pembayaran pada periode tertentu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=IPMT(rate, per, nper, pv, [fv], [type])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Bunga Tahunan</td><td>6%</td></tr>
+<tr><td><strong>2</strong></td><td>Periode</td><td>1</td></tr>
+<tr><td><strong>3</strong></td><td>Total Periode</td><td>120</td></tr>
+<tr><td><strong>4</strong></td><td>Pinjaman</td><td>100000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=IPMT(B1/12, B2, B3, B4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>-500.00</td></tr>
+</tbody>
+</table>
+
+<h3 id="ppmt">PPMT</h3>
+<p><strong>Deskripsi:</strong> Menghitung porsi pokok dari suatu pembayaran pada periode tertentu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=PPMT(rate, per, nper, pv, [fv], [type])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Bunga Tahunan</td><td>6%</td></tr>
+<tr><td><strong>2</strong></td><td>Periode</td><td>1</td></tr>
+<tr><td><strong>3</strong></td><td>Total Periode</td><td>120</td></tr>
+<tr><td><strong>4</strong></td><td>Pinjaman</td><td>100000</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=PPMT(B1/12, B2, B3, B4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>-610.21</td></tr>
+</tbody>
+</table>
+
+<h3 id="cumipmt">CUMIPMT</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan total bunga yang dibayar antara periode awal dan akhir.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CUMIPMT(rate, nper, pv, start_period, end_period, type)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Bunga Tahunan</td><td>6%</td></tr>
+<tr><td><strong>2</strong></td><td>Total Periode</td><td>120</td></tr>
+<tr><td><strong>3</strong></td><td>Pinjaman</td><td>100000</td></tr>
+<tr><td><strong>4</strong></td><td>Periode Awal</td><td>1</td></tr>
+<tr><td><strong>5</strong></td><td>Periode Akhir</td><td>12</td></tr>
+<tr><td><strong>6</strong></td><td></td><td><span class="syntax">=CUMIPMT(B1/12, B2, B3, B4, B5, 0)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>-5,851.35</td></tr>
+</tbody>
+</table>
+
+<h3 id="cumprinc">CUMPRINC</h3>
+<p><strong>Deskripsi:</strong> Menghasilkan total pokok yang dibayar antara periode awal dan akhir.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=CUMPRINC(rate, nper, pv, start_period, end_period, type)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Bunga Tahunan</td><td>6%</td></tr>
+<tr><td><strong>2</strong></td><td>Total Periode</td><td>120</td></tr>
+<tr><td><strong>3</strong></td><td>Pinjaman</td><td>100000</td></tr>
+<tr><td><strong>4</strong></td><td>Periode Awal</td><td>1</td></tr>
+<tr><td><strong>5</strong></td><td>Periode Akhir</td><td>12</td></tr>
+<tr><td><strong>6</strong></td><td></td><td><span class="syntax">=CUMPRINC(B1/12, B2, B3, B4, B5, 0)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>-7,406.88</td></tr>
+</tbody>
+</table>
+
+<h3 id="nper">NPER</h3>
+<p><strong>Deskripsi:</strong> Menghitung jumlah total periode pembayaran untuk pinjaman/investasi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=NPER(rate, pmt, pv, [fv], [type])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Bunga Bulanan</td><td>0.5%</td></tr>
+<tr><td><strong>2</strong></td><td>Pembayaran</td><td>-1110.21</td></tr>
+<tr><td><strong>3</strong></td><td>Pinjaman</td><td>100000</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=NPER(B1, B2, B3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>120</td></tr>
+</tbody>
+</table>
+
+<h3 id="pvpmt">PV + PMT (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Kombinasi untuk menentukan besar pinjaman awal dari jadwal pembayaran tertentu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=PV(rate, nper, PMT(rate, nper, pv))</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Pembayaran</td><td>-1000</td></tr>
+<tr><td><strong>2</strong></td><td>Bunga</td><td>5%</td></tr>
+<tr><td><strong>3</strong></td><td>Periode</td><td>10</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=PV(B2, B3, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1,000.00</td></tr>
+</tbody>
+</table>
+
+<h3 id="fvpmt">FV + PMT (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Kombinasi untuk menghitung akumulasi tabungan dengan setoran rutin.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=FV(rate, nper, PMT(rate, nper, pv))</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Pembayaran</td><td>-100</td></tr>
+<tr><td><strong>2</strong></td><td>Bunga</td><td>5%</td></tr>
+<tr><td><strong>3</strong></td><td>Periode</td><td>10</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=FV(B2, B3, B1)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1,257.79</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>3. Obligasi & Sekuritas</h2>
+<h3 id="price">PRICE</h3>
+<p><strong>Deskripsi:</strong> Menghitung harga obligasi per 100 nilai nominal.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=PRICE(settlement, maturity, rate, yld, redemption, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2030</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td>Yield</td><td>6%</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=PRICE(B1, B2, B3, B4, 100, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>95.73</td></tr>
+</tbody>
+</table>
+
+<h3 id="yield">YIELD</h3>
+<p><strong>Deskripsi:</strong> Menghitung tingkat pengembalian obligasi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=YIELD(settlement, maturity, rate, pr, redemption, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2030</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td>Harga</td><td>95.73</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=YIELD(B1, B2, B3, B4, 100, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>6%</td></tr>
+</tbody>
+</table>
+
+<h3 id="pricedisc">PRICEDISC</h3>
+<p><strong>Deskripsi:</strong> Menghitung harga sekuritas diskonto per 100 nilai nominal.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=PRICEDISC(settlement, maturity, disc, redemption, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td>Diskon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=PRICEDISC(B1, B2, B3, 100)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>95.00</td></tr>
+</tbody>
+</table>
+
+<h3 id="yielddisc">YIELDDISC</h3>
+<p><strong>Deskripsi:</strong> Menghitung yield sekuritas diskonto dari harga pasar.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=YIELDDISC(settlement, maturity, pr, redemption, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td>Harga</td><td>95.00</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=YIELDDISC(B1, B2, B3, 100)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>5.26%</td></tr>
+</tbody>
+</table>
+
+<h3 id="pricemat">PRICE.MAT</h3>
+<p><strong>Deskripsi:</strong> Menghitung harga sekuritas yang dibayar di maturity.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=PRICE.MAT(settlement, maturity, issue, rate, yld, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2030</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td>Yield</td><td>6%</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=PRICE.MAT(B1, B2, B1, B3, B4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>95.23</td></tr>
+</tbody>
+</table>
+
+<h3 id="yieldmat">YIELD.MAT</h3>
+<p><strong>Deskripsi:</strong> Menghitung yield dari sekuritas yang dibayar di maturity.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=YIELD.MAT(settlement, maturity, issue, rate, pr, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2030</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td>Harga</td><td>95.23</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=YIELD.MAT(B1, B2, B1, B3, B4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>6.00%</td></tr>
+</tbody>
+</table>
+
+<h3 id="oddfprice">ODDFPRICE</h3>
+<p><strong>Deskripsi:</strong> Menghitung harga obligasi dengan periode kupon pertama tidak standar.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ODDFPRICE(settlement, maturity, issue, first_coupon, rate, yld, redemption, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>15/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2030</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon Pertama</td><td>01/07/2025</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=ODDFPRICE(B1, B2, "01/01/2025", B3, 5%, 6%, 100, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>96.11</td></tr>
+</tbody>
+</table>
+
+<h3 id="oddfyield">ODDFYIELD</h3>
+<p><strong>Deskripsi:</strong> Menghitung yield obligasi dengan periode kupon pertama tidak standar.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ODDFYIELD(settlement, maturity, issue, first_coupon, rate, pr, redemption, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>15/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2030</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon Pertama</td><td>01/07/2025</td></tr>
+<tr><td><strong>4</strong></td><td>Harga</td><td>96.11</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=ODDFYIELD(B1, B2, "01/01/2025", B3, 5%, B4, 100, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>6.00%</td></tr>
+</tbody>
+</table>
+
+<h3 id="oddlprice">ODDLPRICE</h3>
+<p><strong>Deskripsi:</strong> Menghitung harga obligasi dengan periode kupon terakhir tidak standar.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ODDLPRICE(settlement, maturity, last_coupon, rate, yld, redemption, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/07/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>15/01/2030</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon Terakhir</td><td>01/01/2030</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=ODDLPRICE(B1, B2, B3, 5%, 6%, 100, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>99.64</td></tr>
+</tbody>
+</table>
+
+<h3 id="oddlyield">ODDLYIELD</h3>
+<p><strong>Deskripsi:</strong> Menghitung yield obligasi dengan periode kupon terakhir tidak standar.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ODDLYIELD(settlement, maturity, last_coupon, rate, pr, redemption, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/07/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>15/01/2030</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon Terakhir</td><td>01/01/2030</td></tr>
+<tr><td><strong>4</strong></td><td>Harga</td><td>99.64</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=ODDLYIELD(B1, B2, B3, 5%, B4, 100, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>6.00%</td></tr>
+</tbody>
+</table>
+
+<h3 id="duration">DURATION</h3>
+<p><strong>Deskripsi:</strong> Menghitung durasi obligasi, menunjukkan sensitivitas harga terhadap perubahan bunga.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DURATION(settlement, maturity, coupon, yld, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2030</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td>Yield</td><td>6%</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=DURATION(B1, B2, B3, B4, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>4.37</td></tr>
+</tbody>
+</table>
+
+<h3 id="mduration">MDURATION</h3>
+<p><strong>Deskripsi:</strong> Menghitung modified duration—versi durasi yang lebih akurat.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=MDURATION(settlement, maturity, coupon, yld, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2030</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td>Yield</td><td>6%</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=MDURATION(B1, B2, B3, B4, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>4.12</td></tr>
+</tbody>
+</table>
+
+<h3 id="received">RECEIVED</h3>
+<p><strong>Deskripsi:</strong> Menghitung jumlah diterima pada maturity untuk sekuritas diskonto.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=RECEIVED(settlement, maturity, investment, disc, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td>Investasi</td><td>95</td></tr>
+<tr><td><strong>4</strong></td><td>Diskon</td><td>5%</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=RECEIVED(B1, B2, B3, B4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>100</td></tr>
+</tbody>
+</table>
+
+<h3 id="intrate">INTRATE</h3>
+<p><strong>Deskripsi:</strong> Menghitung tingkat bunga untuk sekuritas diskonto.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=INTRATE(settlement, maturity, investment, redemption, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td>Investasi</td><td>95</td></tr>
+<tr><td><strong>4</strong></td><td>Redemption</td><td>100</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=INTRATE(B1, B2, B3, B4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>5.26%</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>4. Fungsi Treasury & Investasi</h2>
+<h3 id="tbilleq">TBILLEQ</h3>
+<p><strong>Deskripsi:</strong> Menghitung yield setara obligasi untuk treasury bill.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TBILLEQ(settlement, maturity, disc)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/07/2025</td></tr>
+<tr><td><strong>3</strong></td><td>Diskon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=TBILLEQ(B1, B2, B3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>5.13%</td></tr>
+</tbody>
+</table>
+
+<h3 id="tbillprice">TBILLPRICE</h3>
+<p><strong>Deskripsi:</strong> Menghitung harga treasury bill per 100 nilai nominal.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TBILLPRICE(settlement, maturity, disc)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/07/2025</td></tr>
+<tr><td><strong>3</strong></td><td>Diskon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=TBILLPRICE(B1, B2, B3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>97.50</td></tr>
+</tbody>
+</table>
+
+<h3 id="tbillyield">TBILLYIELD</h3>
+<p><strong>Deskripsi:</strong> Menghitung yield treasury bill dari harga pasar.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=TBILLYIELD(settlement, maturity, pr)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/07/2025</td></tr>
+<tr><td><strong>3</strong></td><td>Harga</td><td>97.50</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=TBILLYIELD(B1, B2, B3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>5.13%</td></tr>
+</tbody>
+</table>
+
+<h3 id="disc">DISC</h3>
+<p><strong>Deskripsi:</strong> Menghitung tingkat diskonto sekuritas.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DISC(settlement, maturity, pr, redemption, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td>Harga</td><td>95</td></tr>
+<tr><td><strong>4</strong></td><td>Redemption</td><td>100</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=DISC(B1, B2, B3, B4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>5%</td></tr>
+</tbody>
+</table>
+
+<h3 id="yieldredemption">YIELDREDEMPTION</h3>
+<p><strong>Deskripsi:</strong> Menghitung tingkat pengembalian sekuritas saat jatuh tempo.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=YIELDREDEMPTION(settlement, maturity, issue, rate, pr, redemption, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Jatuh Tempo</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td>Harga</td><td>95</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=YIELDREDEMPTION(B1, B2, B1, B3, B4, 100)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>10.38%</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>5. Analisis Investasi & Evaluasi Proyek</h2>
+<h3 id="npvirr">NPV + IRR (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Kombinasi untuk mengevaluasi kelayakan proyek.</p>
+<p><strong>Sintaks:</strong> Menggabungkan NPV dan IRR.</p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Investasi</td><td>-10000</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>Kas Tahun 1</td><td>3000</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>Kas Tahun 2</td><td>4000</td><td></td></tr>
+<tr><td><strong>4</strong></td><td>Kas Tahun 3</td><td>5000</td><td></td></tr>
+<tr><td><strong>5</strong></td><td>NPV (10%)</td><td><span class="syntax">=NPV(10%, B2:B4) + B1</span></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>IRR</td><td><span class="syntax">=IRR(B1:B4)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>3,745.02</td><td>13.6%</td></tr>
+</tbody>
+</table>
+
+<h3 id="xnpvxirr">XNPV + XIRR (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Kombinasi untuk proyek dengan arus kas tidak reguler.</p>
+<p><strong>Sintaks:</strong> Menggabungkan XNPV dan XIRR.</p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Tanggal</td><td>Nilai</td><td></td></tr>
+<tr><td><strong>2</strong></td><td>01/01/2025</td><td>-10000</td><td></td></tr>
+<tr><td><strong>3</strong></td><td>01/07/2025</td><td>5000</td><td></td></tr>
+<tr><td><strong>4</strong></td><td>01/01/2026</td><td>6000</td><td></td></tr>
+<tr><td><strong>5</strong></td><td>XNPV (10%)</td><td><span class="syntax">=XNPV(10%, B2:B4, A2:A4)</span></td><td></td></tr>
+<tr><td><strong>6</strong></td><td>XIRR</td><td><span class="syntax">=XIRR(B2:B4, A2:A4)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>543.15</td><td>17.06%</td></tr>
+</tbody>
+</table>
+
+<h3 id="mirrrate">MIRR + RATE (kombinasi)</h3>
+<p><strong>Deskripsi:</strong> Kombinasi untuk mengevaluasi proyek dengan tingkat reinvestasi berbeda.</p>
+<p><strong>Sintaks:</strong> Menggabungkan MIRR dan RATE.</p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Arus Kas</td><td>-10000</td><td></td></tr>
+<tr><td><strong>2</strong></td><td></td><td>5000</td><td></td></tr>
+<tr><td><strong>3</strong></td><td></td><td>6000</td><td></td></tr>
+<tr><td><strong>4</strong></td><td>MIRR (10%, 12%)</td><td><span class="syntax">=MIRR(B1:B3, 10%, 12%)</span></td><td></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>15.7%</td><td></td></tr>
+</tbody>
+</table>
+
+<h3 id="ddb">DDB</h3>
+<p><strong>Deskripsi:</strong> Menghitung penyusutan dengan metode double-declining balance.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DDB(cost, salvage, life, period, [factor])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Biaya</td><td>10000</td></tr>
+<tr><td><strong>2</strong></td><td>Nilai Sisa</td><td>1000</td></tr>
+<tr><td><strong>3</strong></td><td>Umur</td><td>5</td></tr>
+<tr><td><strong>4</strong></td><td>Periode</td><td>1</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=DDB(B1, B2, B3, B4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>4,000</td></tr>
+</tbody>
+</table>
+
+<h3 id="sln">SLN</h3>
+<p><strong>Deskripsi:</strong> Menghitung penyusutan dengan metode garis lurus.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=SLN(cost, salvage, life)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Biaya</td><td>10000</td></tr>
+<tr><td><strong>2</strong></td><td>Nilai Sisa</td><td>1000</td></tr>
+<tr><td><strong>3</strong></td><td>Umur</td><td>5</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=SLN(B1, B2, B3)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1,800</td></tr>
+</tbody>
+</table>
+
+<h3 id="syd">SYD</h3>
+<p><strong>Deskripsi:</strong> Menghitung penyusutan dengan metode sum-of-years-digits.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=SYD(cost, salvage, life, period)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Biaya</td><td>10000</td></tr>
+<tr><td><strong>2</strong></td><td>Nilai Sisa</td><td>1000</td></tr>
+<tr><td><strong>3</strong></td><td>Umur</td><td>5</td></tr>
+<tr><td><strong>4</strong></td><td>Periode</td><td>1</td></tr>
+<tr><td><strong>5</strong></td><td></td><td><span class="syntax">=SYD(B1, B2, B3, B4)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>3,000</td></tr>
+</tbody>
+</table>
+
+<h3 id="vdb">VDB</h3>
+<p><strong>Deskripsi:</strong> Menghitung penyusutan saldo menurun ganda dengan opsi switch.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=VDB(cost, salvage, life, start_period, end_period, [factor], [no_switch])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Biaya</td><td>10000</td></tr>
+<tr><td><strong>2</strong></td><td>Nilai Sisa</td><td>1000</td></tr>
+<tr><td><strong>3</strong></td><td>Umur</td><td>5</td></tr>
+<tr><td><strong>4</strong></td><td>Periode Awal</td><td>1</td></tr>
+<tr><td><strong>5</strong></td><td>Periode Akhir</td><td>2</td></tr>
+<tr><td><strong>6</strong></td><td></td><td><span class="syntax">=VDB(B1, B2, B3, B4, B5)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>6,400</td></tr>
+</tbody>
+</table>
+
+<h3 id="amordegrc">AMORDEGRC</h3>
+<p><strong>Deskripsi:</strong> Fungsi penyusutan untuk aset dengan biaya penyusutan bertahap sesuai peraturan tertentu.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=AMORDEGRC(cost, date_purchased, first_period, salvage, period, rate, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Biaya</td><td>10000</td></tr>
+<tr><td><strong>2</strong></td><td>Tanggal Beli</td><td>01/01/2025</td></tr>
+<tr><td><strong>3</strong></td><td>Periode Pertama</td><td>31/01/2025</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=AMORDEGRC(B1, B2, B3, 1000, 1, 15%)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1500</td></tr>
+</tbody>
+</table>
+
+<h3 id="amorlinc">AMORLINC</h3>
+<p><strong>Deskripsi:</strong> Fungsi penyusutan linier untuk aset menurut peraturan akuntansi Eropa.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=AMORLINC(cost, date_purchased, first_period, salvage, period, rate, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Biaya</td><td>10000</td></tr>
+<tr><td><strong>2</strong></td><td>Tanggal Beli</td><td>01/01/2025</td></tr>
+<tr><td><strong>3</strong></td><td>Periode Pertama</td><td>31/01/2025</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=AMORLINC(B1, B2, B3, 1000, 1, 15%)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1500</td></tr>
+</tbody>
+</table>
+</div>
+
+---
+<div class="function-group">
+<h2>6. Utilitas Keuangan Tambahan</h2>
+<h3 id="accrint">ACCRINT</h3>
+<p><strong>Deskripsi:</strong> Menghitung bunga akrual sekuritas dengan kupon periodik.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ACCRINT(issue, first_interest, settlement, rate, par, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Issue Date</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Settlement Date</td><td>31/01/2025</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=ACCRINT(B1, "01/07/2025", B2, B3, 1000, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>4.17</td></tr>
+</tbody>
+</table>
+
+<h3 id="accrintm">ACCRINTM</h3>
+<p><strong>Deskripsi:</strong> Menghitung bunga akrual sekuritas yang dibayar saat jatuh tempo.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=ACCRINTM(issue, maturity, rate, par, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Issue Date</td><td>01/01/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Maturity Date</td><td>31/01/2025</td></tr>
+<tr><td><strong>3</strong></td><td>Kupon</td><td>5%</td></tr>
+<tr><td><strong>4</strong></td><td></td><td><span class="syntax">=ACCRINTM(B1, B2, B3, 1000)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>4.17</td></tr>
+</tbody>
+</table>
+
+<h3 id="dollarde">DOLLARDE</h3>
+<p><strong>Deskripsi:</strong> Mengubah harga pecahan obligasi menjadi bentuk desimal.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DOLLARDE(fractional_dollar, fraction)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Harga Pecahan</td><td>101.25</td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=DOLLARDE(A1, 16)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>101.15625</td></tr>
+</tbody>
+</table>
+
+<h3 id="dollarfr">DOLLARFR</h3>
+<p><strong>Deskripsi:</strong> Mengubah harga desimal menjadi pecahan obligasi.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=DOLLARFR(decimal_dollar, fraction)</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Harga Desimal</td><td>101.15625</td></tr>
+<tr><td><strong>2</strong></td><td></td><td><span class="syntax">=DOLLARFR(A1, 16)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>101.25</td></tr>
+</tbody>
+</table>
+
+<h3 id="coupdaybs">COUPDAYBS</h3>
+<p><strong>Deskripsi:</strong> Menghitung jumlah hari dari awal periode kupon hingga settlement.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=COUPDAYBS(settlement, maturity, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/07/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Maturity</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=COUPDAYBS(B1, B2, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>181</td></tr>
+</tbody>
+</table>
+
+<h3 id="coupdays">COUPDAYS</h3>
+<p><strong>Deskripsi:</strong> Menghitung jumlah total hari dalam periode kupon.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=COUPDAYS(settlement, maturity, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/07/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Maturity</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=COUPDAYS(B1, B2, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>184</td></tr>
+</tbody>
+</table>
+
+<h3 id="coupdaysnc">COUPDAYSNC</h3>
+<p><strong>Deskripsi:</strong> Menghitung jumlah hari dari settlement hingga kupon berikutnya.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=COUPDAYSNC(settlement, maturity, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/07/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Maturity</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=COUPDAYSNC(B1, B2, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>184</td></tr>
+</tbody>
+</table>
+
+<h3 id="coupncd">COUPNCD</h3>
+<p><strong>Deskripsi:</strong> Memberikan tanggal kupon berikutnya setelah settlement.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=COUPNCD(settlement, maturity, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/07/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Maturity</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=COUPNCD(B1, B2, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>01/01/2026</td></tr>
+</tbody>
+</table>
+
+<h3 id="coupnum">COUPNUM</h3>
+<p><strong>Deskripsi:</strong> Mengembalikan jumlah kupon antara settlement dan maturity.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=COUPNUM(settlement, maturity, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/07/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Maturity</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=COUPNUM(B1, B2, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>1</td></tr>
+</tbody>
+</table>
+
+<h3 id="couppcd">COUPPCD</h3>
+<p><strong>Deskripsi:</strong> Memberikan tanggal kupon sebelumnya sebelum settlement.</p>
+<p><strong>Sintaks:</strong> <span class="syntax">=COUPPCD(settlement, maturity, frequency, [basis])</span></p>
+<table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>Settlement</td><td>01/07/2025</td></tr>
+<tr><td><strong>2</strong></td><td>Maturity</td><td>01/01/2026</td></tr>
+<tr><td><strong>3</strong></td><td></td><td><span class="syntax">=COUPPCD(B1, B2, 2)</span></td></tr>
+<tr class="highlight"><td><strong>Hasil</strong></td><td></td><td>01/01/2025</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+function toggleMenu() {
+const menu = document.getElementById('menuList');
+menu.classList.toggle('active');
+}
+</script>
+</body>
+</html>
