@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fungsi Matematika & Aritmatika (Tabel Lengkap)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        caption {
+            font-size: 1.4em;
+            font-weight: bold;
+            text-align: left;
+            padding: 10px 0;
+            color: #555;
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #e8f5e9;
+        }
+        .code-snippet {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>BAB 1 – FUNGSI MATEMATIKA & ARITMATIKA</h1>
+    
+    <table>
+        <caption>1. Sum Family</caption>
+        <thead>
+            <tr>
+                <th>Fungsi</th>
+                <th>Sintaks</th>
+                <th>Contoh Penggunaan</th>
+                <th>Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SUM</td>
+                <td><span class="code-snippet">=SUM(number1, [number2], ...)</span></td>
+                <td><span class="code-snippet">=SUM(A1:A3)</span><br>Jika A1=10, A2=20, A3=30</td>
+                <td>60</td>
+            </tr>
+            <tr>
+                <td>SUMIF</td>
+                <td><span class="code-snippet">=SUMIF(range, criteria, [sum_range])</span></td>
+                <td><span class="code-snippet">=SUMIF(A1:A5, ">100", B1:B5)</span><br>Menjumlahkan nilai di B1:B5 jika nilai di A1:A5 lebih dari 100.</td>
+                <td>Sesuai data</td>
+            </tr>
+            <tr>
+                <td>SUMIFS</td>
+                <td><span class="code-snippet">=SUMIFS(sum_range, criteria_range1, criteria1, ...)</span></td>
+                <td><span class="code-snippet">=SUMIFS(C1:C5, A1:A5, "Buah", B1:B5, ">=10")</span></td>
+                <td>Sesuai data</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <caption>2. Average Family</caption>
+        <thead>
+            <tr>
+                <th>Fungsi</th>
+                <th>Sintaks</th>
+                <th>Contoh Penggunaan</th>
+                <th>Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>AVERAGE</td>
+                <td><span class="code-snippet">=AVERAGE(number1, [number2], ...)</span></td>
+                <td><span class="code-snippet">=AVERAGE(A1:A3)</span><br>Jika A1=10, A2=20, A3=30</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>AVERAGEIF</td>
+                <td><span class="code-snippet">=AVERAGEIF(range, criteria, [average_range])</span></td>
+                <td><span class="code-snippet">=AVERAGEIF(A1:A5, "Laki-laki", B1:B5)</span></td>
+                <td>Sesuai data</td>
+            </tr>
+            <tr>
+                <td>AVERAGEIFS</td>
+                <td><span class="code-snippet">=AVERAGEIFS(average_range, criteria_range1, criteria1, ...)</span></td>
+                <td><span class="code-snippet">=AVERAGEIFS(C1:C5, A1:A5, "Jakarta", B1:B5, ">=30")</span></td>
+                <td>Sesuai data</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <caption>3. Count Family</caption>
+        <thead>
+            <tr>
+                <th>Fungsi</th>
+                <th>Sintaks</th>
+                <th>Contoh Penggunaan</th>
+                <th>Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>COUNT</td>
+                <td><span class="code-snippet">=COUNT(value1, [value2], ...)</span></td>
+                <td><span class="code-snippet">=COUNT(A1:A5)</span><br>Menghitung jumlah sel berisi angka di A1:A5.</td>
+                <td>Sesuai data</td>
+            </tr>
+            <tr>
+                <td>COUNTA</td>
+                <td><span class="code-snippet">=COUNTA(value1, [value2], ...)</span></td>
+                <td><span class="code-snippet">=COUNTA(A1:A5)</span><br>Menghitung jumlah sel tidak kosong di A1:A5.</td>
+                <td>Sesuai data</td>
+            </tr>
+            <tr>
+                <td>COUNTIF</td>
+                <td><span class="code-snippet">=COUNTIF(range, criteria)</span></td>
+                <td><span class="code-snippet">=COUNTIF(A1:A10, "Laki-laki")</span></td>
+                <td>Sesuai data</td>
+            </tr>
+            <tr>
+                <td>COUNTIFS</td>
+                <td><span class="code-snippet">=COUNTIFS(criteria_range1, criteria1, ...)</span></td>
+                <td><span class="code-snippet">=COUNTIFS(A1:A10, "Barat", B1:B10, ">100")</span></td>
+                <td>Sesuai data</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <caption>4. Round Family</caption>
+        <thead>
+            <tr>
+                <th>Fungsi</th>
+                <th>Sintaks</th>
+                <th>Contoh Penggunaan</th>
+                <th>Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ROUND</td>
+                <td><span class="code-snippet">=ROUND(number, num_digits)</span></td>
+                <td><span class="code-snippet">=ROUND(123.456, 2)</span></td>
+                <td>123.46</td>
+            </tr>
+            <tr>
+                <td>ROUNDUP</td>
+                <td><span class="code-snippet">=ROUNDUP(number, num_digits)</span></td>
+                <td><span class="code-snippet">=ROUNDUP(123.451, 2)</span></td>
+                <td>123.46</td>
+            </tr>
+            <tr>
+                <td>ROUNDDOWN</td>
+                <td><span class="code-snippet">=ROUNDDOWN(number, num_digits)</span></td>
+                <td><span class="code-snippet">=ROUNDDOWN(123.459, 2)</span></td>
+                <td>123.45</td>
+            </tr>
+            <tr>
+                <td>INT</td>
+                <td><span class="code-snippet">=INT(number)</span></td>
+                <td><span class="code-snippet">=INT(8.7)</span></td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>TRUNC</td>
+                <td><span class="code-snippet">=TRUNC(number, [num_digits])</span></td>
+                <td><span class="code-snippet">=TRUNC(8.7)</span></td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>EVEN</td>
+                <td><span class="code-snippet">=EVEN(number)</span></td>
+                <td><span class="code-snippet">=EVEN(7)</span></td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>ODD</td>
+                <td><span class="code-snippet">=ODD(number)</span></td>
+                <td><span class="code-snippet">=ODD(8)</span></td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>MROUND</td>
+                <td><span class="code-snippet">=MROUND(number, multiple)</span></td>
+                <td><span class="code-snippet">=MROUND(10, 3)</span></td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>CEILING</td>
+                <td><span class="code-snippet">=CEILING(number, significance)</span></td>
+                <td><span class="code-snippet">=CEILING(10, 3)</span></td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>FLOOR</td>
+                <td><span class="code-snippet">=FLOOR(number, significance)</span></td>
+                <td><span class="code-snippet">=FLOOR(10, 3)</span></td>
+                <td>9</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <caption>5. Statistik Dasar</caption>
+        <thead>
+            <tr>
+                <th>Fungsi</th>
+                <th>Sintaks</th>
+                <th>Contoh Penggunaan</th>
+                <th>Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>MIN</td>
+                <td><span class="code-snippet">=MIN(number1, [number2], ...)</span></td>
+                <td><span class="code-snippet">=MIN(A1:A5)</span><br>Jika A1=10, A2=5, A3=20</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>MAX</td>
+                <td><span class="code-snippet">=MAX(number1, [number2], ...)</span></td>
+                <td><span class="code-snippet">=MAX(A1:A5)</span><br>Jika A1=10, A2=5, A3=20</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>LARGE</td>
+                <td><span class="code-snippet">=LARGE(array, k)</span></td>
+                <td><span class="code-snippet">=LARGE(A1:A5, 2)</span><br>Jika data adalah {10, 50, 20, 80, 40}</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>SMALL</td>
+                <td><span class="code-snippet">=SMALL(array, k)</span></td>
+                <td><span class="code-snippet">=SMALL(A1:A5, 2)</span><br>Jika data adalah {10, 5, 20, 8, 40}</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>RANK</td>
+                <td><span class="code-snippet">=RANK(number, ref, [order])</span></td>
+                <td><span class="code-snippet">=RANK(A1, A$1:A$10)</span></td>
+                <td>Sesuai data</td>
+            </tr>
+            <tr>
+                <td>PERCENTILE</td>
+                <td><span class="code-snippet">=PERCENTILE(array, k)</span></td>
+                <td><span class="code-snippet">=PERCENTILE(A1:A10, 0.5)</span><br>Menghasilkan nilai persentil ke-50.</td>
+                <td>Sesuai data</td>
+            </tr>
+            <tr>
+                <td>QUARTILE</td>
+                <td><span class="code-snippet">=QUARTILE(array, quart)</span></td>
+                <td><span class="code-snippet">=QUARTILE(A1:A10, 1)</span><br>Menghasilkan nilai kuartil pertama.</td>
+                <td>Sesuai data</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <caption>6. Matematika Dasar</caption>
+        <thead>
+            <tr>
+                <th>Fungsi</th>
+                <th>Sintaks</th>
+                <th>Contoh Penggunaan</th>
+                <th>Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ABS</td>
+                <td><span class="code-snippet">=ABS(number)</span></td>
+                <td><span class="code-snippet">=ABS(-5)</span></td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>PRODUCT</td>
+                <td><span class="code-snippet">=PRODUCT(number1, [number2], ...)</span></td>
+                <td><span class="code-snippet">=PRODUCT(2, 3, 4)</span></td>
+                <td>24</td>
+            </tr>
+            <tr>
+                <td>QUOTIENT</td>
+                <td><span class="code-snippet">=QUOTIENT(numerator, denominator)</span></td>
+                <td><span class="code-snippet">=QUOTIENT(10, 3)</span></td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>MOD</td>
+                <td><span class="code-snippet">=MOD(number, divisor)</span></td>
+                <td><span class="code-snippet">=MOD(10, 3)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>POWER</td>
+                <td><span class="code-snippet">=POWER(number, power)</span></td>
+                <td><span class="code-snippet">=POWER(2, 3)</span></td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td>SQRT</td>
+                <td><span class="code-snippet">=SQRT(number)</span></td>
+                <td><span class="code-snippet">=SQRT(16)</span></td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>EXP</td>
+                <td><span class="code-snippet">=EXP(number)</span></td>
+                <td><span class="code-snippet">=EXP(1)</span></td>
+                <td>2.71828...</td>
+            </tr>
+            <tr>
+                <td>LN</td>
+                <td><span class="code-snippet">=LN(number)</span></td>
+                <td><span class="code-snippet">=LN(7.389)</span></td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>LOG</td>
+                <td><span class="code-snippet">=LOG(number, [base])</span></td>
+                <td><span class="code-snippet">=LOG(100, 10)</span></td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>PI</td>
+                <td><span class="code-snippet">=PI()</span></td>
+                <td><span class="code-snippet">=PI()</span></td>
+                <td>3.14159...</td>
+            </tr>
+            <tr>
+                <td>SIGN</td>
+                <td><span class="code-snippet">=SIGN(number)</span></td>
+                <td><span class="code-snippet">=SIGN(-10)</span></td>
+                <td>-1</td>
+            </tr>
+            <tr>
+                <td>FACT</td>
+                <td><span class="code-snippet">=FACT(number)</span></td>
+                <td><span class="code-snippet">=FACT(4)</span></td>
+                <td>24</td>
+            </tr>
+            <tr>
+                <td>GCD</td>
+                <td><span class="code-snippet">=GCD(number1, [number2], ...)</span></td>
+                <td><span class="code-snippet">=GCD(10, 15)</span></td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>LCM</td>
+                <td><span class="code-snippet">=LCM(number1, [number2], ...)</span></td>
+                <td><span class="code-snippet">=LCM(10, 15)</span></td>
+                <td>30</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table>
+        <caption>7. Random</caption>
+        <thead>
+            <tr>
+                <th>Fungsi</th>
+                <th>Sintaks</th>
+                <th>Contoh Penggunaan</th>
+                <th>Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>RAND</td>
+                <td><span class="code-snippet">=RAND()</span></td>
+                <td><span class="code-snippet">=RAND()</span></td>
+                <td>Angka acak antara 0-1</td>
+            </tr>
+            <tr>
+                <td>RANDBETWEEN</td>
+                <td><span class="code-snippet">=RANDBETWEEN(bottom, top)</span></td>
+                <td><span class="code-snippet">=RANDBETWEEN(1, 10)</span></td>
+                <td>Angka acak antara 1-10</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <caption>8. Trigonometri</caption>
+        <thead>
+            <tr>
+                <th>Fungsi</th>
+                <th>Sintaks</th>
+                <th>Contoh Penggunaan</th>
+                <th>Hasil</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SIN</td>
+                <td><span class="code-snippet">=SIN(number)</span></td>
+                <td><span class="code-snippet">=SIN(PI()/2)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>COS</td>
+                <td><span class="code-snippet">=COS(number)</span></td>
+                <td><span class="code-snippet">=COS(0)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>TAN</td>
+                <td><span class="code-snippet">=TAN(number)</span></td>
+                <td><span class="code-snippet">=TAN(PI()/4)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>COT</td>
+                <td><span class="code-snippet">=COT(number)</span></td>
+                <td><span class="code-snippet">=COT(PI()/4)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>CSC</td>
+                <td><span class="code-snippet">=CSC(number)</span></td>
+                <td><span class="code-snippet">=CSC(PI()/2)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>SEC</td>
+                <td><span class="code-snippet">=SEC(number)</span></td>
+                <td><span class="code-snippet">=SEC(0)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>ASIN</td>
+                <td><span class="code-snippet">=ASIN(number)</span></td>
+                <td><span class="code-snippet">=ASIN(1)</span></td>
+                <td>1.5707... (PI/2)</td>
+            </tr>
+            <tr>
+                <td>ACOS</td>
+                <td><span class="code-snippet">=ACOS(number)</span></td>
+                <td><span class="code-snippet">=ACOS(0)</span></td>
+                <td>1.5707... (PI/2)</td>
+            </tr>
+            <tr>
+                <td>ATAN</td>
+                <td><span class="code-snippet">=ATAN(number)</span></td>
+                <td><span class="code-snippet">=ATAN(1)</span></td>
+                <td>0.7853... (PI/4)</td>
+            </tr>
+            <tr>
+                <td>ATAN2</td>
+                <td><span class="code-snippet">=ATAN2(x_num, y_num)</span></td>
+                <td><span class="code-snippet">=ATAN2(1, 1)</span></td>
+                <td>0.7853...</td>
+            </tr>
+            <tr>
+                <td>ACOT</td>
+                <td><span class="code-snippet">=ACOT(number)</span></td>
+                <td><span class="code-snippet">=ACOT(1)</span></td>
+                <td>0.7853...</td>
+            </tr>
+            <tr>
+                <td>ACSC</td>
+                <td><span class="code-snippet">=ACSC(number)</span></td>
+                <td><span class="code-snippet">=ACSC(1)</span></td>
+                <td>1.5707...</td>
+            </tr>
+            <tr>
+                <td>ASEC</td>
+                <td><span class="code-snippet">=ASEC(number)</span></td>
+                <td><span class="code-snippet">=ASEC(1)</span></td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>SINH</td>
+                <td><span class="code-snippet">=SINH(number)</span></td>
+                <td><span class="code-snippet">=SINH(1)</span></td>
+                <td>1.1752...</td>
+            </tr>
+            <tr>
+                <td>COSH</td>
+                <td><span class="code-snippet">=COSH(number)</span></td>
+                <td><span class="code-snippet">=COSH(0)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>TANH</td>
+                <td><span class="code-snippet">=TANH(number)</span></td>
+                <td><span class="code-snippet">=TANH(0)</span></td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>COTH</td>
+                <td><span class="code-snippet">=COTH(number)</span></td>
+                <td><span class="code-snippet">=COTH(1)</span></td>
+                <td>1.313...</td>
+            </tr>
+            <tr>
+                <td>CSCH</td>
+                <td><span class="code-snippet">=CSCH(number)</span></td>
+                <td><span class="code-snippet">=CSCH(1)</span></td>
+                <td>0.8509...</td>
+            </tr>
+            <tr>
+                <td>SECH</td>
+                <td><span class="code-snippet">=SECH(number)</span></td>
+                <td><span class="code-snippet">=SECH(0)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>ASINH</td>
+                <td><span class="code-snippet">=ASINH(number)</span></td>
+                <td><span class="code-snippet">=ASINH(1.1752)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>ACOSH</td>
+                <td><span class="code-snippet">=ACOSH(number)</span></td>
+                <td><span class="code-snippet">=ACOSH(1)</span></td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>ATANH</td>
+                <td><span class="code-snippet">=ATANH(number)</span></td>
+                <td><span class="code-snippet">=ATANH(0.761)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>ACOTH</td>
+                <td><span class="code-snippet">=ACOTH(number)</span></td>
+                <td><span class="code-snippet">=ACOTH(1.313)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>ACSCH</td>
+                <td><span class="code-snippet">=ACSCH(number)</span></td>
+                <td><span class="code-snippet">=ACSCH(0.8509)</span></td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>ASECH</td>
+                <td><span class="code-snippet">=ASECH(number)</span></td>
+                <td><span class="code-snippet">=ASECH(1)</span></td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
